@@ -1,0 +1,3 @@
+INDEX VERSION 1.126+/Users/hanter/Programming/SWMaestro/firststep_1st/Social_Smart_Game/SWMaestro---Social-Smart-Game/SketchGame_TouchInput/SketchGame_TouchInput/.metadata/.plugins/org.eclipse.jdt.core
+2408429469.index
+334757748.index

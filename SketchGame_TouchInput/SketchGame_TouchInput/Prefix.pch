@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'SketchGame_TouchInput' target in the 'SketchGame_TouchInput' project
+//
+
+#ifdef __OBJC__
+	#import <Foundation/Foundation.h>
+	#import <UIKit/UIKit.h>
+#endif

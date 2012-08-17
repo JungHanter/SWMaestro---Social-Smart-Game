@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="PreferencesImportWizard">
+		<item value="/Users/hanter/Downloads/theme-6267.epf" key=""/>
+		<list key="WizardPreferencesExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="/Users/hanter/Downloads/theme-6267.epf"/>
+		</list>
+	</section>
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="75" key="DIALOG_Y_ORIGIN"/>
+		<item value="390" key="DIALOG_X_ORIGIN"/>
+	</section>
+	<section name="ShowViewDialog">
+		<item value="308" key="DIALOG_WIDTH"/>
+		<item value="com.android.ide.eclipse.ddms.views.LogCatView" key="ShowViewDialog.STORE_SELECTED_VIEW_ID"/>
+		<item value="155" key="DIALOG_Y_ORIGIN"/>
+		<item value="415" key="DIALOG_HEIGHT"/>
+		<item value="545" key="DIALOG_X_ORIGIN"/>
+		<item value="1|Lucida Grande|11.0|0|COCOA|1|LucidaGrande" key="DIALOG_FONT_NAME"/>
+		<list key="ShowViewDialog.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="com.android.ide.eclipse.ddms.views.category"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.eclipse.ui.wizards.import.Preferences" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+</section>
