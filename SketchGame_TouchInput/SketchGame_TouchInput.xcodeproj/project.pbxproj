@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D84ADD5915DDECA400DED991 /* TouchInputTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */; };
 		D8CA201215DDDCB1007F583A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CA201115DDDCB1007F583A /* QuartzCore.framework */; };
 		D8CA201415DDDCB1007F583A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CA201315DDDCB1007F583A /* OpenGLES.framework */; };
 		D8CA201615DDDCB1007F583A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CA201515DDDCB1007F583A /* OpenAL.framework */; };
@@ -194,10 +195,11 @@
 		D8CA228515DDDCB4007F583A /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8CA228415DDDCB4007F583A /* AppController.mm */; };
 		D8CA228815DDDCB4007F583A /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8CA228715DDDCB4007F583A /* RootViewController.mm */; };
 		D8CA228C15DDDCB4007F583A /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8CA228B15DDDCB4007F583A /* AppDelegate.cpp */; };
-		D8CA228F15DDDCB4007F583A /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8CA228E15DDDCB4007F583A /* HelloWorldScene.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D84ADD5615DDEBFF00DED991 /* TouchInputTestScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TouchInputTestScene.h; path = Classes/TouchInputTestScene.h; sourceTree = "<group>"; };
+		D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TouchInputTestScene.cpp; path = Classes/TouchInputTestScene.cpp; sourceTree = "<group>"; };
 		D8CA200D15DDDCB1007F583A /* SketchGame_TouchInput.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchGame_TouchInput.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CA201115DDDCB1007F583A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8CA201315DDDCB1007F583A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -599,8 +601,6 @@
 		D8CA228715DDDCB4007F583A /* RootViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = RootViewController.mm; path = ios/RootViewController.mm; sourceTree = "<group>"; };
 		D8CA228A15DDDCB4007F583A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		D8CA228B15DDDCB4007F583A /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
-		D8CA228D15DDDCB4007F583A /* HelloWorldScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
-		D8CA228E15DDDCB4007F583A /* HelloWorldScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1433,8 +1433,8 @@
 			children = (
 				D8CA228A15DDDCB4007F583A /* AppDelegate.h */,
 				D8CA228B15DDDCB4007F583A /* AppDelegate.cpp */,
-				D8CA228D15DDDCB4007F583A /* HelloWorldScene.h */,
-				D8CA228E15DDDCB4007F583A /* HelloWorldScene.cpp */,
+				D84ADD5615DDEBFF00DED991 /* TouchInputTestScene.h */,
+				D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1678,7 +1678,7 @@
 				D8CA228515DDDCB4007F583A /* AppController.mm in Sources */,
 				D8CA228815DDDCB4007F583A /* RootViewController.mm in Sources */,
 				D8CA228C15DDDCB4007F583A /* AppDelegate.cpp in Sources */,
-				D8CA228F15DDDCB4007F583A /* HelloWorldScene.cpp in Sources */,
+				D84ADD5915DDECA400DED991 /* TouchInputTestScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1796,6 +1796,7 @@
 				D8CA229415DDDCB4007F583A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
