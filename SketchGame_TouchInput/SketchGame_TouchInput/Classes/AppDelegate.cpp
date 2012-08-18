@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "TouchInputTestScene.h"
+#include "SketchGameScene.h"
 
 USING_NS_CC;
 
@@ -27,8 +28,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     pDirector->setAnimationInterval(1.0 / 60);
 
     // create a scene. it's an autorelease object
-    CCScene *pScene = TouchInputTestScene::scene();
-
+    //CCScene *pScene = TouchInputTestScene::scene();
+    CCScene *pScene = SketchGameScene::create();
+    
     // run
     pDirector->runWithScene(pScene);
 

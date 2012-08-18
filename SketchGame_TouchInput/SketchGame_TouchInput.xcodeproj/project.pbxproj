@@ -8,6 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		D84ADD5915DDECA400DED991 /* TouchInputTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */; };
+		D89F09C515DF2B940057A0D5 /* SketchGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D89F09C315DF2B940057A0D5 /* SketchGameScene.cpp */; };
+		D89F09D015DF3EFE0057A0D5 /* background_forest.plist in Resources */ = {isa = PBXBuildFile; fileRef = D89F09C615DF3EFE0057A0D5 /* background_forest.plist */; };
+		D89F09D115DF3EFE0057A0D5 /* background_forest.png in Resources */ = {isa = PBXBuildFile; fileRef = D89F09C715DF3EFE0057A0D5 /* background_forest.png */; };
+		D89F09D215DF3EFE0057A0D5 /* bg_faraway.plist in Resources */ = {isa = PBXBuildFile; fileRef = D89F09C815DF3EFE0057A0D5 /* bg_faraway.plist */; };
+		D89F09D315DF3EFE0057A0D5 /* bg_faraway.png in Resources */ = {isa = PBXBuildFile; fileRef = D89F09C915DF3EFE0057A0D5 /* bg_faraway.png */; };
+		D89F09D415DF3EFE0057A0D5 /* draginfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D89F09CA15DF3EFE0057A0D5 /* draginfo.plist */; };
+		D89F09D515DF3EFE0057A0D5 /* dragInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = D89F09CB15DF3EFE0057A0D5 /* dragInfo.png */; };
+		D89F09D615DF3EFE0057A0D5 /* hero_run.plist in Resources */ = {isa = PBXBuildFile; fileRef = D89F09CC15DF3EFE0057A0D5 /* hero_run.plist */; };
+		D89F09D715DF3EFE0057A0D5 /* hero_run.png in Resources */ = {isa = PBXBuildFile; fileRef = D89F09CD15DF3EFE0057A0D5 /* hero_run.png */; };
+		D89F09D815DF3EFE0057A0D5 /* obj_stone.plist in Resources */ = {isa = PBXBuildFile; fileRef = D89F09CE15DF3EFE0057A0D5 /* obj_stone.plist */; };
+		D89F09D915DF3EFE0057A0D5 /* obj_stone.png in Resources */ = {isa = PBXBuildFile; fileRef = D89F09CF15DF3EFE0057A0D5 /* obj_stone.png */; };
 		D8CA201215DDDCB1007F583A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CA201115DDDCB1007F583A /* QuartzCore.framework */; };
 		D8CA201415DDDCB1007F583A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CA201315DDDCB1007F583A /* OpenGLES.framework */; };
 		D8CA201615DDDCB1007F583A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CA201515DDDCB1007F583A /* OpenAL.framework */; };
@@ -200,6 +211,18 @@
 /* Begin PBXFileReference section */
 		D84ADD5615DDEBFF00DED991 /* TouchInputTestScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TouchInputTestScene.h; path = Classes/TouchInputTestScene.h; sourceTree = "<group>"; };
 		D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TouchInputTestScene.cpp; path = Classes/TouchInputTestScene.cpp; sourceTree = "<group>"; };
+		D89F09C315DF2B940057A0D5 /* SketchGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SketchGameScene.cpp; path = Classes/SketchGameScene.cpp; sourceTree = "<group>"; };
+		D89F09C415DF2B940057A0D5 /* SketchGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SketchGameScene.h; path = Classes/SketchGameScene.h; sourceTree = "<group>"; };
+		D89F09C615DF3EFE0057A0D5 /* background_forest.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = background_forest.plist; path = Resources/background_forest.plist; sourceTree = "<group>"; };
+		D89F09C715DF3EFE0057A0D5 /* background_forest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background_forest.png; path = Resources/background_forest.png; sourceTree = "<group>"; };
+		D89F09C815DF3EFE0057A0D5 /* bg_faraway.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_faraway.plist; path = Resources/bg_faraway.plist; sourceTree = "<group>"; };
+		D89F09C915DF3EFE0057A0D5 /* bg_faraway.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_faraway.png; path = Resources/bg_faraway.png; sourceTree = "<group>"; };
+		D89F09CA15DF3EFE0057A0D5 /* draginfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = draginfo.plist; path = Resources/draginfo.plist; sourceTree = "<group>"; };
+		D89F09CB15DF3EFE0057A0D5 /* dragInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dragInfo.png; path = Resources/dragInfo.png; sourceTree = "<group>"; };
+		D89F09CC15DF3EFE0057A0D5 /* hero_run.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = hero_run.plist; path = Resources/hero_run.plist; sourceTree = "<group>"; };
+		D89F09CD15DF3EFE0057A0D5 /* hero_run.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hero_run.png; path = Resources/hero_run.png; sourceTree = "<group>"; };
+		D89F09CE15DF3EFE0057A0D5 /* obj_stone.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = obj_stone.plist; path = Resources/obj_stone.plist; sourceTree = "<group>"; };
+		D89F09CF15DF3EFE0057A0D5 /* obj_stone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = obj_stone.png; path = Resources/obj_stone.png; sourceTree = "<group>"; };
 		D8CA200D15DDDCB1007F583A /* SketchGame_TouchInput.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchGame_TouchInput.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8CA201115DDDCB1007F583A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8CA201315DDDCB1007F583A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -669,6 +692,16 @@
 		D8CA202215DDDCB1007F583A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D89F09C615DF3EFE0057A0D5 /* background_forest.plist */,
+				D89F09C715DF3EFE0057A0D5 /* background_forest.png */,
+				D89F09C815DF3EFE0057A0D5 /* bg_faraway.plist */,
+				D89F09C915DF3EFE0057A0D5 /* bg_faraway.png */,
+				D89F09CA15DF3EFE0057A0D5 /* draginfo.plist */,
+				D89F09CB15DF3EFE0057A0D5 /* dragInfo.png */,
+				D89F09CC15DF3EFE0057A0D5 /* hero_run.plist */,
+				D89F09CD15DF3EFE0057A0D5 /* hero_run.png */,
+				D89F09CE15DF3EFE0057A0D5 /* obj_stone.plist */,
+				D89F09CF15DF3EFE0057A0D5 /* obj_stone.png */,
 				D8CA202315DDDCB1007F583A /* CloseNormal.png */,
 				D8CA202515DDDCB1007F583A /* CloseSelected.png */,
 				D8CA202715DDDCB1007F583A /* Default.png */,
@@ -1435,6 +1468,8 @@
 				D8CA228B15DDDCB4007F583A /* AppDelegate.cpp */,
 				D84ADD5615DDEBFF00DED991 /* TouchInputTestScene.h */,
 				D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */,
+				D89F09C415DF2B940057A0D5 /* SketchGameScene.h */,
+				D89F09C315DF2B940057A0D5 /* SketchGameScene.cpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1502,6 +1537,16 @@
 				D8CA203915DDDCB1007F583A /* iTunesArtwork in Resources */,
 				D8CA203B15DDDCB1007F583A /* fps_images.png in Resources */,
 				D8CA213615DDDCB2007F583A /* ChangeLog in Resources */,
+				D89F09D015DF3EFE0057A0D5 /* background_forest.plist in Resources */,
+				D89F09D115DF3EFE0057A0D5 /* background_forest.png in Resources */,
+				D89F09D215DF3EFE0057A0D5 /* bg_faraway.plist in Resources */,
+				D89F09D315DF3EFE0057A0D5 /* bg_faraway.png in Resources */,
+				D89F09D415DF3EFE0057A0D5 /* draginfo.plist in Resources */,
+				D89F09D515DF3EFE0057A0D5 /* dragInfo.png in Resources */,
+				D89F09D615DF3EFE0057A0D5 /* hero_run.plist in Resources */,
+				D89F09D715DF3EFE0057A0D5 /* hero_run.png in Resources */,
+				D89F09D815DF3EFE0057A0D5 /* obj_stone.plist in Resources */,
+				D89F09D915DF3EFE0057A0D5 /* obj_stone.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1679,6 +1724,7 @@
 				D8CA228815DDDCB4007F583A /* RootViewController.mm in Sources */,
 				D8CA228C15DDDCB4007F583A /* AppDelegate.cpp in Sources */,
 				D84ADD5915DDECA400DED991 /* TouchInputTestScene.cpp in Sources */,
+				D89F09C515DF2B940057A0D5 /* SketchGameScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
