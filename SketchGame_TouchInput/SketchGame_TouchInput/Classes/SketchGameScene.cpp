@@ -7,6 +7,7 @@
 //
 
 #include "SketchGameScene.h"
+#include "TouchInputLayer.h"
 
 using namespace cocos2d;
 
@@ -16,6 +17,30 @@ using namespace cocos2d;
 
 
 
+
+
+
+
+
+void SketchGameLayer::tapInputEnded(const CCPoint& point) {
+
+}
+
+void SketchGameLayer::dragInputEnded(const int dragDirection) {
+    switch (dragDirection) {
+        case DIR_UP:
+            break;
+            
+        case DIR_DOWN:
+            break;
+            
+        case DIR_LEFT:
+            break;
+            
+        case DIR_RIGHT:
+            break;
+    }
+}
 
 ////////private method////////
 void SketchGameLayer::loadGameTexture() {
@@ -30,19 +55,23 @@ void SketchGameLayer::loadGameTexture() {
     CCArray* pBackgroundMapFrames = CCArray::create();
     for(int i=1; i<=5; i++) {
         pBackgroundMapFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-            CCString::createWithFormat("background_forest_%d.png", i)->getCString()));
+                                                                             CCString::createWithFormat("background_forest_%d.png", i)->getCString()));
     }
     bg_map_action = CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pBackgroundMapFrames, 0.15f)));
     bg_map->runAction(bg_map_action);
+    
+    //
 }
 
 void SketchGameLayer::unloadGameTexture() {
+    CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFramesFromFile("backgroud_forest.plist");
+    CCTextureCache::sharedTextureCache()->removeAllTextures();
     
+    CCSpriteFrameCache::sharedSpriteFrameCache()->removeUnusedSpriteFrames();
 }
 
 
 ////////init method////////
-
 bool SketchGameLayer::init() {
     if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
     {
@@ -53,7 +82,12 @@ bool SketchGameLayer::init() {
         //_label->setPosition(ccp(winSize.width/2, winSize.height/2));
         this->addChild(_label);
         
+        this->setTouchEnabled(true);
+        
         //user codes
+        bTouching = false;
+        bRunning = true;
+        
         loadGameTexture();
         
         return true;
@@ -63,12 +97,58 @@ bool SketchGameLayer::init() {
 }
 
 SketchGameLayer::~SketchGameLayer() {
+    unloadGameTexture();
     if (_label)
     {
         _label->release();
         _label = NULL;
     }
 }
+
+////////touch method///////
+void SketchGameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* pEvent) {
+    bTouching = true;
+    CCTouch* pTouch = (CCTouch*)(pTouches->anyObject());
+    oldTouchPoint = CCDirector::sharedDirector()->convertToGL(pTouch->locationInView());
+    CCLog("touchBegan");
+    
+    return CCLayerColor::ccTouchesBegan(pTouches, pEvent);
+}
+
+void SketchGameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* pEvent) {
+    CCTouch* pTouch = (CCTouch*)(pTouches->anyObject());
+    const CCPoint nowTouchPoint = CCDirector::sharedDirector()->convertToGL(pTouch->locationInView());
+    
+    if(bTouching) {
+        const CCFloat dist = 10.0f;
+        if(ccpDistance(oldTouchPoint, nowTouchPoint) < dist) {
+            //tap
+            tapInputEnded(nowTouchPoint);
+        } else {
+            //drag
+            int dragDirection;
+            
+            CCPoint aux = ccpNormalize(ccp(nowTouchPoint.x - oldTouchPoint.x,
+                                           nowTouchPoint.y - oldTouchPoint.y));
+            if(fabsl(aux.x) >= fabsl(aux.y)) {
+                if(aux.x>=0) dragDirection = DIR_RIGHT;
+                else dragDirection = DIR_LEFT;
+            } else {
+                if(aux.y>=0) dragDirection = DIR_UP;
+                else dragDirection = DIR_DOWN;
+            }
+            
+            dragInputEnded(dragDirection);
+        }
+    }
+    
+    bTouching = false;
+}
+
+void SketchGameLayer::ccTouchesCancelled(CCSet* pTouches, CCEvent* pEvent) {
+    bTouching = false;
+}
+
 
 ////////////////////////////SktechGameScene class////////////////////////
 

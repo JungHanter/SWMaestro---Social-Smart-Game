@@ -20,9 +20,24 @@ private:
     void unloadGameTexture();
     
 private:
+    bool bRunning;
     cocos2d::CCSprite* bg_map;
     cocos2d::CCAction* bg_map_action;
     
+///////////////touch//////////////
+protected:
+    void ccTouchesBegan(cocos2d::CCSet* pTouches, cocos2d::CCEvent* pEvent);
+    void ccTouchesEnded(cocos2d::CCSet* pTouches, cocos2d::CCEvent* pEvent);
+    void ccTouchesCancelled(cocos2d::CCSet* pTouches, cocos2d::CCEvent* pEvent);
+    void dragInputEnded(const int dragDirection);
+    void tapInputEnded(const cocos2d::CCPoint& point);
+    
+private:
+    cocos2d::CCPoint oldTouchPoint;
+    bool bTouching;
+    enum DragDirection { DIR_UP, DIR_DOWN, DIR_LEFT, DIR_RIGHT };
+    
+/////////////basic/////////////
 public:
     SketchGameLayer() : _label(NULL) {}
     ~SketchGameLayer();
