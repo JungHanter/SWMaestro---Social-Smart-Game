@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{a40fa73d-f9d8-4510-ab8e-f37535f090be}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{8bee2b3e-d757-45ec-b668-28118789bf68}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{23edd671-53cc-472a-bf7d-ccbbe3f886b8}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest</Extensions>
+    </Filter>
+    <Filter Include="include\Layer">
+      <UniqueIdentifier>{b63277cd-d96f-49f0-99a6-723afb9c042a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Scene">
+      <UniqueIdentifier>{3434dd77-1a1d-4be1-a8ff-59c0beaf038b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Scene\Title">
+      <UniqueIdentifier>{c1803104-5a2c-4c9d-849e-609f9e7f0199}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Scene\About">
+      <UniqueIdentifier>{48861baf-54e8-4cc8-b4f6-bde31a67fe80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="source\Scene\GameOver">
+      <UniqueIdentifier>{8cca12c1-ab70-4ff0-984a-05a586630aed}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\sketcher_proto.ico">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\CloseSelected.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\CloseNormal.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\HelloWorld.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\fps_images.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\fps_images-hd.png">
+      <Filter>resource</Filter>
+    </Image>
+    <Image Include="..\Resources\fps_images-ipadhd.png">
+      <Filter>resource</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sketcher_proto.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="CSpriteAnimation.h">
+      <Filter>source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>source\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>source\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerTitleBackground.h">
+      <Filter>source\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include=".\LayerTitleMenu.h">
+      <Filter>source\Scene\Title</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneAbout.h">
+      <Filter>source\Scene\About</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerAboutBackground.h">
+      <Filter>source\Scene\About</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerAboutMenu.h">
+      <Filter>source\Scene\About</Filter>
+    </ClInclude>
+    <ClInclude Include="flags.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameover.h">
+      <Filter>source\Scene\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerGameoverMenu.h">
+      <Filter>source\Scene\GameOver</Filter>
+    </ClInclude>
+    <ClInclude Include="LayerGameoverBackground.h">
+      <Filter>source\Scene\GameOver</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="CSpriteAnimation.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>source\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>source\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerTitleBackground.cpp">
+      <Filter>source\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include=".\LayerTitleMenu.cpp">
+      <Filter>source\Scene\Title</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneAbout.cpp">
+      <Filter>source\Scene\About</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerAboutBackground.cpp">
+      <Filter>source\Scene\About</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerAboutMenu.cpp">
+      <Filter>source\Scene\About</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameover.cpp">
+      <Filter>source\Scene\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerGameoverBackground.cpp">
+      <Filter>source\Scene\GameOver</Filter>
+    </ClCompile>
+    <ClCompile Include="LayerGameoverMenu.cpp">
+      <Filter>source\Scene\GameOver</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
