@@ -29,9 +29,10 @@ private:
     void startBattle();
     
     //게임 진행 관련 셀렉터
-    void func_startheroHide();
+    void func_startHeroHide();
     void func_heroMoveHide();
     void func_heroMoveShow();
+    void func_startHeroRun();
     
     //게임 운영(텍스쳐 로드, 게임로직 등) 관련 함수
     void loadGameTexture();

@@ -54,14 +54,14 @@ void SketchGameLayer::dragInputEnded(const int dragDirection) {
 ////////private method////////
 void SketchGameLayer::hideHeroObject(bool bStone) {
     gameState = GAMESTATE_HIDE;
-    this->schedule(schedule_selector(SketchGameLayer::func_startheroHide));
+    this->schedule(schedule_selector(SketchGameLayer::func_startHeroHide));
 }
 
-void SketchGameLayer::func_startheroHide() {
+void SketchGameLayer::func_startHeroHide() {
     //이 지점부터 케릭터가 움직인다
     if(obj_stone->getPosition().x <= HERO_HIDE_ABLE_POS.x
        && obj_stone->getPosition().y <= HERO_HIDE_ABLE_POS.y) {
-        this->unschedule(schedule_selector(SketchGameLayer::func_startheroHide));
+        this->unschedule(schedule_selector(SketchGameLayer::func_startHeroHide));
         hero->stopAllActions();
         hero->runAction(CCSpawn::create(hero_act_hide_stone, CCMoveTo::create(GAME_FRAME_SPEED*5, HERO_HIDE_DEST_POS)));
         this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveHide), GAME_FRAME_SPEED*5);
@@ -76,9 +76,15 @@ void SketchGameLayer::func_heroMoveHide() {
 void SketchGameLayer::func_heroMoveShow() {
     resumeAllBackground();
     hero->stopAllActions();
-    hero->runAction(CCSequence::create(CCSpawn::create(hero_act_hide_stone, CCMoveTo::create(GAME_FRAME_SPEED*5, HERO_INIT_POS)),
-                                       hero_act_run));
+    hero->runAction(CCSpawn::create(hero_act_hide_stone, CCMoveTo::create(GAME_FRAME_SPEED*5, HERO_INIT_POS)));
+    this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*5);
     gameState = GAMESTATE_RUNNING;
+}
+
+void SketchGameLayer::func_startHeroRun() {
+    hero->stopAllActions();
+    hero->setPosition(HERO_INIT_POS);
+    hero->runAction(hero_act_run);
 }
 
 void SketchGameLayer::loadGameTexture() {
@@ -232,7 +238,7 @@ void SketchGameLayer::logic_createObject() {
     if(gameState != GAMESTATE_RUNNING) return;
     
     int rnd = (int)(CCRANDOM_0_1()*3);
-    if(rnd%3==0) {
+    if(true){//if(rnd%3==0) {
         CCLog("Create Stone");
         obj_stone->runAction(obj_stone_action);
     } else {
