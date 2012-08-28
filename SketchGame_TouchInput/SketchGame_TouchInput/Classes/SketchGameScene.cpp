@@ -77,7 +77,7 @@ void SketchGameLayer::func_heroMoveShow() {
     resumeAllBackground();
     hero->stopAllActions();
     hero->runAction(CCSpawn::create(hero_act_hide_stone, CCMoveTo::create(GAME_FRAME_SPEED*5, HERO_INIT_POS)));
-    this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*5);
+    //this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*5);
     gameState = GAMESTATE_RUNNING;
 }
 
