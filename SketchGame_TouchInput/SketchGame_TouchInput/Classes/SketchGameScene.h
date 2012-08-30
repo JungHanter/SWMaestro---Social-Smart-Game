@@ -19,30 +19,6 @@
 #define HERO_HIDE_DEST_POS ccp(120,70)
 #define HERO_HIDE_MID_POS (ccp((HERO_INIT_POS.x+HERO_HIDE_DEST_POS.x)/2, 70))
 
-#define OBJ_SCALING_F01 0.05f
-#define OBJ_SCALING_F02 0.1f
-#define OBJ_SCALING_F03 0.15f
-#define OBJ_SCALING_F04 0.2f
-#define OBJ_SCALING_F05 0.25f
-#define OBJ_SCALING_F06 0.3f
-#define OBJ_SCALING_F07 0.35f
-#define OBJ_SCALING_F08 0.4f
-#define OBJ_SCALING_F09 0.45f
-#define OBJ_SCALING_F10 0.5f
-#define OBJ_SCALING_F11 0.55f
-#define OBJ_SCALING_F12 0.6f
-#define OBJ_SCALING_F13 0.65f
-#define OBJ_SCALING_F14 0.7f
-#define OBJ_SCALING_F15 0.75f
-#define OBJ_SCALING_F16 0.8f
-#define OBJ_SCALING_F17 0.85f
-#define OBJ_SCALING_F18 0.9f
-#define OBJ_SCALING_F19 0.95f
-#define OBJ_SCALING_F20 1.0f
-#define OBJ_SCALING_F21 1.05f
-#define OBJ_SCALING_F22 1.1f
-#define OBJ_SCALING_F23 1.15f
-
 
 // y = x^a, n등분일때 (1/n * M배) = (n/n)의 a값 구하기
 // M * (1/n * x0)^a = (x0)^a
@@ -62,7 +38,7 @@ public:
     
 private:
     //게임 진행(전투, 달리기) 관련 함수
-    void hideHeroObject(bool bStone);
+    void hideHeroObject();
     void startBattle();
     
     //게임 진행 관련 셀렉터
@@ -78,6 +54,7 @@ private:
     void resumeAllBackground();
     
     //게임 운영 관련 셀렉터
+    void logic_createMonster();
     void logic_createObject();
     void logic_printGameinfo();
     void func_mountainMove();
@@ -85,6 +62,7 @@ private:
     
 private:
     int gameState;
+    int nowObject;
     
     cocos2d::CCPoint HERO_HIDE_ABLE_POS;
     
@@ -102,12 +80,14 @@ private:
         *hero_act_keep;
 
     cocos2d::CCSprite* monster_spider;
+    cocos2d::CCActionInterval* monster_spider_act_run, *monster_spider_act_attack;
     
     enum GameState { GAMESTATE_RUNNING, GAMESTATE_HIDE, GAMESTATE_BATTLE };
+    enum NowObject { OBJECT_NONE, OBJECT_STONE, OBJECT_GRASS };
     enum TextureOrder { ORDER_FARAWAY_MOUNTAIN=0, ORDER_FARAWAY_CLOUD, ORDER_FARWAY_CASTLE,
-        ORDER_BACKGROUND, ORDER_OBJECT, ORDER_ENEMY, ORDER_HERO };
+        ORDER_BACKGROUND, ORDER_OBJECT, ORDER_MONSTER, ORDER_HERO };
     enum TagInfo { TAG_NORMAL=0, TAG_TEXTURE, TAG_ETC };
-    
+
     
 ///////////////touch//////////////
 protected:

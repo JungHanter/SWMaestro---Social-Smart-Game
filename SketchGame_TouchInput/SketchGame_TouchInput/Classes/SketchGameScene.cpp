@@ -20,8 +20,18 @@ void SketchGameLayer::tapInputEnded(const CCPoint& point) {
         //케릭터가 달리는 중이고, 캐릭터가 바위에 숨을 수 있는 위치 전까지만 터치 입력을 받음
         if(gameState == GAMESTATE_RUNNING &&
            obj_stone->getPosition().y > HERO_HIDE_ABLE_POS.y) {
-                CCLog("hero hide");
-                hideHeroObject(true);
+            //CCLog("hero hide");
+            nowObject = OBJECT_STONE;
+            hideHeroObject();
+        }
+    } else if(CCRect::CCRectContainsPoint(obj_grass->boundingBox(), point)) {
+        //CCLog("tapped Stone");
+        //케릭터가 달리는 중이고, 캐릭터가 풀에 숨을 수 있는 위치 전까지만 터치 입력을 받음
+        if(gameState == GAMESTATE_RUNNING &&
+           obj_grass->getPosition().y > HERO_HIDE_ABLE_POS.y) {
+            //CCLog("hero hide");
+            nowObject = OBJECT_GRASS;
+            hideHeroObject();
         }
     }
 }
@@ -43,14 +53,29 @@ void SketchGameLayer::dragInputEnded(const int dragDirection) {
 }
 
 ////////private method////////
-void SketchGameLayer::hideHeroObject(bool bStone) {
+void SketchGameLayer::hideHeroObject() {
     gameState = GAMESTATE_HIDE;
+    
     this->schedule(schedule_selector(SketchGameLayer::func_startHeroHide));
 }
 
 void SketchGameLayer::func_startHeroHide() {
     //이 지점부터 케릭터가 움직인다
-    if(obj_stone->getPosition().y <= HERO_HIDE_ABLE_POS.y) {
+    CCSprite* obj = NULL;
+    
+    switch (nowObject) {
+        case OBJECT_STONE:
+            obj = obj_stone;
+            break;
+            
+        case OBJECT_GRASS:
+            obj = obj_grass;
+            break;
+    }
+    
+    if(obj == NULL) {
+        return;
+    } else if(obj->getPosition().y <= HERO_HIDE_ABLE_POS.y) {
         this->unschedule(schedule_selector(SketchGameLayer::func_startHeroHide));
         pauseAllBackground();
         hero->stopAllActions();
@@ -157,15 +182,15 @@ void SketchGameLayer::loadGameTexture() {
     //오브제(풀, 바위) 로드
     const float coefficient = obj_coefficient(23,4);    //23등분일때 4배
     
-    CCPoint arrPoint[23];
+    CCPoint arrObjPoint[23];
     //const float x_stone_add = 225/22, y_stone_add = 250/22;
     for(int i=0; i<23; i++) {
         //225,190 -> 0, -60
-        //arrPoint[i].setPoint(225 - (x_stone_add*i), 190 - (y_stone_add*i));
-        arrPoint[i].setPoint((78*(float)pow(23-i, coefficient))-78, (83*(float)pow(23-i, coefficient))-83-49);
-        CCLog("%lf, %lf", arrPoint[i].x, arrPoint[i].y);
+        //arrObjPoint[i].setPoint(225 - (x_stone_add*i), 190 - (y_stone_add*i));
+        arrObjPoint[i].setPoint((78*(float)pow(23-i, coefficient))-78, (83*(float)pow(23-i, coefficient))-83-49);
+        //CCLog("%lf, %lf", arrObjPoint[i].x, arrObjPoint[i].y);
     }
-    HERO_HIDE_ABLE_POS = arrPoint[15];
+    HERO_HIDE_ABLE_POS = arrObjPoint[15];
     
     //0.3 -> 1.2배 된다고 할 때
     float arrScaling[23];
@@ -178,81 +203,50 @@ void SketchGameLayer::loadGameTexture() {
     obj_stone = CCSprite::create(pSpriteFrameCache->spriteFrameByName("obj_stone_1.png"));
     obj_stone->retain();
     obj_stone->setScale(arrScaling[0]);
-    obj_stone->setPosition(ccp(-100,-100));
+    obj_stone->setPosition(ccp(-500,-500));
     this->addChild(obj_stone, ORDER_OBJECT, TAG_TEXTURE);
     CCArray* pStoneFrames = CCArray::create();
     CCArray* pStoneMoveActions = CCArray::create();
     for(int i=1; i<=4; i++) {
         pStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("obj_stone_%d.png",i)->getCString()));
     }
-
-    //이건 자연스럽게 움직인거
-    /*pStoneMoveActions->addObject(CCSpawn::create(CCMoveTo::create(0, ccp(225,190)),
-                                                 CCScaleTo::create(0, OBJ_SCALING_F01)));
-    pStoneMoveActions->addObject(CCSpawn::create(CCMoveTo::create(GAME_FRAME_SPEED*23, ccp(0,-60)),
-                                                 CCScaleTo::create(GAME_FRAME_SPEED*23, OBJ_SCALING_F23)));*/
-
-    //일단 테스트코드 나열한거
-    /*pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[0]), CCScaleTo::create(0, OBJ_SCALING_F01))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[1]), CCScaleTo::create(0, OBJ_SCALING_F02))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[2]), CCScaleTo::create(0, OBJ_SCALING_F03))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[3]), CCScaleTo::create(0, OBJ_SCALING_F04))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[4]), CCScaleTo::create(0, OBJ_SCALING_F05))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[5]), CCScaleTo::create(0, OBJ_SCALING_F06))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[6]), CCScaleTo::create(0, OBJ_SCALING_F07))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[7]), CCScaleTo::create(0, OBJ_SCALING_F08))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[8]), CCScaleTo::create(0, OBJ_SCALING_F09))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[9]), CCScaleTo::create(0, OBJ_SCALING_F10))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[10]), CCScaleTo::create(0, OBJ_SCALING_F11))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[11]), CCScaleTo::create(0, OBJ_SCALING_F12))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[12]), CCScaleTo::create(0, OBJ_SCALING_F13))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[13]), CCScaleTo::create(0, OBJ_SCALING_F14))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[14]), CCScaleTo::create(0, OBJ_SCALING_F15))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[15]), CCScaleTo::create(0, OBJ_SCALING_F16))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[16]), CCScaleTo::create(0, OBJ_SCALING_F17))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[17]), CCScaleTo::create(0, OBJ_SCALING_F18))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[18]), CCScaleTo::create(0, OBJ_SCALING_F19))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[19]), CCScaleTo::create(0, OBJ_SCALING_F20))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[20]), CCScaleTo::create(0, OBJ_SCALING_F21))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[21]), CCScaleTo::create(0, OBJ_SCALING_F22))));
-    pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                 CCSpawn::create(CCPlace::create(arrPoint[22]), CCScaleTo::create(0, OBJ_SCALING_F23))));*/
     
     //지수함수그래프 N등분일때 4배수 계수적용
     for(int i=0; i<23; i++) {
         pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                     CCSpawn::create(CCPlace::create(arrPoint[i]), CCScaleTo::create(0, arrScaling[i]))));
+                                                     CCSpawn::create(CCPlace::create(arrObjPoint[i]), CCScaleTo::create(0, arrScaling[i]))));
     }
+    pStoneMoveActions->addObject(CCSpawn::create(CCPlace::create(ccp(-500,-500)), CCScaleTo::create(0, arrScaling[0])));
     
-    pStoneMoveActions->addObject(CCSpawn::create(CCPlace::create(ccp(-100,-100)), CCScaleTo::create(0, OBJ_SCALING_F01)));
-    
-    obj_stone_action = CCSpawn::create(CCRepeat::create(CCAnimate::create(CCAnimation::create(pStoneFrames, GAME_FRAME_SPEED)), 6),
+    obj_stone_action = CCSpawn::create(CCRepeat::create(CCAnimate::create(CCAnimation::create(pStoneFrames, GAME_FRAME_SPEED)), 6),         //6x4=24
                                        CCSequence::create(pStoneMoveActions));
     obj_stone_action->retain();
     pStoneFrames->release();
     pStoneMoveActions->release();
+    
+    obj_grass = CCSprite::create(pSpriteFrameCache->spriteFrameByName("obj_grass_1.png"));
+    obj_grass->retain();
+    obj_grass->setScale(arrScaling[0]);
+    obj_grass->setPosition(ccp(-500,-500));
+    this->addChild(obj_grass, ORDER_OBJECT, TAG_TEXTURE);
+    CCArray* pGrassFrames = CCArray::create();
+    CCArray* pGrassMoveActions = CCArray::create();
+    for(int i=1; i<=3; i++) {
+        pGrassFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("obj_grass_%d.png",i)->getCString()));
+    }
+    //지수함수그래프 N등분일때 4배수 계수적용
+    for(int i=0; i<23; i++) {
+        pGrassMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
+                                                     CCSpawn::create(CCPlace::create(arrObjPoint[i]), CCScaleTo::create(0, arrScaling[i]))));
+    }
+    pGrassMoveActions->addObject(CCSpawn::create(CCPlace::create(ccp(-500,-500)), CCScaleTo::create(0, arrScaling[0])));
+    
+    obj_grass_action = CCSpawn::create(CCRepeat::create(CCAnimate::create(CCAnimation::create(pGrassFrames, GAME_FRAME_SPEED)), 8),    //8x3=24
+                                       CCSequence::create(pGrassMoveActions));
+    obj_grass_action->retain();
+    pGrassFrames->release();
+    pGrassMoveActions->release();
+    
     this->schedule(schedule_selector(SketchGameLayer::logic_createObject), GAME_FRAME_SPEED*30.0f);
     
     
@@ -310,7 +304,48 @@ void SketchGameLayer::loadGameTexture() {
     pHeroActShowStoneFrames->release();
     
     
+    //몬스터 로드
+    //몬스터 이동경로
+    CCPoint arrMonsterPoint[23];
+    for(int i=0; i<23; i++) {
+        //260,190 -> 230, -60
+        arrMonsterPoint[i].setPoint(220+(10*(float)pow(23-i, coefficient)), (83*(float)pow(23-i, coefficient))-83-49);
+        CCLog("%lf, %lf", arrMonsterPoint[i].x, arrMonsterPoint[i].y);
+    }
     
+    //거미
+    pSpriteFrameCache->addSpriteFramesWithFile("spider.plist", "spider.png");
+    monster_spider = CCSprite::create(pSpriteFrameCache->spriteFrameByName("spider_walk_1.png"));
+    monster_spider->retain();
+    monster_spider->setPosition(ccp(-500,-500));
+    this->addChild(monster_spider, ORDER_MONSTER, TAG_TEXTURE);
+    
+    CCArray* pSpiderWalkFrames = CCArray::create();
+    CCArray* pSpiderWalkActions = CCArray::create();
+    for(int i=1; i<=23; i++) {
+        pSpiderWalkFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("spider_walk_%d.png", i)->getCString()));
+    }
+    //지수함수그래프 N등분일때 4배수 계수적용
+    for(int i=0; i<23; i++) {
+        pSpiderWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(arrMonsterPoint[i])));
+    }
+    pSpiderWalkActions->addObject(CCPlace::create(ccp(-500,-500)));
+    monster_spider_act_run = CCSpawn::create(CCAnimate::create(CCAnimation::create(pSpiderWalkFrames, GAME_FRAME_SPEED)),
+                                             CCSequence::create(pSpiderWalkActions));
+    monster_spider_act_run->retain();
+    pSpiderWalkActions->release();
+    pSpiderWalkFrames->release();
+    
+    CCArray* pSpiderAttackFrames = CCArray::create();
+    for(int i=1; i<=4; i++) {
+        pSpiderAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("spider_attack_%d.png", i)->getCString()));
+    }
+    monster_spider_act_attack = CCAnimate::create(CCAnimation::create(pSpiderWalkFrames));
+    monster_spider_act_attack->retain();
+    pSpiderAttackFrames->retain();
+    
+    
+    this->schedule(schedule_selector(SketchGameLayer::logic_createMonster), GAME_FRAME_SPEED*30.0f);
     
     this->schedule(schedule_selector(SketchGameLayer::logic_printGameinfo));
 }
@@ -319,7 +354,7 @@ void SketchGameLayer::loadGameTexture() {
 void SketchGameLayer::func_mountainMove() {
     //bg_mountain->stopAllActions();
     bg_mountain->runAction(CCRepeatForever::create(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN*2, -140.0f),
-                                                                       CCRotateTo::create(0, 70.0f))));
+                                                                      CCRotateTo::create(0, 70.0f))));
 }
 
 void SketchGameLayer::func_cloudMove() {
@@ -330,15 +365,28 @@ void SketchGameLayer::func_cloudMove() {
                                                                    CCMoveBy::create(GAME_FRAME_SPEED*SPEED_CLOUD*2, ccp(-cloudSize.width*2,0)))));
 }
 
+void SketchGameLayer::logic_createMonster() {
+    if(gameState != GAMESTATE_RUNNING) return;
+    
+    int rnd = rand()%2;
+    if(rnd==0) {
+        CCLog("Create Spider");
+        monster_spider->runAction(monster_spider_act_run);
+    }
+}
+
 void SketchGameLayer::logic_createObject() {
     if(gameState != GAMESTATE_RUNNING) return;
     
-    int rnd = (int)(CCRANDOM_0_1()*3);
-    if(true){//if(rnd%3==0) {
+    int rnd = rand()%5;
+    if(rnd==0) {
         CCLog("Create Stone");
         obj_stone->runAction(obj_stone_action);
-    } else {
-        CCLog("Waiting Stone by num %d", rnd);
+    } else if(rnd==1) {
+        CCLog("Create Grass");
+        obj_grass->runAction(obj_grass_action);
+    }else {
+        CCLog("Waiting Obj by num %d", rnd);
     }
 }
 
@@ -355,13 +403,18 @@ void SketchGameLayer::unloadGameTexture() {
     bg_map_action->release(); bg_map_action=NULL;
     obj_stone->release(); obj_stone=NULL;
     obj_stone_action->release(); obj_stone_action=NULL;
+    obj_grass->release(); obj_grass=NULL;
+    obj_grass_action->release(); obj_grass_action=NULL;
     bg_mountain->release(); bg_mountain=NULL;
     bg_mountain2->release(); bg_mountain2=NULL;
     bg_cloud->release(); bg_cloud=NULL;
     bg_cloud2->release(); bg_cloud2=NULL;
+    bg_castle->release(); bg_castle=NULL;
     hero->release(); hero=NULL;
     hero_act_run->release(); hero_act_run=NULL;
     hero_act_hide->release(); hero_act_hide=NULL;
+    hero_act_show->release(); hero_act_show=NULL;
+    hero_act_keep->release(); hero_act_keep=NULL;
     
     CCSpriteFrameCache *pFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCTextureCache *pTextureCahce = CCTextureCache::sharedTextureCache();
@@ -380,6 +433,9 @@ void SketchGameLayer::pauseAllBackground() {
     //bg_cloud->pauseSchedulerAndActions();
     //bg_cloud2->pauseSchedulerAndActions();
     obj_stone->pauseSchedulerAndActions();
+    obj_grass->pauseSchedulerAndActions();
+    
+    monster_spider->pauseSchedulerAndActions();
 }
 
 void SketchGameLayer::resumeAllBackground() {
@@ -389,6 +445,9 @@ void SketchGameLayer::resumeAllBackground() {
     //bg_cloud->resumeSchedulerAndActions();
     //bg_cloud2->resumeSchedulerAndActions();
     obj_stone->resumeSchedulerAndActions();
+    obj_grass->resumeSchedulerAndActions();
+    
+    monster_spider->resumeSchedulerAndActions();
 }
 
 ////////init method////////
@@ -407,6 +466,7 @@ bool SketchGameLayer::init() {
         //user codes
         bTouching = false;
         gameState = GAMESTATE_RUNNING;
+        nowObject = OBJECT_NONE;
         
         loadGameTexture();
         
