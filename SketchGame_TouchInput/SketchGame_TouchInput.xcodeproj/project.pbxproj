@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D822495A15F1251300672BF6 /* SGMonster.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D822495815F1251300672BF6 /* SGMonster.cpp */; };
+		D822495D15F1252900672BF6 /* SGHero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D822495B15F1252900672BF6 /* SGHero.cpp */; };
+		D822496315F1259200672BF6 /* SGBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D822496115F1259200672BF6 /* SGBackground.cpp */; };
+		D822496615F125C000672BF6 /* SGHidableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D822496415F125C000672BF6 /* SGHidableObject.cpp */; };
 		D837129015EE864400D1DCAF /* bg_etc.plist in Resources */ = {isa = PBXBuildFile; fileRef = D837128815EE864400D1DCAF /* bg_etc.plist */; };
 		D837129115EE864400D1DCAF /* bg_etc.png in Resources */ = {isa = PBXBuildFile; fileRef = D837128915EE864400D1DCAF /* bg_etc.png */; };
 		D837129215EE864400D1DCAF /* bg_map_hill.plist in Resources */ = {isa = PBXBuildFile; fileRef = D837128A15EE864400D1DCAF /* bg_map_hill.plist */; };
@@ -206,10 +210,17 @@
 		D8CA228515DDDCB4007F583A /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8CA228415DDDCB4007F583A /* AppController.mm */; };
 		D8CA228815DDDCB4007F583A /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8CA228715DDDCB4007F583A /* RootViewController.mm */; };
 		D8CA228C15DDDCB4007F583A /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8CA228B15DDDCB4007F583A /* AppDelegate.cpp */; };
-		D8D5632F15DFD1C200194B42 /* TouchInputLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8D5632D15DFD1C200194B42 /* TouchInputLayer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D822495815F1251300672BF6 /* SGMonster.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGMonster.cpp; path = Classes/SGMonster.cpp; sourceTree = "<group>"; };
+		D822495915F1251300672BF6 /* SGMonster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGMonster.h; path = Classes/SGMonster.h; sourceTree = "<group>"; };
+		D822495B15F1252900672BF6 /* SGHero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGHero.cpp; path = Classes/SGHero.cpp; sourceTree = "<group>"; };
+		D822495C15F1252900672BF6 /* SGHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGHero.h; path = Classes/SGHero.h; sourceTree = "<group>"; };
+		D822496115F1259200672BF6 /* SGBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGBackground.cpp; path = Classes/SGBackground.cpp; sourceTree = "<group>"; };
+		D822496215F1259200672BF6 /* SGBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBackground.h; path = Classes/SGBackground.h; sourceTree = "<group>"; };
+		D822496415F125C000672BF6 /* SGHidableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGHidableObject.cpp; path = Classes/SGHidableObject.cpp; sourceTree = "<group>"; };
+		D822496515F125C000672BF6 /* SGHidableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGHidableObject.h; path = Classes/SGHidableObject.h; sourceTree = "<group>"; };
 		D837128815EE864400D1DCAF /* bg_etc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_etc.plist; path = Resources/bg_etc.plist; sourceTree = "<group>"; };
 		D837128915EE864400D1DCAF /* bg_etc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_etc.png; path = Resources/bg_etc.png; sourceTree = "<group>"; };
 		D837128A15EE864400D1DCAF /* bg_map_hill.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_map_hill.plist; path = Resources/bg_map_hill.plist; sourceTree = "<group>"; };
@@ -625,8 +636,6 @@
 		D8CA228715DDDCB4007F583A /* RootViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = RootViewController.mm; path = ios/RootViewController.mm; sourceTree = "<group>"; };
 		D8CA228A15DDDCB4007F583A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		D8CA228B15DDDCB4007F583A /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
-		D8D5632D15DFD1C200194B42 /* TouchInputLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TouchInputLayer.cpp; path = Classes/TouchInputLayer.cpp; sourceTree = "<group>"; };
-		D8D5632E15DFD1C200194B42 /* TouchInputLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchInputLayer.h; path = Classes/TouchInputLayer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1473,8 +1482,14 @@
 				D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */,
 				D89F09C415DF2B940057A0D5 /* SketchGameScene.h */,
 				D89F09C315DF2B940057A0D5 /* SketchGameScene.cpp */,
-				D8D5632E15DFD1C200194B42 /* TouchInputLayer.h */,
-				D8D5632D15DFD1C200194B42 /* TouchInputLayer.cpp */,
+				D822495815F1251300672BF6 /* SGMonster.cpp */,
+				D822495915F1251300672BF6 /* SGMonster.h */,
+				D822495B15F1252900672BF6 /* SGHero.cpp */,
+				D822495C15F1252900672BF6 /* SGHero.h */,
+				D822496115F1259200672BF6 /* SGBackground.cpp */,
+				D822496215F1259200672BF6 /* SGBackground.h */,
+				D822496415F125C000672BF6 /* SGHidableObject.cpp */,
+				D822496515F125C000672BF6 /* SGHidableObject.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1730,7 +1745,10 @@
 				D8CA228C15DDDCB4007F583A /* AppDelegate.cpp in Sources */,
 				D84ADD5915DDECA400DED991 /* TouchInputTestScene.cpp in Sources */,
 				D89F09C515DF2B940057A0D5 /* SketchGameScene.cpp in Sources */,
-				D8D5632F15DFD1C200194B42 /* TouchInputLayer.cpp in Sources */,
+				D822495A15F1251300672BF6 /* SGMonster.cpp in Sources */,
+				D822495D15F1252900672BF6 /* SGHero.cpp in Sources */,
+				D822496315F1259200672BF6 /* SGBackground.cpp in Sources */,
+				D822496615F125C000672BF6 /* SGHidableObject.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

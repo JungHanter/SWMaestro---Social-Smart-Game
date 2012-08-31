@@ -7,7 +7,6 @@
 //
 
 #include "SketchGameScene.h"
-#include "TouchInputLayer.h"
 
 using namespace cocos2d;
 
@@ -53,14 +52,35 @@ void SketchGameLayer::dragInputEnded(const int dragDirection) {
 }
 
 ////////private method////////
+
+void SketchGameLayer::confirmBattleMode() {
+    if(gameState == GAMESTATE_RUNNING) {
+        beginBattleMode();
+    }
+}
+
+void SketchGameLayer::beginBattleMode() {
+    monster_spider->setColor(ccc3(255, 0, 0));
+    monster_spider->pauseSchedulerAndActions();
+    gameState = GAMESTATE_BATTLE;
+    pauseAllBackground();
+    this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode), GAME_FRAME_SPEED*5);
+}
+
+void SketchGameLayer::endBattleMode() {
+    monster_spider->setColor(ccc3(255,255,255));
+    monster_spider->resumeSchedulerAndActions();
+    gameState = GAMESTATE_RUNNING;
+    resumeAllBackground();
+}
+
 void SketchGameLayer::hideHeroObject() {
-    gameState = GAMESTATE_HIDE;
+    gameState = GAMESTATE_HIDEWAITING;
     
     this->schedule(schedule_selector(SketchGameLayer::func_startHeroHide));
 }
 
 void SketchGameLayer::func_startHeroHide() {
-    //이 지점부터 케릭터가 움직인다
     CCSprite* obj = NULL;
     
     switch (nowObject) {
@@ -76,7 +96,10 @@ void SketchGameLayer::func_startHeroHide() {
     if(obj == NULL) {
         return;
     } else if(obj->getPosition().y <= HERO_HIDE_ABLE_POS.y) {
+        //이 지점부터 케릭터가 움직인다
         this->unschedule(schedule_selector(SketchGameLayer::func_startHeroHide));
+        gameState = GAMESTATE_HIDE;
+        
         pauseAllBackground();
         hero->stopAllActions();
         
@@ -101,10 +124,11 @@ void SketchGameLayer::func_heroMoveShow() {
     //hero->runAction(CCSpawn::create(hero_act_hide, CCMoveTo::create(GAME_FRAME_SPEED*9, HERO_INIT_POS)));
     
     this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
-    gameState = GAMESTATE_RUNNING;
 }
 
 void SketchGameLayer::func_startHeroRun() {
+    gameState = GAMESTATE_RUNNING;
+    
     resumeAllBackground();
     hero->stopAllActions();
     hero->setPosition(HERO_INIT_POS);
@@ -247,8 +271,6 @@ void SketchGameLayer::loadGameTexture() {
     pGrassFrames->release();
     pGrassMoveActions->release();
     
-    this->schedule(schedule_selector(SketchGameLayer::logic_createObject), GAME_FRAME_SPEED*30.0f);
-    
     
     //캐릭터 로드
     pSpriteFrameCache->addSpriteFramesWithFile("hero.plist", "hero.png");
@@ -328,6 +350,10 @@ void SketchGameLayer::loadGameTexture() {
     //지수함수그래프 N등분일때 4배수 계수적용
     for(int i=0; i<23; i++) {
         pSpiderWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(arrMonsterPoint[i])));
+        if(i==12) {
+            //12프레임에서 배틀 or NOT
+            pSpiderWalkActions->addObject(CCCallFunc::create(this, callfunc_selector(SketchGameLayer::confirmBattleMode)));
+        }
     }
     pSpiderWalkActions->addObject(CCPlace::create(ccp(-500,-500)));
     monster_spider_act_run = CCSpawn::create(CCAnimate::create(CCAnimation::create(pSpiderWalkFrames, GAME_FRAME_SPEED)),
@@ -345,11 +371,45 @@ void SketchGameLayer::loadGameTexture() {
     pSpiderAttackFrames->retain();
     
     
-    this->schedule(schedule_selector(SketchGameLayer::logic_createMonster), GAME_FRAME_SPEED*30.0f);
+    this->schedule(schedule_selector(SketchGameLayer::logic_createTarget), GAME_FRAME_SPEED*30.0f);
+    
     
     this->schedule(schedule_selector(SketchGameLayer::logic_printGameinfo));
 }
 
+void SketchGameLayer::logic_createTarget() {
+    if(gameState != GAMESTATE_RUNNING) return;
+    
+    func_createObject();
+    this->scheduleOnce(schedule_selector(SketchGameLayer::func_createMonster), GAME_FRAME_SPEED*7); //7프레임 뒤
+}
+
+void SketchGameLayer::func_createMonster() {
+    if(gameState != GAMESTATE_RUNNING) return;
+    
+    int rnd = rand()%1;
+    if(rnd==0) {
+        CCLog("Create Spider");
+        monster_spider->runAction(monster_spider_act_run);
+        //몬스터가 어디서 멈출지 체크
+        //this->scheduleOnce(schedule_selector(SketchGameLayer::test), GAME_FRAME_SPEED*12);
+    }
+}
+
+void SketchGameLayer::func_createObject() {
+    if(gameState != GAMESTATE_RUNNING) return;
+    
+    int rnd = rand()%3;
+    if(rnd==0) {
+        CCLog("Create Stone");
+        obj_stone->runAction(obj_stone_action);
+    } else if(rnd==1) {
+        CCLog("Create Grass");
+        obj_grass->runAction(obj_grass_action);
+    }else {
+        CCLog("Waiting Obj by num %d", rnd);
+    }
+}
 
 void SketchGameLayer::func_mountainMove() {
     //bg_mountain->stopAllActions();
@@ -365,29 +425,9 @@ void SketchGameLayer::func_cloudMove() {
                                                                    CCMoveBy::create(GAME_FRAME_SPEED*SPEED_CLOUD*2, ccp(-cloudSize.width*2,0)))));
 }
 
-void SketchGameLayer::logic_createMonster() {
-    if(gameState != GAMESTATE_RUNNING) return;
-    
-    int rnd = rand()%2;
-    if(rnd==0) {
-        CCLog("Create Spider");
-        monster_spider->runAction(monster_spider_act_run);
-    }
-}
-
-void SketchGameLayer::logic_createObject() {
-    if(gameState != GAMESTATE_RUNNING) return;
-    
-    int rnd = rand()%5;
-    if(rnd==0) {
-        CCLog("Create Stone");
-        obj_stone->runAction(obj_stone_action);
-    } else if(rnd==1) {
-        CCLog("Create Grass");
-        obj_grass->runAction(obj_grass_action);
-    }else {
-        CCLog("Waiting Obj by num %d", rnd);
-    }
+void SketchGameLayer::test() {
+    monster_spider->setColor(ccc3(255,0,0));
+    monster_spider->stopAllActions();
 }
 
 void SketchGameLayer::logic_printGameinfo() {
@@ -435,7 +475,7 @@ void SketchGameLayer::pauseAllBackground() {
     obj_stone->pauseSchedulerAndActions();
     obj_grass->pauseSchedulerAndActions();
     
-    monster_spider->pauseSchedulerAndActions();
+    //monster_spider->pauseSchedulerAndActions();
 }
 
 void SketchGameLayer::resumeAllBackground() {
@@ -447,7 +487,7 @@ void SketchGameLayer::resumeAllBackground() {
     obj_stone->resumeSchedulerAndActions();
     obj_grass->resumeSchedulerAndActions();
     
-    monster_spider->resumeSchedulerAndActions();
+    //monster_spider->resumeSchedulerAndActions();
 }
 
 ////////init method////////

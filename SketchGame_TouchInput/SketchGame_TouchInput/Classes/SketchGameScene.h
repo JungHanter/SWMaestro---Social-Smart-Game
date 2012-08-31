@@ -19,6 +19,8 @@
 #define HERO_HIDE_DEST_POS ccp(120,70)
 #define HERO_HIDE_MID_POS (ccp((HERO_INIT_POS.x+HERO_HIDE_DEST_POS.x)/2, 70))
 
+//몬스터 12프레임에서 전투, 오브제는 15프레임에서 멈춤 -> 3프레임 + 5프레임(주인공숨는시간)
+//몬스터 15 - 3 - 5 = 7프레임 차이로 몬스터 생성되야함
 
 // y = x^a, n등분일때 (1/n * M배) = (n/n)의 a값 구하기
 // M * (1/n * x0)^a = (x0)^a
@@ -39,7 +41,9 @@ public:
 private:
     //게임 진행(전투, 달리기) 관련 함수
     void hideHeroObject();
-    void startBattle();
+    void confirmBattleMode();
+    void beginBattleMode();
+    void endBattleMode();
     
     //게임 진행 관련 셀렉터
     void func_startHeroHide();
@@ -54,11 +58,14 @@ private:
     void resumeAllBackground();
     
     //게임 운영 관련 셀렉터
-    void logic_createMonster();
-    void logic_createObject();
+    void logic_createTarget();
+    void func_createMonster();
+    void func_createObject();
     void logic_printGameinfo();
     void func_mountainMove();
     void func_cloudMove();
+    
+    void test();
     
 private:
     int gameState;
@@ -82,7 +89,7 @@ private:
     cocos2d::CCSprite* monster_spider;
     cocos2d::CCActionInterval* monster_spider_act_run, *monster_spider_act_attack;
     
-    enum GameState { GAMESTATE_RUNNING, GAMESTATE_HIDE, GAMESTATE_BATTLE };
+    enum GameState { GAMESTATE_RUNNING, GAMESTATE_HIDEWAITING, GAMESTATE_HIDE, GAMESTATE_BATTLE };
     enum NowObject { OBJECT_NONE, OBJECT_STONE, OBJECT_GRASS };
     enum TextureOrder { ORDER_FARAWAY_MOUNTAIN=0, ORDER_FARAWAY_CLOUD, ORDER_FARWAY_CASTLE,
         ORDER_BACKGROUND, ORDER_OBJECT, ORDER_MONSTER, ORDER_HERO };
