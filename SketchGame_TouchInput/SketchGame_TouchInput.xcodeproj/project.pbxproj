@@ -221,6 +221,7 @@
 		D822496215F1259200672BF6 /* SGBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBackground.h; path = Classes/SGBackground.h; sourceTree = "<group>"; };
 		D822496415F125C000672BF6 /* SGHidableObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGHidableObject.cpp; path = Classes/SGHidableObject.cpp; sourceTree = "<group>"; };
 		D822496515F125C000672BF6 /* SGHidableObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGHidableObject.h; path = Classes/SGHidableObject.h; sourceTree = "<group>"; };
+		D82A3A2F15F16C31005BD116 /* defines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = defines.h; path = Classes/defines.h; sourceTree = "<group>"; };
 		D837128815EE864400D1DCAF /* bg_etc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_etc.plist; path = Resources/bg_etc.plist; sourceTree = "<group>"; };
 		D837128915EE864400D1DCAF /* bg_etc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_etc.png; path = Resources/bg_etc.png; sourceTree = "<group>"; };
 		D837128A15EE864400D1DCAF /* bg_map_hill.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_map_hill.plist; path = Resources/bg_map_hill.plist; sourceTree = "<group>"; };
@@ -1490,6 +1491,7 @@
 				D822496215F1259200672BF6 /* SGBackground.h */,
 				D822496415F125C000672BF6 /* SGHidableObject.cpp */,
 				D822496515F125C000672BF6 /* SGHidableObject.h */,
+				D82A3A2F15F16C31005BD116 /* defines.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
