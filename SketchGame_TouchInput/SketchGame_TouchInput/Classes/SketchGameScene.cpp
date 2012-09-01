@@ -96,9 +96,7 @@ void SketchGameLayer::func_startHeroHide() {
         gameState = GAMESTATE_HIDE;
         
         pauseAllBackground();
-        hero->stopAllActions();
-        
-        hero->runAction(hero_act_hide);
+        hero->func_startHide();
         //hero->runAction(CCSpawn::create(hero_act_hide, CCMoveTo::create(GAME_FRAME_SPEED*9, HERO_HIDE_DEST_POS)));
         
         this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveHide), GAME_FRAME_SPEED*11);
@@ -107,16 +105,13 @@ void SketchGameLayer::func_startHeroHide() {
 
 void SketchGameLayer::func_heroMoveHide() {
     //pauseAllBackground();
-    hero->stopAllActions();
-    hero->runAction(hero_act_keep);
+    hero->func_MoveHide();
+    
     this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*8);
 }
 
 void SketchGameLayer::func_heroMoveShow() {
-    hero->stopAllActions();
-    
-    hero->runAction(hero_act_show);
-    //hero->runAction(CCSpawn::create(hero_act_hide, CCMoveTo::create(GAME_FRAME_SPEED*9, HERO_INIT_POS)));
+    hero->func_MoveShow();
     
     this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
 }
@@ -125,9 +120,7 @@ void SketchGameLayer::func_startHeroRun() {
     gameState = GAMESTATE_RUNNING;
     
     resumeAllBackground();
-    hero->stopAllActions();
-    hero->setPosition(HERO_INIT_POS);
-    hero->runAction(hero_act_run);
+    hero->func_startRun();
 }
 
 int SketchGameLayer::getGameState() {
@@ -139,6 +132,7 @@ void SketchGameLayer::loadGameTexture() {
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
     background = SGBackground::sharedInstance(this);
+    background->retain();
     
     
     //오브제(풀, 바위) 로드
@@ -212,57 +206,14 @@ void SketchGameLayer::loadGameTexture() {
     
     //캐릭터 로드
     pSpriteFrameCache->addSpriteFramesWithFile("hero.plist", "hero.png");
-    hero = CCSprite::create(pSpriteFrameCache->spriteFrameByName("hero_keep.png"));
+    hero = SGHero::sharedInstance(this);
     hero->retain();
-    hero->setPosition(HERO_INIT_POS);
-    this->addChild(hero, ORDER_HERO, TAG_TEXTURE);
-    CCArray* pHeroActRunFrames = CCArray::create();
-    for(int i=1; i<=7; i++) {
-        pHeroActRunFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-            CCString::createWithFormat("hero_walk_%d.png",i)->getCString()));
-    }
     
-    hero_act_run = CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pHeroActRunFrames, GAME_FRAME_SPEED)));
-    hero_act_run->retain();
-    hero->runAction(hero_act_run);
-    pHeroActRunFrames->release();
+    //dummy testing heroinfo
+    SGHeroInfo info;
+    info.Str=info.Dex=info.Con=info.Luck=10;
     
-    CCArray* pHeroActKeepStoneFrames = CCArray::create();
-    pHeroActKeepStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_keep.png"));
-    hero_act_keep = CCAnimate::create(CCAnimation::create(pHeroActKeepStoneFrames));
-    hero_act_keep->retain();
-    pHeroActKeepStoneFrames->release();
-    
-    //hero->runAction(CCSpawn::create(hero_act_hide, CCMoveTo::create(GAME_FRAME_SPEED*9, HERO_HIDE_DEST_POS)));
-    //hero->runAction(CCSpawn::create(hero_act_hide, CCMoveTo::create(GAME_FRAME_SPEED*9, HERO_INIT_POS)));
-    CCArray* pHeroActHideStoneFrames = CCArray::create();
-    pHeroActHideStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_1.png"));
-    pHeroActHideStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_2.png"));
-    for(int i=1; i<=9; i++) {
-        pHeroActHideStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-            CCString::createWithFormat("hero_hide_%d.png",10-i)->getCString()));
-    }
-    hero_act_hide = CCSpawn::create(CCAnimate::create(CCAnimation::create(pHeroActHideStoneFrames, GAME_FRAME_SPEED)),
-                                    CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
-                                                      CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(HERO_HIDE_MID_POS)),
-                                                                         CCPlace::create(HERO_HIDE_DEST_POS))));
-    hero_act_hide->retain();
-    pHeroActHideStoneFrames->release();
-    
-    CCArray* pHeroActShowStoneFrames = CCArray::create();
-    for(int i=1; i<=9; i++) {
-        pHeroActShowStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-            CCString::createWithFormat("hero_hide_%d.png",i)->getCString()));
-    }
-    pHeroActShowStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_2.png"));
-    pHeroActShowStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_1.png"));
-    hero_act_show = CCSpawn::create(CCAnimate::create(CCAnimation::create(pHeroActShowStoneFrames, GAME_FRAME_SPEED)),
-                                    CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
-                                                       CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(HERO_HIDE_MID_POS)),
-                                                                          CCPlace::create(HERO_INIT_POS))));
-    hero_act_show->retain();
-    pHeroActShowStoneFrames->release();
-    
+    hero->initHeroState(info);
     
     //몬스터 로드
     //몬스터 이동경로
@@ -334,18 +285,19 @@ void SketchGameLayer::logic_printGameinfo() {
 void SketchGameLayer::unloadGameTexture() {
     this->removeChildByTag(TAG_TEXTURE, true);
     
+    background->release(); background=NULL;
     delete background;
 
     obj_stone->release(); obj_stone=NULL;
     obj_stone_action->release(); obj_stone_action=NULL;
     obj_grass->release(); obj_grass=NULL;
     obj_grass_action->release(); obj_grass_action=NULL;
-    hero->release(); hero=NULL;
-    hero_act_run->release(); hero_act_run=NULL;
-    hero_act_hide->release(); hero_act_hide=NULL;
-    hero_act_show->release(); hero_act_show=NULL;
-    hero_act_keep->release(); hero_act_keep=NULL;
     
+    hero->release(); hero=NULL;
+    delete hero;
+    
+    monsters[0]->release(); monsters[0]=NULL;
+
     CCSpriteFrameCache *pFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCTextureCache *pTextureCahce = CCTextureCache::sharedTextureCache();
     

@@ -15,6 +15,7 @@
 #include "defines.h"
 #include "SGBackground.h"
 #include "SGMonster.h"
+#include "SGHero.h"
 
 class SketchGameLayer : public cocos2d::CCLayerColor
 {
@@ -65,9 +66,7 @@ private:
     cocos2d::CCSprite* obj_stone, *obj_grass;
     cocos2d::CCActionInterval* obj_stone_action, *obj_grass_action;
     
-    cocos2d::CCSprite* hero;
-    cocos2d::CCActionInterval* hero_act_run, *hero_act_hide, *hero_act_show,
-        *hero_act_keep;
+    SGHero* hero;
     
 ///////////////touch//////////////
 protected:

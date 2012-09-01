@@ -111,6 +111,7 @@ SGBackground::SGBackground(CCLayer* parent) : CCObject::CCObject(), parentLayer(
     bg_castle->runAction(CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pCastleFrames, GAME_FRAME_SPEED))));
     pCastleFrames->release();
     
+    this->autorelease();
     this->retain();
 }
 

@@ -13,10 +13,10 @@
 using namespace cocos2d;
 
 struct SGHeroInfo {
-    unsigned int Str;
-    unsigned int Con;
-    unsigned int Dex;
-    unsigned int Luck;
+    int Str;
+    int Con;
+    int Dex;
+    int Luck;
     uint64_t ink;
     uint64_t score[10];
 };
@@ -30,39 +30,40 @@ public:
     void beginBattle();
     void endBattle();
     
-    void attack();  //공격
-    void defend(int defState);  //맞을때 (수비하던지 회피하던지 하겠지)
+    int attack();  //공격. return 공격력
+    void defend(int defState, int damage);  //맞을때 (수비하던지 회피하던지 하겠지)
     
     void pauseSchedulerAndActions();
     void resumeSchedulerAndActions();
     
-private:
+    void initHeroState(const SGHeroInfo& info);    //게임 한판 시작 전에 꼭 호출을 해서 능력치 초기화를 해야한다.
+    
+public:
     void func_startHide();
     void func_MoveHide();
     void func_MoveShow();
     void func_startRun();
     
 private:
-    int type;
     int actState;
     int maxHP, nowHP;
     int atk;
     
     CCSprite* heroSprite;
     CCActionInterval** act_attack;
-    CCActionInterval* act_run, *act_hide, *act_wait, *act_defend, *act_die;
+    CCActionInterval* act_run, *act_hide, *act_show, *act_keep, *act_wait, *act_defend, *act_die;
 
 //싱글톤패턴
 private:
-    SGHero();
-    static SGHero* hero;
+    SGHero(CCLayer* parent);
+    static SGHero* sharedSGHero;
+    CCLayer* parentLayer;
     
 public:
     ~SGHero();
-    static SGHero* sharedInstance();
-    static void initWithHeroInfo(SGHeroInfo& info);
+    static SGHero* sharedInstance(CCLayer* parent);
 };
 
-SGHero* SGHero::hero = NULL;
+
 
 #endif /* defined(__SketchGame_TouchInput__SGHero__) */

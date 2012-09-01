@@ -46,7 +46,7 @@ SGAttackInfo SGMonster::attack() {
     return info;
 }
 
-void SGMonster::defend() {
+void SGMonster::defend(int damage) {
     
 }
 

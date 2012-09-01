@@ -35,8 +35,8 @@ public:
     bool endBattle();   //true면 몬스터 죽음
     void confirmBattlePos();
     
-    SGAttackInfo attack();   //return now attackDir
-    void defend();
+    SGAttackInfo attack();   //return now atkDir & atk
+    void defend(int damage);
     void die();
     
     void pauseSchedulerAndActions();
