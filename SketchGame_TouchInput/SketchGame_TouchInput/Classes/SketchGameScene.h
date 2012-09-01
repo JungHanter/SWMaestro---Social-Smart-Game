@@ -14,16 +14,23 @@
 
 #include "defines.h"
 #include "SGBackground.h"
+#include "SGMonster.h"
 
 class SketchGameLayer : public cocos2d::CCLayerColor
 {
 public:
+    //외부접근, 기능메서드 등
+    int getGameState();
     
-private:
     //게임 진행(전투, 달리기) 관련 함수
     void hideHeroObject();
-    void confirmBattleMode();
     void beginBattleMode();
+    
+    void pauseAllBackground();
+    void resumeAllBackground();
+    
+private:
+    //게임 진행(전투, 달리기) 관련 함수s
     void endBattleMode();
     
     //게임 진행 관련 셀렉터
@@ -35,8 +42,6 @@ private:
     //게임 운영(텍스쳐 로드, 게임로직 등) 관련 함수
     void loadGameTexture();
     void unloadGameTexture();
-    void pauseAllBackground();
-    void resumeAllBackground();
     
     //게임 운영 관련 셀렉터
     void logic_createTarget();
@@ -54,16 +59,15 @@ private:
     
     SGBackground* background;
     
+    SGMonster* monsters[MONSTER_TYPE_NUMBER];
+    SGMonster* nowMonster;
+    
     cocos2d::CCSprite* obj_stone, *obj_grass;
     cocos2d::CCActionInterval* obj_stone_action, *obj_grass_action;
     
     cocos2d::CCSprite* hero;
     cocos2d::CCActionInterval* hero_act_run, *hero_act_hide, *hero_act_show,
         *hero_act_keep;
-
-    cocos2d::CCSprite* monster_spider;
-    cocos2d::CCActionInterval* monster_spider_act_run, *monster_spider_act_attack;
-
     
 ///////////////touch//////////////
 protected:

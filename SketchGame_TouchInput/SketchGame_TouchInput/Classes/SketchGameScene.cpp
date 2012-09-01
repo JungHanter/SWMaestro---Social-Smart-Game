@@ -51,27 +51,22 @@ void SketchGameLayer::dragInputEnded(const int dragDirection) {
     }
 }
 
-////////private method////////
-
-void SketchGameLayer::confirmBattleMode() {
-    if(gameState == GAMESTATE_RUNNING) {
-        beginBattleMode();
-    }
-}
-
+////////private method///////
 void SketchGameLayer::beginBattleMode() {
-    monster_spider->setColor(ccc3(255, 0, 0));
-    monster_spider->pauseSchedulerAndActions();
+    nowMonster->beginBattle();
     gameState = GAMESTATE_BATTLE;
     pauseAllBackground();
+    hero->pauseSchedulerAndActions();
+    
+    //일단 몬스터를 멈추게 만듬(배틀 구현이 안되있음)
     this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode), GAME_FRAME_SPEED*5);
 }
 
 void SketchGameLayer::endBattleMode() {
-    monster_spider->setColor(ccc3(255,255,255));
-    monster_spider->resumeSchedulerAndActions();
+    nowMonster->endBattle();
     gameState = GAMESTATE_RUNNING;
     resumeAllBackground();
+    hero->resumeSchedulerAndActions();
 }
 
 void SketchGameLayer::hideHeroObject() {
@@ -133,6 +128,10 @@ void SketchGameLayer::func_startHeroRun() {
     hero->stopAllActions();
     hero->setPosition(HERO_INIT_POS);
     hero->runAction(hero_act_run);
+}
+
+int SketchGameLayer::getGameState() {
+    return gameState;
 }
 
 void SketchGameLayer::loadGameTexture() {
@@ -275,40 +274,10 @@ void SketchGameLayer::loadGameTexture() {
     }
     
     //거미
-    pSpriteFrameCache->addSpriteFramesWithFile("spider.plist", "spider.png");
-    monster_spider = CCSprite::create(pSpriteFrameCache->spriteFrameByName("spider_walk_1.png"));
-    monster_spider->retain();
-    monster_spider->setPosition(ccp(-500,-500));
-    this->addChild(monster_spider, ORDER_MONSTER, TAG_TEXTURE);
+    monsters[MONSTER_TYPE_SPIDER] = SGMonster::create(MONSTER_TYPE_SPIDER, 20, 2, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_SPIDER]->retain();
     
-    CCArray* pSpiderWalkFrames = CCArray::create();
-    CCArray* pSpiderWalkActions = CCArray::create();
-    for(int i=1; i<=23; i++) {
-        pSpiderWalkFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("spider_walk_%d.png", i)->getCString()));
-    }
-    //지수함수그래프 N등분일때 4배수 계수적용
-    for(int i=0; i<23; i++) {
-        pSpiderWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(arrMonsterPoint[i])));
-        if(i==12) {
-            //12프레임에서 배틀 or NOT
-            pSpiderWalkActions->addObject(CCCallFunc::create(this, callfunc_selector(SketchGameLayer::confirmBattleMode)));
-        }
-    }
-    pSpiderWalkActions->addObject(CCPlace::create(ccp(-500,-500)));
-    monster_spider_act_run = CCSpawn::create(CCAnimate::create(CCAnimation::create(pSpiderWalkFrames, GAME_FRAME_SPEED)),
-                                             CCSequence::create(pSpiderWalkActions));
-    monster_spider_act_run->retain();
-    pSpiderWalkActions->release();
-    pSpiderWalkFrames->release();
-    
-    CCArray* pSpiderAttackFrames = CCArray::create();
-    for(int i=1; i<=4; i++) {
-        pSpiderAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("spider_attack_%d.png", i)->getCString()));
-    }
-    monster_spider_act_attack = CCAnimate::create(CCAnimation::create(pSpiderWalkFrames));
-    monster_spider_act_attack->retain();
-    pSpiderAttackFrames->retain();
-    
+    nowMonster = monsters[MONSTER_TYPE_SPIDER];
     
     this->schedule(schedule_selector(SketchGameLayer::logic_createTarget), GAME_FRAME_SPEED*30.0f);
     
@@ -329,7 +298,7 @@ void SketchGameLayer::func_createMonster() {
     int rnd = rand()%1;
     if(rnd==0) {
         CCLog("Create Spider");
-        monster_spider->runAction(monster_spider_act_run);
+        nowMonster->appear();
         //몬스터가 어디서 멈출지 체크
         //this->scheduleOnce(schedule_selector(SketchGameLayer::test), GAME_FRAME_SPEED*12);
     }
@@ -351,8 +320,8 @@ void SketchGameLayer::func_createObject() {
 }
 
 void SketchGameLayer::test() {
-    monster_spider->setColor(ccc3(255,0,0));
-    monster_spider->stopAllActions();
+    //monster_spider->setColor(ccc3(255,0,0));
+    //monster_spider->stopAllActions();
 }
 
 void SketchGameLayer::logic_printGameinfo() {

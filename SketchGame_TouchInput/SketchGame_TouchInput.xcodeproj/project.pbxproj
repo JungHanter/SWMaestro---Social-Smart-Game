@@ -19,7 +19,6 @@
 		D837129515EE864400D1DCAF /* hero.png in Resources */ = {isa = PBXBuildFile; fileRef = D837128D15EE864400D1DCAF /* hero.png */; };
 		D837129615EE864400D1DCAF /* spider.plist in Resources */ = {isa = PBXBuildFile; fileRef = D837128E15EE864400D1DCAF /* spider.plist */; };
 		D837129715EE864400D1DCAF /* spider.png in Resources */ = {isa = PBXBuildFile; fileRef = D837128F15EE864400D1DCAF /* spider.png */; };
-		D84ADD5915DDECA400DED991 /* TouchInputTestScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */; };
 		D89F09C515DF2B940057A0D5 /* SketchGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D89F09C315DF2B940057A0D5 /* SketchGameScene.cpp */; };
 		D89F09D415DF3EFE0057A0D5 /* draginfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = D89F09CA15DF3EFE0057A0D5 /* draginfo.plist */; };
 		D89F09D515DF3EFE0057A0D5 /* dragInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = D89F09CB15DF3EFE0057A0D5 /* dragInfo.png */; };
@@ -230,8 +229,6 @@
 		D837128D15EE864400D1DCAF /* hero.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hero.png; path = Resources/hero.png; sourceTree = "<group>"; };
 		D837128E15EE864400D1DCAF /* spider.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = spider.plist; path = Resources/spider.plist; sourceTree = "<group>"; };
 		D837128F15EE864400D1DCAF /* spider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spider.png; path = Resources/spider.png; sourceTree = "<group>"; };
-		D84ADD5615DDEBFF00DED991 /* TouchInputTestScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TouchInputTestScene.h; path = Classes/TouchInputTestScene.h; sourceTree = "<group>"; };
-		D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = TouchInputTestScene.cpp; path = Classes/TouchInputTestScene.cpp; sourceTree = "<group>"; };
 		D89F09C315DF2B940057A0D5 /* SketchGameScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SketchGameScene.cpp; path = Classes/SketchGameScene.cpp; sourceTree = "<group>"; };
 		D89F09C415DF2B940057A0D5 /* SketchGameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SketchGameScene.h; path = Classes/SketchGameScene.h; sourceTree = "<group>"; };
 		D89F09CA15DF3EFE0057A0D5 /* draginfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = draginfo.plist; path = Resources/draginfo.plist; sourceTree = "<group>"; };
@@ -1479,8 +1476,6 @@
 			children = (
 				D8CA228A15DDDCB4007F583A /* AppDelegate.h */,
 				D8CA228B15DDDCB4007F583A /* AppDelegate.cpp */,
-				D84ADD5615DDEBFF00DED991 /* TouchInputTestScene.h */,
-				D84ADD5815DDECA400DED991 /* TouchInputTestScene.cpp */,
 				D89F09C415DF2B940057A0D5 /* SketchGameScene.h */,
 				D89F09C315DF2B940057A0D5 /* SketchGameScene.cpp */,
 				D822495815F1251300672BF6 /* SGMonster.cpp */,
@@ -1745,7 +1740,6 @@
 				D8CA228515DDDCB4007F583A /* AppController.mm in Sources */,
 				D8CA228815DDDCB4007F583A /* RootViewController.mm in Sources */,
 				D8CA228C15DDDCB4007F583A /* AppDelegate.cpp in Sources */,
-				D84ADD5915DDECA400DED991 /* TouchInputTestScene.cpp in Sources */,
 				D89F09C515DF2B940057A0D5 /* SketchGameScene.cpp in Sources */,
 				D822495A15F1251300672BF6 /* SGMonster.cpp in Sources */,
 				D822495D15F1252900672BF6 /* SGHero.cpp in Sources */,

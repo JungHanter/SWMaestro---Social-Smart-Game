@@ -1,5 +1,4 @@
 #include "AppDelegate.h"
-#include "TouchInputTestScene.h"
 #include "SketchGameScene.h"
 
 USING_NS_CC;
