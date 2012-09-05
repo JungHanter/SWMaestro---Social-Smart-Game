@@ -1,0 +1,3 @@
+INDEX VERSION 1.126+/Users/hanter/Programming/SWMaestro/firststep_1st/Social_Smart_Game/SWMaestro---Social-Smart-Game/SketchGame/SketchGame/.metadata/.plugins/org.eclipse.jdt.core
+334757748.index
+2408429469.index

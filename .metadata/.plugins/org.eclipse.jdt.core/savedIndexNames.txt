@@ -1,1 +1,0 @@
-INDEX VERSION 1.126+/Users/hanter/Programming/SWMaestro/firststep_1st/Social_Smart_Game/SWMaestro---Social-Smart-Game/.metadata/.plugins/org.eclipse.jdt.core
