@@ -17,45 +17,44 @@
 #include "SGMonster.h"
 #include "SGHero.h"
 
+#define TURN_HERO  1
+#define TURN_MONSTER 2
+
 class SketchGameLayer : public cocos2d::CCLayerColor
 {
 public:
-    //외부접근, 기능메서드 등
     int getGameState();
     
-    //게임 진행(전투, 달리기) 관련 함수
     void hideHeroObject();
     void beginBattleMode();
-    
+
     void pauseAllBackground();
     void resumeAllBackground();
     
 private:
-    //게임 진행(전투, 달리기) 관련 함수s
-    void endBattleMode();
+	void monsterAttack(float );
+	void turnHero(float);
+    void endBattleMode(float );
     
-    //게임 진행 관련 셀렉터
-    void func_startHeroHide();
-    void func_heroMoveHide();
-    void func_heroMoveShow();
-    void func_startHeroRun();
+    void func_startHeroHide(float);
+    void func_heroMoveHide(float);
+    void func_heroMoveShow(float);
+    void func_startHeroRun(float);
     
-    //게임 운영(텍스쳐 로드, 게임로직 등) 관련 함수
     void loadGameTexture();
     void unloadGameTexture();
     
-    //게임 운영 관련 셀렉터
-    void logic_createTarget();
-    void func_createMonster();
+    void logic_createTarget(float);
+    void func_createMonster(float);
     void func_createObject();
-    void logic_printGameinfo();
+    void logic_printGameinfo(float);
     
     void test();
-    
+ 
 private:
+	int turn;
     int gameState;
     int nowObject;
-    
     cocos2d::CCPoint HERO_HIDE_ABLE_POS;
     
     SGBackground* background;
@@ -67,7 +66,7 @@ private:
     cocos2d::CCActionInterval* obj_stone_action, *obj_grass_action;
     
     SGHero* hero;
-    
+
 ///////////////touch//////////////
 protected:
     void ccTouchesBegan(cocos2d::CCSet* pTouches, cocos2d::CCEvent* pEvent);
@@ -84,7 +83,7 @@ private:
 /////////////basic/////////////
 public:
     SketchGameLayer() : _label(NULL) {}
-    ~SketchGameLayer();
+    virtual ~SketchGameLayer();
     bool init();
     
     LAYER_CREATE_FUNC(SketchGameLayer);

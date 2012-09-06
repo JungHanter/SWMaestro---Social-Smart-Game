@@ -31,7 +31,6 @@ private:
     void func_mountainMove();
     void func_cloudMove();
     
-//싱글톤패턴
 private:
     SGBackground(CCLayer* parent);
     static SGBackground* sharedSGBackground;

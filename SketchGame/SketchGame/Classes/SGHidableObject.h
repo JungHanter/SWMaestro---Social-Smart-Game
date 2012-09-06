@@ -30,7 +30,7 @@ private:
     
 public:
     SGHidableObject(CCLayer* parent);
-    ~SGHidableObject();
+    virtual ~SGHidableObject();
 };
 
 #endif /* defined(__SketchGame_TouchInput__SGHidableObject__) */

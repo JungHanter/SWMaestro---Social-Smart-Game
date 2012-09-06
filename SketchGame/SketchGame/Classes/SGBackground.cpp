@@ -44,11 +44,11 @@ SGBackground* SGBackground::sharedInstance(CCLayer* parent) {
     return sharedSGBackground;
 }
 
-SGBackground::SGBackground(CCLayer* parent) : CCObject::CCObject(), parentLayer(parent) {
+SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     CCSpriteFrameCache *pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
-    //언덕 배경 로드
+    //map
     pSpriteFrameCache->addSpriteFramesWithFile("bg_map_hill.plist", "bg_map_hill.png");
     bg_map = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_map_hill_1.png"));
     bg_map->retain();
@@ -65,7 +65,7 @@ SGBackground::SGBackground(CCLayer* parent) : CCObject::CCObject(), parentLayer(
     bg_map->runAction(bg_map_action);
     pBackgroundMapFrames->release();
     
-    //산, 구름 로드
+    //Mountain
     pSpriteFrameCache->addSpriteFramesWithFile("bg_etc.plist", "bg_etc.png");
     bg_mountain = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_mountain.png"));
     bg_mountain->retain();
@@ -99,7 +99,7 @@ SGBackground::SGBackground(CCLayer* parent) : CCObject::CCObject(), parentLayer(
     bg_cloud2->runAction(CCRepeatForever::create(CCSequence::create(CCMoveBy::create(GAME_FRAME_SPEED*SPEED_CLOUD*2, ccp(-cloudSize.width*2,0)),
                                                                     CCPlace::create(ccp(cloudSize.width, winSize.height+15)))));
     
-    //성 로드
+    //castle
     bg_castle = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_castle_1.png"));
     bg_castle->retain();
     bg_castle->setPosition(ccp(290,240));

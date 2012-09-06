@@ -616,7 +616,7 @@
 		D88C92EE15F791C400EE167A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		D88C92EF15F791C400EE167A /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		D8FEC9BB15F794D800C4EBD4 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = defines.h; path = Classes/defines.h; sourceTree = "<group>"; };
-		D8FEC9BC15F794D800C4EBD4 /* SGBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGBackground.cpp; path = Classes/SGBackground.cpp; sourceTree = "<group>"; };
+		D8FEC9BC15F794D800C4EBD4 /* SGBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = SGBackground.cpp; path = Classes/SGBackground.cpp; sourceTree = "<group>"; };
 		D8FEC9BD15F794D800C4EBD4 /* SGBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBackground.h; path = Classes/SGBackground.h; sourceTree = "<group>"; };
 		D8FEC9BE15F794D800C4EBD4 /* SGHero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGHero.cpp; path = Classes/SGHero.cpp; sourceTree = "<group>"; };
 		D8FEC9BF15F794D800C4EBD4 /* SGHero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGHero.h; path = Classes/SGHero.h; sourceTree = "<group>"; };

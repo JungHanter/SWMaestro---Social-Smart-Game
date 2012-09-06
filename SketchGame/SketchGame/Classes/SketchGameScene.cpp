@@ -16,7 +16,6 @@ using namespace cocos2d;
 void SketchGameLayer::tapInputEnded(const CCPoint& point) {
     if(CCRect::CCRectContainsPoint(obj_stone->boundingBox(), point)) {
         //CCLog("tapped Stone");
-        //케릭터가 달리는 중이고, 캐릭터가 바위에 숨을 수 있는 위치 전까지만 터치 입력을 받음
         if(gameState == GAMESTATE_RUNNING &&
            obj_stone->getPosition().y > HERO_HIDE_ABLE_POS.y) {
             //CCLog("hero hide");
@@ -25,7 +24,6 @@ void SketchGameLayer::tapInputEnded(const CCPoint& point) {
         }
     } else if(CCRect::CCRectContainsPoint(obj_grass->boundingBox(), point)) {
         //CCLog("tapped Stone");
-        //케릭터가 달리는 중이고, 캐릭터가 풀에 숨을 수 있는 위치 전까지만 터치 입력을 받음
         if(gameState == GAMESTATE_RUNNING &&
            obj_grass->getPosition().y > HERO_HIDE_ABLE_POS.y) {
             //CCLog("hero hide");
@@ -36,19 +34,34 @@ void SketchGameLayer::tapInputEnded(const CCPoint& point) {
 }
 
 void SketchGameLayer::dragInputEnded(const int dragDirection) {
-    switch (dragDirection) {
-        case DIR_UP:
-            break;
-            
-        case DIR_DOWN:
-            break;
-            
-        case DIR_LEFT:
-            break;
-            
+	switch (dragDirection) {
+		case DIR_UP:
+			if(gameState == GAMESTATE_BATTLE){
+				if(turn == TURN_HERO)
+				{
+					nowMonster->defend(hero->attack());
+					if(nowMonster->endBattle() == true)
+					this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode),2.0f);
+					else
+					{
+						turn = TURN_MONSTER;
+						this->scheduleOnce(schedule_selector(SketchGameLayer::monsterAttack),3.0f);
+					}
+				}
+			}
+			break;
+
+		case DIR_DOWN:
+			break;
+		case DIR_LEFT:
+			if(gameState == GAMESTATE_BATTLE){
+
+			}
+			break;
+
         case DIR_RIGHT:
             break;
-    }
+	}
 }
 
 ////////private method///////
@@ -57,16 +70,37 @@ void SketchGameLayer::beginBattleMode() {
     gameState = GAMESTATE_BATTLE;
     pauseAllBackground();
     hero->pauseSchedulerAndActions();
-    
-    //일단 몬스터를 멈추게 만듬(배틀 구현이 안되있음)
-    this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode), GAME_FRAME_SPEED*5);
+
+	turn = TURN_HERO;
+	
+
+	//this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode), GAME_FRAME_SPEED*5);
 }
 
-void SketchGameLayer::endBattleMode() {
-    nowMonster->endBattle();
-    gameState = GAMESTATE_RUNNING;
+void SketchGameLayer::monsterAttack(float )
+{
+	if(turn == TURN_MONSTER)
+	{
+		int dmg;
+		dmg = nowMonster->attack().atk;	
+		hero->defend(DEF_STATE_GUARD,dmg);
+		this->scheduleOnce(schedule_selector(SketchGameLayer::turnHero),2.0f);
+	}
+}
+
+void SketchGameLayer::turnHero(float)
+{
+	turn = TURN_HERO;
+}
+
+void SketchGameLayer::endBattleMode(float) {
+	nowMonster->endBattle();
+	nowMonster->resetStatus(20,2);
+	gameState = GAMESTATE_RUNNING;
     resumeAllBackground();
     hero->resumeSchedulerAndActions();
+	this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun),0.0f);
+	//func_startHeroRun();
 }
 
 void SketchGameLayer::hideHeroObject() {
@@ -75,7 +109,7 @@ void SketchGameLayer::hideHeroObject() {
     this->schedule(schedule_selector(SketchGameLayer::func_startHeroHide));
 }
 
-void SketchGameLayer::func_startHeroHide() {
+void SketchGameLayer::func_startHeroHide(float dt) {
     CCSprite* obj = NULL;
     
     switch (nowObject) {
@@ -91,7 +125,6 @@ void SketchGameLayer::func_startHeroHide() {
     if(obj == NULL) {
         return;
     } else if(obj->getPosition().y <= HERO_HIDE_ABLE_POS.y) {
-        //이 지점부터 케릭터가 움직인다
         this->unschedule(schedule_selector(SketchGameLayer::func_startHeroHide));
         gameState = GAMESTATE_HIDE;
         
@@ -103,20 +136,20 @@ void SketchGameLayer::func_startHeroHide() {
     }
 }
 
-void SketchGameLayer::func_heroMoveHide() {
+void SketchGameLayer::func_heroMoveHide(float dt) {
     //pauseAllBackground();
     hero->func_MoveHide();
     
     this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*8);
 }
 
-void SketchGameLayer::func_heroMoveShow() {
+void SketchGameLayer::func_heroMoveShow(float dt) {
     hero->func_MoveShow();
     
     this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
 }
 
-void SketchGameLayer::func_startHeroRun() {
+void SketchGameLayer::func_startHeroRun(float dt) {
     gameState = GAMESTATE_RUNNING;
     
     resumeAllBackground();
@@ -135,8 +168,7 @@ void SketchGameLayer::loadGameTexture() {
     background->retain();
     
     
-    //오브제(풀, 바위) 로드
-    const float coefficient = obj_coefficient(23,4);    //23등분일때 4배
+    const float coefficient = obj_coefficient(23,4);
     
     CCPoint arrObjPoint[23];
     //const float x_stone_add = 225/22, y_stone_add = 250/22;
@@ -148,10 +180,10 @@ void SketchGameLayer::loadGameTexture() {
     }
     HERO_HIDE_ABLE_POS = arrObjPoint[15];
     
-    //0.3 -> 1.2배 된다고 할 때
+    //0.3 -> x1.2
     float arrScaling[23];
     for(int i=0; i<23; i++) {
-        //arrScaling[i] = 0.3f * (float)pow(i+1, coefficient);
+        //arrScaling[i] = 0.3f * (float)pow(i+1, coefficient
         arrScaling[i] = 1.5f - ( 0.3f * (float)pow(23-i, coefficient) );
         //CCLog("i = %lf", arrScaling[i]);
     }
@@ -167,7 +199,6 @@ void SketchGameLayer::loadGameTexture() {
         pStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("obj_stone_%d.png",i)->getCString()));
     }
     
-    //지수함수그래프 N등분일때 4배수 계수적용
     for(int i=0; i<23; i++) {
         pStoneMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
                                                      CCSpawn::create(CCPlace::create(arrObjPoint[i]), CCScaleTo::create(0, arrScaling[i]))));
@@ -190,7 +221,7 @@ void SketchGameLayer::loadGameTexture() {
     for(int i=1; i<=3; i++) {
         pGrassFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("obj_grass_%d.png",i)->getCString()));
     }
-    //지수함수그래프 N등분일때 4배수 계수적용
+    
     for(int i=0; i<23; i++) {
         pGrassMoveActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
                                                      CCSpawn::create(CCPlace::create(arrObjPoint[i]), CCScaleTo::create(0, arrScaling[i]))));
@@ -204,8 +235,6 @@ void SketchGameLayer::loadGameTexture() {
     pGrassMoveActions->release();
     
     
-    //캐릭터 로드
-    pSpriteFrameCache->addSpriteFramesWithFile("hero.plist", "hero.png");
     hero = SGHero::sharedInstance(this);
     hero->retain();
     
@@ -215,8 +244,7 @@ void SketchGameLayer::loadGameTexture() {
     
     hero->initHeroState(info);
     
-    //몬스터 로드
-    //몬스터 이동경로
+
     CCPoint arrMonsterPoint[23];
     for(int i=0; i<23; i++) {
         //260,190 -> 230, -60
@@ -224,7 +252,6 @@ void SketchGameLayer::loadGameTexture() {
         CCLog("%lf, %lf", arrMonsterPoint[i].x, arrMonsterPoint[i].y);
     }
     
-    //거미
     monsters[MONSTER_TYPE_SPIDER] = SGMonster::create(MONSTER_TYPE_SPIDER, 20, 2, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_SPIDER]->retain();
     
@@ -232,25 +259,24 @@ void SketchGameLayer::loadGameTexture() {
     
     this->schedule(schedule_selector(SketchGameLayer::logic_createTarget), GAME_FRAME_SPEED*30.0f);
     
-    
     this->schedule(schedule_selector(SketchGameLayer::logic_printGameinfo));
 }
 
-void SketchGameLayer::logic_createTarget() {
+void SketchGameLayer::logic_createTarget(float dt) {
     if(gameState != GAMESTATE_RUNNING) return;
     
     func_createObject();
-    this->scheduleOnce(schedule_selector(SketchGameLayer::func_createMonster), GAME_FRAME_SPEED*7); //7프레임 뒤
+    this->scheduleOnce(schedule_selector(SketchGameLayer::func_createMonster), GAME_FRAME_SPEED*7); //7������ ��
 }
 
-void SketchGameLayer::func_createMonster() {
+void SketchGameLayer::func_createMonster(float dt) {
     if(gameState != GAMESTATE_RUNNING) return;
     
     int rnd = rand()%1;
     if(rnd==0) {
         CCLog("Create Spider");
+        nowMonster->resetStatus(20, 2);
         nowMonster->appear();
-        //몬스터가 어디서 멈출지 체크
         //this->scheduleOnce(schedule_selector(SketchGameLayer::test), GAME_FRAME_SPEED*12);
     }
 }
@@ -275,7 +301,7 @@ void SketchGameLayer::test() {
     //monster_spider->stopAllActions();
 }
 
-void SketchGameLayer::logic_printGameinfo() {
+void SketchGameLayer::logic_printGameinfo(float dt) {
     /*CCLog("stone position:(%d, %d) size:(%d, %d)", (int)(obj_stone->getPosition().x), (int)(obj_stone->getPosition().y),
           (int)(obj_stone->boundingBox().size.width), (int)(obj_stone->boundingBox().size.width));*/
     /*CCLog("cloud pos : 1(%d, %d) / 2(%d, %d)", (int)(bg_cloud->getPositionX()), (int)(bg_cloud->getPositionY()),
@@ -345,7 +371,7 @@ bool SketchGameLayer::init() {
         bTouching = false;
         gameState = GAMESTATE_RUNNING;
         nowObject = OBJECT_NONE;
-        
+
         loadGameTexture();
         
         return true;

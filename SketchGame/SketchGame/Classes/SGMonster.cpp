@@ -11,22 +11,21 @@
 #include "SketchGameScene.h"
 
 void SGMonster::beginBattle() {
-    //색깔은 일단 디버깅용으로 입힘
     monsterSprite->setColor(ccc3(255, 0, 0));
     
-    //실제 전투는 구현이 안되있으므로 잠시 멈춤
     monsterSprite->pauseSchedulerAndActions();
 }
 
-//죽었을때 true 리턴
 bool SGMonster::endBattle() {
     monsterSprite->setColor(ccc3(255,255,255));
     
-    //실제 전투는 구현이 안되있으므로 잠시 멈춘걸 다시 재생
-    monsterSprite->resumeSchedulerAndActions();
-    
-    //죽었다고 가정
-    return true;
+	if(nowHP<=0)
+	{
+		die();
+        return true;
+	}
+	else
+		return false;
 }
 
 void SGMonster::confirmBattlePos() {
@@ -40,14 +39,16 @@ SGAttackInfo SGMonster::attack() {
     info.atk = this->atk;
     info.atkDir = selectAttackDirection();
     
-    //공격 수행 스케줄러 작성하면 될듯
-    
+    monsterSprite->stopAllActions();
+	monsterSprite->runAction(act_attack[0].act_attack);
     
     return info;
 }
 
+
 void SGMonster::defend(int damage) {
-    
+
+	nowHP -= damage;
 }
 
 void SGMonster::appear() {
@@ -55,7 +56,8 @@ void SGMonster::appear() {
 }
 
 void SGMonster::die() {
-    
+    monsterSprite->stopAllActions();
+    monsterSprite->setPosition(ccp(-100,-100));
 }
 
 int SGMonster::selectAttackDirection() {
@@ -63,14 +65,14 @@ int SGMonster::selectAttackDirection() {
     return ATK_DIR_LEFT;
 }
 
-//몬스터 재활용하기위해 상태 리셋
+
 void SGMonster::resetStatus(int hp, int atk) {
     this->maxHP = hp;
     this->nowHP = this->maxHP;
     this->atk = atk;
 }
 
-//몬스터 재활용/능력치 업그레이드
+
 void SGMonster::upgradeStatus(float upHpRate, float upAtkRate) {
     this->maxHP = (int)(((float)(this->maxHP))*upHpRate);
     this->nowHP = this->maxHP;
@@ -106,11 +108,10 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
             for(int i=1; i<=nPoints; i++) {
                 pSpiderWalkFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("spider_walk_%d.png", i)->getCString()));
             }
-            //지수함수그래프 N등분일때 4배수 계수적용
             for(int i=0; i<nPoints; i++) {
                 pSpiderWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(movePoints[i])));
                 if(i==12) {
-                    //12프레임에서 배틀 or NOT
+                    //mett or Not
                     pSpiderWalkActions->addObject(CCCallFunc::create(this, callfunc_selector(SGMonster::confirmBattlePos)));
                 }
             }
@@ -125,18 +126,33 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
             for(int i=1; i<=4; i++) {
                 pSpiderAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("spider_attack_%d.png", i)->getCString()));
             }
+
             
-            numAttacks = 1;
+			numAttacks = 1;
+			
             act_attack = new SGAttackAction[numAttacks];
-            act_attack[0].act_attack = CCAnimate::create(CCAnimation::create(pSpiderWalkFrames));
-            act_attack[0].act_attack->retain();
-            act_attack[0].atkDir = ATK_DIR_LEFT;
+
+			CCArray* pHeroActAttackFrames = CCArray::create();
+			for(int i=1; i<=4; i++) {
+				pHeroActAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(
+					CCString::createWithFormat("spider_attack_%d.png",i)->getCString()));
+			}
+			
+			act_attack[0].act_attack = CCSpawn::create(CCAnimate::create(CCAnimation::create(pSpiderAttackFrames,GAME_FRAME_SPEED)),
+				CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
+				CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(MONSTER_INIT_POS)),
+				CCPlace::create(MONSTER_INIT_POS))));
+			act_attack[0].act_attack->retain();
+            
             pSpiderAttackFrames->retain();
+            
+
             break;
     }
 }
 
 SGMonster::~SGMonster() {
+
 }
 
 int SGMonster::getType() {

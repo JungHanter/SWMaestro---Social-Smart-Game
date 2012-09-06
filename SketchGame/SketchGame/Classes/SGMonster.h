@@ -20,7 +20,7 @@ struct SGAttackAction {
     CCActionInterval* act_attack;
 };
 
-//attack 메서드에서 반환용 구조체. 공격력과 공격방향이 담겨있음
+
 struct SGAttackInfo {
     int atk;
     int atkDir;
@@ -30,9 +30,9 @@ enum SGMonsterType { MONSTER_TYPE_SPIDER=0, MONSTER_TYPE_NUMBER };
 
 class SGMonster : public CCObject {
 public:
-    void appear();  //몬스터 출혈 시작
-    void beginBattle(); //몬스터 배틀모드
-    bool endBattle();   //true면 몬스터 죽음
+    void appear();
+    void beginBattle();
+    bool endBattle();
     void confirmBattlePos();
     
     SGAttackInfo attack();   //return now atkDir & atk
@@ -59,14 +59,14 @@ private:
     CCActionInterval* act_run, *act_wait, *act_defend, *act_die;
     
     int numAttacks;
-    SGAttackAction* act_attack;  //몬스터 공격 배열 (1~4);
+    SGAttackAction* act_attack;  //monster's attack dir array 1~4
 
 private:
     SGMonster(int type, int hp, int atk, const CCPoint* const movePoints, const int nPoints, CCLayer* const parent);
     CCLayer* const parentLayer;
     
 public:
-    ~SGMonster();
+    virtual ~SGMonster();
     static SGMonster* create(int type, int hp, int atk, const CCPoint* const movePoints, const int nPoints,
                              CCLayer* const parent);
 };
