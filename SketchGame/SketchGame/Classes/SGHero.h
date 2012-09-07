@@ -17,8 +17,8 @@ struct SGHeroInfo {
     int Con;
     int Dex;
     int Luck;
-    uint64_t ink;
-    uint64_t score[10];
+    unsigned long long ink;
+    unsigned long long score[10];
 };
 
 enum HeroDefendState { DEF_STATE_DEFEND, DEF_STATE_GUARD, DEF_STATE_DODGE };
