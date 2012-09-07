@@ -252,10 +252,10 @@ void SketchGameLayer::loadGameTexture() {
         CCLog("%lf, %lf", arrMonsterPoint[i].x, arrMonsterPoint[i].y);
     }
     
-    monsters[MONSTER_TYPE_SPIDER] = SGMonster::create(MONSTER_TYPE_SPIDER, 20, 2, arrMonsterPoint, 23, this);
-    monsters[MONSTER_TYPE_SPIDER]->retain();
+    monsters[MONSTER_TYPE_BAT] = SGMonster::create(MONSTER_TYPE_BAT, 20, 2, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_BAT]->retain();
     
-    nowMonster = monsters[MONSTER_TYPE_SPIDER];
+    nowMonster = monsters[MONSTER_TYPE_BAT];
     
     this->schedule(schedule_selector(SketchGameLayer::logic_createTarget), GAME_FRAME_SPEED*30.0f);
     

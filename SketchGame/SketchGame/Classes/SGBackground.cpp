@@ -50,13 +50,14 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     
     //map
     pSpriteFrameCache->addSpriteFramesWithFile("bg_map_hill.plist", "bg_map_hill.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_map_hill2.plist", "bg_map_hill2.png");
     bg_map = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_map_hill_1.png"));
     bg_map->retain();
     bg_map->setAnchorPoint(ccp(0, 0));
     bg_map->setPosition(ccp(0, 0));
     parentLayer->addChild(bg_map, ORDER_BACKGROUND, TAG_TEXTURE_BACKGROUND);
     CCArray* pBackgroundMapFrames = CCArray::create();
-    for(int i=1; i<=10; i++) {
+    for(int i=1; i<=15; i++) {
         pBackgroundMapFrames->addObject(pSpriteFrameCache->spriteFrameByName(
                                                                              CCString::createWithFormat("bg_map_hill_%d.png", i)->getCString()));
     }

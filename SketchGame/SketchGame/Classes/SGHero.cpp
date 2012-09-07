@@ -101,12 +101,12 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
     heroSprite->retain();
     heroSprite->setPosition(HERO_INIT_POS);
     parentLayer->addChild(heroSprite, ORDER_HERO, TAG_TEXTURE);
+    
     CCArray* pHeroActRunFrames = CCArray::create();
     for(int i=1; i<=7; i++) {
         pHeroActRunFrames->addObject(pSpriteFrameCache->spriteFrameByName(
             CCString::createWithFormat("hero_walk_%d.png",i)->getCString()));
     }
-    
     act_run = CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pHeroActRunFrames, GAME_FRAME_SPEED)));
     act_run->retain();
     heroSprite->runAction(act_run);
@@ -118,6 +118,17 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
     act_keep->retain();
     pHeroActKeepStoneFrames->release();
     
+    CCArray* pHeroActWaitFrames = CCArray::create();
+    for(int i=1; i<=4; i++) {
+        pHeroActWaitFrames->addObject(pSpriteFrameCache->spriteFrameByName(
+            CCString::createWithFormat("hero_wait_%d.png",i)->getCString()));
+    }
+    pHeroActWaitFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_wait_3.png"));
+    pHeroActWaitFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_wait_2.png"));
+    act_wait = CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pHeroActWaitFrames, GAME_FRAME_SPEED)));
+    act_wait->retain();
+    pHeroActWaitFrames->release();
+    
     //hero->runAction(CCSpawn::create(hero_act_hide, CCMoveTo::create(GAME_FRAME_SPEED*9, HERO_HIDE_DEST_POS)));
     //hero->ru`nAction(CCSpawn::create(hero_act_hide, CCMoveTo::create(GAME_FRAME_SPEED*9, HERO_INIT_POS)));
     CCArray* pHeroActHideStoneFrames = CCArray::create();
@@ -125,7 +136,7 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
     pHeroActHideStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_2.png"));
     for(int i=1; i<=9; i++) {
         pHeroActHideStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-                                                                                CCString::createWithFormat("hero_hide_%d.png",10-i)->getCString()));
+            CCString::createWithFormat("hero_hide_%d.png",10-i)->getCString()));
     }
     act_hide = CCSpawn::create(CCAnimate::create(CCAnimation::create(pHeroActHideStoneFrames, GAME_FRAME_SPEED)),
                                     CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
@@ -137,7 +148,7 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
     CCArray* pHeroActShowStoneFrames = CCArray::create();
     for(int i=1; i<=9; i++) {
         pHeroActShowStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-                                                                                CCString::createWithFormat("hero_hide_%d.png",i)->getCString()));
+            CCString::createWithFormat("hero_hide_%d.png",i)->getCString()));
     }
     pHeroActShowStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_2.png"));
     pHeroActShowStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_1.png"));
@@ -149,16 +160,17 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
     pHeroActShowStoneFrames->release();
   
 
-	CCArray* pWoong = CCArray::create();
+    CCArray* pHeroActBlockFrames = CCArray::create();
 	for(int i=1; i<=9; i++) {
-		pHeroActHideStoneFrames->addObject(pSpriteFrameCache->spriteFrameByName(
+		pHeroActBlockFrames->addObject(pSpriteFrameCache->spriteFrameByName(
 			CCString::createWithFormat("hero_block_%d.png",i)->getCString()));
 	}
-	act_defend = CCSpawn::create(CCAnimate::create(CCAnimation::create(pHeroActHideStoneFrames, GAME_FRAME_SPEED)),
+	act_defend = CCSpawn::create(CCAnimate::create(CCAnimation::create(pHeroActBlockFrames, GAME_FRAME_SPEED)),
 		CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
 		CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(HERO_INIT_POS)),
 		CCPlace::create(HERO_INIT_POS))));
 	act_defend->retain();
+    pHeroActBlockFrames->release();
 
 
 	CCArray* pHeroActAttackFrames = CCArray::create();
@@ -167,13 +179,12 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
 			CCString::createWithFormat("hero_attack_%d.png",i)->getCString()));
 	}
 
-	// АјАн
 	act_attack = CCSpawn::create(CCAnimate::create(CCAnimation::create(pHeroActAttackFrames, GAME_FRAME_SPEED)),
 		CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
 		CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(HERO_INIT_POS)),
 		CCPlace::create(HERO_INIT_POS))));
 	act_attack->retain();
-	pWoong->release();
+    pHeroActAttackFrames->release();
 
     
     this->autorelease();

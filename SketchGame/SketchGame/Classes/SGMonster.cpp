@@ -57,7 +57,7 @@ void SGMonster::appear() {
 
 void SGMonster::die() {
     monsterSprite->stopAllActions();
-    monsterSprite->setPosition(ccp(-100,-100));
+    monsterSprite->setPosition(ccp(-500,-500));
 }
 
 int SGMonster::selectAttackDirection() {
@@ -96,55 +96,49 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
     CCSpriteFrameCache *pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     
     switch (type) {
-        case MONSTER_TYPE_SPIDER:
-            pSpriteFrameCache->addSpriteFramesWithFile("spider.plist", "spider.png");
-            monsterSprite = CCSprite::create(pSpriteFrameCache->spriteFrameByName("spider_walk_1.png"));
+        case MONSTER_TYPE_BAT:
+            pSpriteFrameCache->addSpriteFramesWithFile("bat.plist", "bat.png");
+            monsterSprite = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bat_wait_1.png"));
             monsterSprite->retain();
             monsterSprite->setPosition(ccp(-500,-500));
             parentLayer->addChild(monsterSprite, ORDER_MONSTER, TAG_TEXTURE);
             
-            CCArray* pSpiderWalkFrames = CCArray::create();
-            CCArray* pSpiderWalkActions = CCArray::create();
+            CCArray* pBatWalkFrames = CCArray::create();
+            CCArray* pBatWalkActions = CCArray::create();
             for(int i=1; i<=nPoints; i++) {
-                pSpiderWalkFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("spider_walk_%d.png", i)->getCString()));
+                pBatWalkFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_walk_%d.png", i)->getCString()));
             }
             for(int i=0; i<nPoints; i++) {
-                pSpiderWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(movePoints[i])));
+                pBatWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(movePoints[i])));
                 if(i==12) {
                     //mett or Not
-                    pSpiderWalkActions->addObject(CCCallFunc::create(this, callfunc_selector(SGMonster::confirmBattlePos)));
+                    pBatWalkActions->addObject(CCCallFunc::create(this, callfunc_selector(SGMonster::confirmBattlePos)));
                 }
             }
-            pSpiderWalkActions->addObject(CCPlace::create(ccp(-500,-500)));
-            act_run = CCSpawn::create(CCAnimate::create(CCAnimation::create(pSpiderWalkFrames, GAME_FRAME_SPEED)),
-                                                     CCSequence::create(pSpiderWalkActions));
+            pBatWalkActions->addObject(CCPlace::create(ccp(-500,-500)));
+            act_run = CCSpawn::create(CCAnimate::create(CCAnimation::create(pBatWalkFrames, GAME_FRAME_SPEED)),
+                                                     CCSequence::create(pBatWalkActions));
             act_run->retain();
-            pSpiderWalkActions->release();
-            pSpiderWalkFrames->release();
-            
-            CCArray* pSpiderAttackFrames = CCArray::create();
-            for(int i=1; i<=4; i++) {
-                pSpiderAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("spider_attack_%d.png", i)->getCString()));
-            }
+            pBatWalkActions->release();
+            pBatWalkFrames->release();
 
             
-			numAttacks = 1;
-			
+			numAttacks = 2;
             act_attack = new SGAttackAction[numAttacks];
 
-			CCArray* pHeroActAttackFrames = CCArray::create();
-			for(int i=1; i<=4; i++) {
-				pHeroActAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-					CCString::createWithFormat("spider_attack_%d.png",i)->getCString()));
-			}
-			
-			act_attack[0].act_attack = CCSpawn::create(CCAnimate::create(CCAnimation::create(pSpiderAttackFrames,GAME_FRAME_SPEED)),
-				CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
-				CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(MONSTER_INIT_POS)),
-				CCPlace::create(MONSTER_INIT_POS))));
+            CCArray* pBatAttackFrames = CCArray::create();
+            for(int i=1; i<=10; i++) {
+                pBatAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_attack_left_%d.png", i)->getCString()));
+            }
+			act_attack[0].atkDir = ATK_DIR_LEFT;
+			act_attack[0].act_attack = CCSpawn::create(CCAnimate::create(CCAnimation::create(pBatAttackFrames,GAME_FRAME_SPEED)),
+                                                       CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
+                                                                          CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
+                                                                                                             CCPlace::create(MONSTER_INIT_POS)),
+                                                                                             CCPlace::create(MONSTER_INIT_POS))));
 			act_attack[0].act_attack->retain();
             
-            pSpiderAttackFrames->retain();
+            pBatAttackFrames->release();
             
 
             break;

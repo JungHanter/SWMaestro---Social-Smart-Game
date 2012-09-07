@@ -4,10 +4,13 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>spider_attack_1.png</key>
+		
+		<key>spider_attack_01.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {69, 52}}</string>
 			<key>spriteOffset</key>
@@ -23,10 +26,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_attack_2.png</key>
+		
+		<key>spider_attack_02.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {60, 56}}</string>
 			<key>spriteOffset</key>
@@ -42,10 +48,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_attack_3.png</key>
+		
+		<key>spider_attack_03.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 4}, {59, 63}}</string>
 			<key>spriteOffset</key>
@@ -61,10 +70,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_attack_4.png</key>
+		
+		<key>spider_attack_04.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {59, 55}}</string>
 			<key>spriteOffset</key>
@@ -80,10 +92,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_walk_1.png</key>
+		
+		<key>spider_walk_01.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 1}, {29, 26}}</string>
 			<key>spriteOffset</key>
@@ -99,10 +114,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_walk_2.png</key>
+		
+		<key>spider_walk_02.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {29, 25}}</string>
 			<key>spriteOffset</key>
@@ -118,10 +136,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_walk_3.png</key>
+		
+		<key>spider_walk_03.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {37, 29}}</string>
 			<key>spriteOffset</key>
@@ -137,10 +158,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_walk_4.png</key>
+		
+		<key>spider_walk_04.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {40, 33}}</string>
 			<key>spriteOffset</key>
@@ -156,10 +180,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_walk_5.png</key>
+		
+		<key>spider_walk_05.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {48, 40}}</string>
 			<key>spriteOffset</key>
@@ -175,10 +202,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_walk_6.png</key>
+		
+		<key>spider_walk_06.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {46, 44}}</string>
 			<key>spriteOffset</key>
@@ -194,10 +224,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_walk_7.png</key>
+		
+		<key>spider_walk_07.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {54, 45}}</string>
 			<key>spriteOffset</key>
@@ -213,10 +246,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_walk_8.png</key>
+		
+		<key>spider_walk_08.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {59, 52}}</string>
 			<key>spriteOffset</key>
@@ -232,10 +268,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>spider_walk_9.png</key>
+		
+		<key>spider_walk_09.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {59, 55}}</string>
 			<key>spriteOffset</key>
@@ -251,10 +290,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_10.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {58, 59}}</string>
 			<key>spriteOffset</key>
@@ -270,10 +312,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_11.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {69, 60}}</string>
 			<key>spriteOffset</key>
@@ -289,10 +334,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_12.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {73, 62}}</string>
 			<key>spriteOffset</key>
@@ -308,10 +356,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_13.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {69, 65}}</string>
 			<key>spriteOffset</key>
@@ -327,10 +378,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_14.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {69, 68}}</string>
 			<key>spriteOffset</key>
@@ -346,10 +400,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_15.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {83, 71}}</string>
 			<key>spriteOffset</key>
@@ -365,10 +422,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_16.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {84, 78}}</string>
 			<key>spriteOffset</key>
@@ -384,10 +444,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_17.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {94, 80}}</string>
 			<key>spriteOffset</key>
@@ -403,10 +466,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_18.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {94, 83}}</string>
 			<key>spriteOffset</key>
@@ -422,10 +488,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_19.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {101, 87}}</string>
 			<key>spriteOffset</key>
@@ -441,10 +510,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_20.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {105, 91}}</string>
 			<key>spriteOffset</key>
@@ -460,10 +532,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_21.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {114, 98}}</string>
 			<key>spriteOffset</key>
@@ -479,10 +554,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_22.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{2, 0}, {113, 107}}</string>
 			<key>spriteOffset</key>
@@ -498,10 +576,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>spider_walk_23.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {110, 108}}</string>
 			<key>spriteOffset</key>
@@ -517,6 +598,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 	</dict>
 	<key>metadata</key>
 	<dict>

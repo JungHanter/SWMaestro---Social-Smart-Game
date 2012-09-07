@@ -26,7 +26,7 @@ struct SGAttackInfo {
     int atkDir;
 };
 
-enum SGMonsterType { MONSTER_TYPE_SPIDER=0, MONSTER_TYPE_NUMBER };
+enum SGMonsterType { MONSTER_TYPE_BAT=0, MONSTER_TYPE_NUMBER };
 
 class SGMonster : public CCObject {
 public:

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		
+		<key>ink_bottle.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {140, 154}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{140, 154}</string>
+			<key>spriteSourceSize</key>
+			<string>{140, 154}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{0, 0}, {140, 154}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>ink_move_1.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 1}, {53, 54}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{53, 58}</string>
+			<key>spriteSourceSize</key>
+			<string>{53, 58}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{426, 74}, {53, 58}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>ink_move_2.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{6, 0}, {59, 68}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{65, 72}</string>
+			<key>spriteSourceSize</key>
+			<string>{65, 72}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{426, 0}, {65, 72}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>ink_move_3.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {113, 58}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{113, 58}</string>
+			<key>spriteSourceSize</key>
+			<string>{113, 58}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{396, 156}, {113, 58}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>ink_move_4.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {123, 63}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{123, 63}</string>
+			<key>spriteSourceSize</key>
+			<string>{123, 63}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{0, 312}, {123, 63}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>ink_move_5.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{0, 0}, {110, 152}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{110, 152}</string>
+			<key>spriteSourceSize</key>
+			<string>{110, 152}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{284, 156}, {110, 152}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>ink_move_6.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{3, 36}, {78, 118}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{140, 154}</string>
+			<key>spriteSourceSize</key>
+			<string>{140, 154}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{142, 0}, {140, 154}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>ink_move_7.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{5, 91}, {74, 62}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{140, 154}</string>
+			<key>spriteSourceSize</key>
+			<string>{140, 154}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{284, 0}, {140, 154}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>ink_move_8.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{4, 120}, {78, 34}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{140, 154}</string>
+			<key>spriteSourceSize</key>
+			<string>{140, 154}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{0, 156}, {140, 154}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+		<key>ink_move_9.png</key>
+		<dict>
+			<key>aliases</key>
+			<array>
+			
+			</array>
+			<key>spriteColorRect</key>
+			<string>{{5, 140}, {76, 14}}</string>
+			<key>spriteOffset</key>
+			<string>{0, 0}</string>
+			<key>spriteSize</key>
+			<string>{140, 154}</string>
+			<key>spriteSourceSize</key>
+			<string>{140, 154}</string>
+			<key>spriteTrimmed</key>
+			<false/>
+			<key>textureRect</key>
+			<string>{{142, 156}, {140, 154}}</string>
+			<key>textureRotated</key>
+			<false/>
+		</dict>
+		
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>version</key>
+		<string>1.5.5</string>
+		<key>format</key>
+		<integer>3</integer>
+		<key>size</key>
+		<string>{512, 512}</string>
+		<key>name</key>
+		<string>game_etc</string>
+		<key>premultipliedAlpha</key>
+		<false/>
+		<key>target</key>
+		<dict>
+			<key>name</key>
+			<string>default</string>
+			<key>textureFileName</key>
+			<string>game_etc</string>
+			<key>textureFileExtension</key>
+			<string>.png</string>
+			<key>coordinatesFileName</key>
+			<string>game_etc</string>
+			<key>coordinatesFileExtension</key>
+			<string>.plist</string>
+			<key>premultipliedAlpha</key>
+			<false/>
+		</dict>
+	</dict>
+</dict>
+</plist>
