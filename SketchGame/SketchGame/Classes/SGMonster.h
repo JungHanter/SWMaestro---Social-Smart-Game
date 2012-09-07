@@ -54,6 +54,9 @@ private:
     int type;
     int maxHP, nowHP;
     int atk;
+	bool die_flag;
+
+	void dying(float dt);
     
     CCSprite* monsterSprite;
     CCActionInterval* act_run, *act_wait, *act_defend, *act_die;

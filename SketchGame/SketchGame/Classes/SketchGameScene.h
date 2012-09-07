@@ -35,6 +35,7 @@ private:
 	void monsterAttack(float );
 	void turnHero(float);
     void endBattleMode(float );
+	void attackHero();
     
     void func_startHeroHide(float);
     void func_heroMoveHide(float);
@@ -58,7 +59,9 @@ private:
     cocos2d::CCPoint HERO_HIDE_ABLE_POS;
     
     SGBackground* background;
-    
+	CCLabelTTF *labelTurn;
+
+
     SGMonster* monsters[MONSTER_TYPE_NUMBER];
     SGMonster* nowMonster;
     

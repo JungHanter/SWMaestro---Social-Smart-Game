@@ -14,14 +14,22 @@ void SGMonster::beginBattle() {
     monsterSprite->setColor(ccc3(255, 0, 0));
     
     monsterSprite->pauseSchedulerAndActions();
+	
+	die_flag = false;
 }
+
 
 bool SGMonster::endBattle() {
     monsterSprite->setColor(ccc3(255,255,255));
     
 	if(nowHP<=0)
 	{
-		die();
+		die_flag = true;
+
+		
+		//monsterSprite->schedule(schedule_selector(SGMonster::dying), 0.1f);
+
+//		die();
         return true;
 	}
 	else

@@ -34,23 +34,47 @@ int SGHero::attack() {
     return atk;
 }
 
-void SGHero::defend(int defState, int damage) {
-    //맞는 액션
-	heroSprite->stopAllActions();
-
-	heroSprite->runAction(act_defend);
-    
-    //체력감소
-    switch (defState) {
+void SGHero::setDefendAction(int act,int dodgeDirection){
+	//heroSprite->stopAllActions();
+	switch (act) {
         case DEF_STATE_DEFEND:
+			defendState = DEF_STATE_DEFEND;
+	//		heroSprite->runAction(act_wait);
+            break;
+        case DEF_STATE_GUARD:
+			defendState = DEF_STATE_GUARD;
+		//	heroSprite->runAction(act_defend);
+            break;
+        case DEF_STATE_DODGE:
+			defendState = DEF_STATE_DODGE;
+			this->dodgeDirection = dodgeDirection;
+	//		heroSprite->runAction(act_hide);
+            break;
+    }
+}
+void SGHero::defend(int damage,int mob_direction) {
+    //맞는 액션
+	//heroSprite->stopAllActions();
+
+    //체력감소
+    switch (defendState) {
+		case DEF_STATE_NONE:
+        case DEF_STATE_DEFEND:
+			heroSprite->runAction(act_wait);
             nowHP-=damage;
             break;
         case DEF_STATE_GUARD:
             nowHP-=(damage/2);
+			heroSprite->runAction(act_defend);
             break;
         case DEF_STATE_DODGE:
-            //회피하면 조금 달지 아니면 아얘 안달지?
-            nowHP-=(damage/10);
+			
+			if(mob_direction == dodgeDirection)
+				nowHP-=damage;
+			else{
+				nowHP-=(damage/10);
+				heroSprite->runAction(act_hide);
+			}
             break;
     }
 }
@@ -189,6 +213,8 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
 	act_attack->retain();
     pHeroActAttackFrames->release();
 
+	defendState = DEF_STATE_NONE;
+	dodgeDirection = -1;
     
     this->autorelease();
     this->retain();

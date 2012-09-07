@@ -39,27 +39,49 @@ void SketchGameLayer::dragInputEnded(const int dragDirection) {
 			if(gameState == GAMESTATE_BATTLE){
 				if(turn == TURN_HERO)
 				{
-					nowMonster->defend(hero->attack());
-					if(nowMonster->endBattle() == true)
-					this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode),2.0f);
-					else
-					{
-						turn = TURN_MONSTER;
-						this->scheduleOnce(schedule_selector(SketchGameLayer::monsterAttack),3.0f);
-					}
+					
+				}
+				else if(turn == TURN_MONSTER){
+					hero->setDefendAction(DEF_STATE_DODGE,DODGE_UP);
 				}
 			}
 			break;
 
 		case DIR_DOWN:
+			if(gameState == GAMESTATE_BATTLE){
+				if(turn == TURN_HERO){
+				}
+				else if(turn == TURN_MONSTER){
+					hero->setDefendAction(
+						DEF_STATE_DODGE,
+						DODGE_DOWN);
+				}
+			}
 			break;
 		case DIR_LEFT:
 			if(gameState == GAMESTATE_BATTLE){
+				if(turn == TURN_HERO){
 
+				}
+				else if(turn == TURN_MONSTER){
+					hero->setDefendAction(
+						DEF_STATE_DODGE,
+						DODGE_LEFT);
+				}
 			}
 			break;
 
         case DIR_RIGHT:
+			if(gameState == GAMESTATE_BATTLE){
+				if(turn == TURN_HERO){
+
+				}
+				else if(turn == TURN_MONSTER){
+					hero->setDefendAction(
+						DEF_STATE_DODGE,
+						DODGE_RIGHT);
+				}
+			}
             break;
 	}
 }
@@ -70,9 +92,10 @@ void SketchGameLayer::beginBattleMode() {
     gameState = GAMESTATE_BATTLE;
     pauseAllBackground();
     hero->pauseSchedulerAndActions();
-
+	labelTurn->setString("BEGIN BATTLE");
 	turn = TURN_HERO;
 	
+	attackHero();
 
 	//this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode), GAME_FRAME_SPEED*5);
 }
@@ -83,7 +106,7 @@ void SketchGameLayer::monsterAttack(float )
 	{
 		int dmg;
 		dmg = nowMonster->attack().atk;	
-		hero->defend(DEF_STATE_GUARD,dmg);
+		hero->defend(dmg);
 		this->scheduleOnce(schedule_selector(SketchGameLayer::turnHero),2.0f);
 	}
 }
@@ -91,9 +114,26 @@ void SketchGameLayer::monsterAttack(float )
 void SketchGameLayer::turnHero(float)
 {
 	turn = TURN_HERO;
+	labelTurn->setString("TURN : HERO");
+
+	attackHero();
+}
+void SketchGameLayer::attackHero(){
+	nowMonster->defend(hero->attack());
+	if(nowMonster->endBattle() == true)
+		this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode),2.0f);
+	else
+	{
+		labelTurn->setString("TURN : MONSTER");
+		turn = TURN_MONSTER;
+		hero->defendState = DEF_STATE_NONE;
+		this->scheduleOnce(schedule_selector(SketchGameLayer::monsterAttack),3.0f);
+	}
 }
 
 void SketchGameLayer::endBattleMode(float) {
+	labelTurn->setString("END BATTLE");
+	nowMonster->die();
 	nowMonster->endBattle();
 	nowMonster->resetStatus(20,2);
 	gameState = GAMESTATE_RUNNING;
@@ -374,6 +414,13 @@ bool SketchGameLayer::init() {
 
         loadGameTexture();
         
+		labelTurn = CCLabelTTF::create("TURN","Arial",35);
+		labelTurn->setColor(ccc3(0,0,0));
+		labelTurn->setAnchorPoint(ccp(0,1));
+		labelTurn->setPosition(ccp(0,320));
+
+		this->addChild(labelTurn,23);
+
         return true;
     } else {
         return false;

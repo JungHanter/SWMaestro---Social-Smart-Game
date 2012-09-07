@@ -12,6 +12,8 @@
 #include "cocos2d.h"
 using namespace cocos2d;
 
+#include "SGMonster.h"
+
 struct SGHeroInfo {
     int Str;
     int Con;
@@ -21,7 +23,13 @@ struct SGHeroInfo {
     unsigned long long score[10];
 };
 
-enum HeroDefendState { DEF_STATE_DEFEND, DEF_STATE_GUARD, DEF_STATE_DODGE };
+enum HeroDodgeDirection {
+			DODGE_LEFT, DODGE_RIGHT, DODGE_UP, DODGE_DOWN
+		};
+enum HeroDefendState {
+			DEF_STATE_NONE,
+			DEF_STATE_DEFEND, DEF_STATE_GUARD, DEF_STATE_DODGE
+		};
 
 class SGHero : public CCObject {
 public:
@@ -31,7 +39,8 @@ public:
     void endBattle();
     
     int attack();  //Attack, return atk
-    void defend(int defState, int damage);
+	void setDefendAction(int ,int =DODGE_LEFT);
+    void defend(int ,int = ATK_DIR_LEFT);
     
     void pauseSchedulerAndActions();
     void resumeSchedulerAndActions();
@@ -43,8 +52,12 @@ public:
     void func_MoveHide();
     void func_MoveShow();
     void func_startRun();
+
+	int defendState;
+
 private:
     int actState;
+	int dodgeDirection;
     int maxHP, nowHP;
     int atk;
     
