@@ -121,7 +121,34 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
             act_run->retain();
             pBatWalkActions->release();
             pBatWalkFrames->release();
-
+            
+            CCArray* pBatDefendFrames = CCArray::create();
+            for(int i=1; i<=3; i++) {
+                pBatDefendFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_defend_%d.png", i)->getCString()));
+            }
+            act_defend = CCAnimate::create(CCAnimation::create(pBatDefendFrames,GAME_FRAME_SPEED));
+            act_defend->retain();
+            pBatDefendFrames->release();
+            
+            CCArray* pBatDieFrames = CCArray::create();
+            for(int i=1; i<=9; i++) {
+                pBatDieFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_die_%d.png", i)->getCString()));
+            }
+            act_defend = CCSequence::create(CCAnimate::create(CCAnimation::create(pBatDieFrames,GAME_FRAME_SPEED)),
+                                            CCPlace::create(ccp(-500,-500)));
+            act_defend->retain();
+            pBatDieFrames->release();
+            
+            CCArray* pBatWaitFrames = CCArray::create();
+            for(int i=1; i<=7; i++) {
+                pBatWaitFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_wait_%d.png", i)->getCString()));
+            }
+            for(int i=6; i>=2; i--) {
+                pBatWaitFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_wait_%d.png", i)->getCString()));
+            }
+            act_wait = CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pBatWaitFrames,GAME_FRAME_SPEED)));
+            act_wait->retain();
+            pBatWaitFrames->release();
             
 			numAttacks = 2;
             act_attack = new SGAttackAction[numAttacks];
@@ -131,14 +158,23 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
                 pBatAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_attack_left_%d.png", i)->getCString()));
             }
 			act_attack[0].atkDir = ATK_DIR_LEFT;
-			act_attack[0].act_attack = CCSpawn::create(CCAnimate::create(CCAnimation::create(pBatAttackFrames,GAME_FRAME_SPEED)),
-                                                       CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
-                                                                          CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
-                                                                                                             CCPlace::create(MONSTER_INIT_POS)),
-                                                                                             CCPlace::create(MONSTER_INIT_POS))));
+            act_attack[0].act_attack = CCAnimate::create(CCAnimation::create(pBatAttackFrames,GAME_FRAME_SPEED));
+			/*act_attack[0].act_attack = CCSpawn::create(CCAnimate::create(CCAnimation::create(pBatAttackFrames,GAME_FRAME_SPEED)),
+             CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
+             CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED),
+             CCPlace::create(MONSTER_INIT_POS)),
+             CCPlace::create(MONSTER_INIT_POS))));*/
 			act_attack[0].act_attack->retain();
             
-            pBatAttackFrames->release();
+            CCArray* pBatAttackFrames2 = CCArray::create();
+            for(int i=1; i<=10; i++) {
+                pBatAttackFrames2->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_attack_right_%d.png", i)->getCString()));
+            }
+			act_attack[1].atkDir = ATK_DIR_RIGHT;
+            act_attack[1].act_attack = CCAnimate::create(CCAnimation::create(pBatAttackFrames2,GAME_FRAME_SPEED));
+			act_attack[1].act_attack->retain();
+            
+            pBatAttackFrames2->release();
             
 
             break;
