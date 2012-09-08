@@ -60,12 +60,12 @@ void SGHero::defend(int damage,int mob_direction) {
     switch (defendState) {
 		case DEF_STATE_NONE:
         case DEF_STATE_DEFEND:
-			heroSprite->runAction(act_wait);
+			heroSprite->runAction(act_defend);
             nowHP-=damage;
             break;
         case DEF_STATE_GUARD:
             nowHP-=(damage/2);
-			heroSprite->runAction(act_defend);
+			heroSprite->runAction(act_block);
             break;
         case DEF_STATE_DODGE:
 			
@@ -189,13 +189,22 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
 		pHeroActBlockFrames->addObject(pSpriteFrameCache->spriteFrameByName(
 			CCString::createWithFormat("hero_block_%d.png",i)->getCString()));
 	}
-    act_defend = CCAnimate::create(CCAnimation::create(pHeroActBlockFrames, GAME_FRAME_SPEED));
+    act_block = CCAnimate::create(CCAnimation::create(pHeroActBlockFrames, GAME_FRAME_SPEED));
 	/*act_defend = CCSpawn::create(CCAnimate::create(CCAnimation::create(pHeroActBlockFrames, GAME_FRAME_SPEED)),
                                  CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
                                                     CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(HERO_INIT_POS)),
                                                                        CCPlace::create(HERO_INIT_POS))));*/
-	act_defend->retain();
+	act_block->retain();
     pHeroActBlockFrames->release();
+
+	CCArray* pHeroActDefendFrames = CCArray::create();
+	for(int i=1; i<=3; i++) {
+		pHeroActDefendFrames->addObject(pSpriteFrameCache->spriteFrameByName(
+			CCString::createWithFormat("hero_defend_%d.png",i)->getCString()));
+	}
+    act_defend = CCAnimate::create(CCAnimation::create(pHeroActDefendFrames, GAME_FRAME_SPEED));
+	act_defend->retain();
+    pHeroActDefendFrames->release();
 
 
 	CCArray* pHeroActAttackFrames = CCArray::create();

@@ -63,7 +63,8 @@ private:
     
     CCSprite* heroSprite;
     CCActionInterval* act_attack;
-    CCActionInterval* act_run, *act_hide, *act_show, *act_keep, *act_wait, *act_defend, *act_die;
+    CCActionInterval* act_run, *act_hide, *act_show, *act_keep, *act_wait,
+		*act_block,*act_defend, *act_die;
 
 
 private:

@@ -169,7 +169,9 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
             for(int i=1; i<=10; i++) {
                 pBatAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_attack_left_%d.png", i)->getCString()));
             }
-			act_attack[0].atkDir = ATK_DIR_LEFT;
+			act_attack[0].atkDir = ATK_DIR_LEFT; 
+		//	act_attack[0].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pBatAttackFrames,GAME_FRAME_SPEED)),
+			//	CCCallFunc::create(callfunc_selector(SGMonster::)));
             act_attack[0].act_attack = CCAnimate::create(CCAnimation::create(pBatAttackFrames,GAME_FRAME_SPEED));
 			/*act_attack[0].act_attack = CCSpawn::create(CCAnimate::create(CCAnimation::create(pBatAttackFrames,GAME_FRAME_SPEED)),
              CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
