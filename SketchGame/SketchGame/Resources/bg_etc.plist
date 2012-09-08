@@ -4,10 +4,13 @@
 <dict>
 	<key>frames</key>
 	<dict>
-		<key>bg_castle_1.png</key>
+		
+		<key>bg_castle_01.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {61, 96}}</string>
 			<key>spriteOffset</key>
@@ -23,10 +26,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>bg_castle_2.png</key>
+		
+		<key>bg_castle_02.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {55, 96}}</string>
 			<key>spriteOffset</key>
@@ -42,10 +48,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>bg_castle_3.png</key>
+		
+		<key>bg_castle_03.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {61, 96}}</string>
 			<key>spriteOffset</key>
@@ -61,10 +70,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>bg_cloud.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {851, 92}}</string>
 			<key>spriteOffset</key>
@@ -80,10 +92,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 		<key>bg_mountain.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {822, 249}}</string>
 			<key>spriteOffset</key>
@@ -99,10 +114,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>obj_grass_1.png</key>
+		
+		<key>obj_grass_01.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{10, 1}, {156, 127}}</string>
 			<key>spriteOffset</key>
@@ -118,10 +136,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>obj_grass_2.png</key>
+		
+		<key>obj_grass_02.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{8, 0}, {158, 127}}</string>
 			<key>spriteOffset</key>
@@ -137,10 +158,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>obj_grass_3.png</key>
+		
+		<key>obj_grass_03.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{8, 0}, {158, 127}}</string>
 			<key>spriteOffset</key>
@@ -156,10 +180,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>obj_stone_1.png</key>
+		
+		<key>obj_stone_01.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {123, 104}}</string>
 			<key>spriteOffset</key>
@@ -175,10 +202,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>obj_stone_2.png</key>
+		
+		<key>obj_stone_02.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {123, 104}}</string>
 			<key>spriteOffset</key>
@@ -194,10 +224,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>obj_stone_3.png</key>
+		
+		<key>obj_stone_03.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {123, 104}}</string>
 			<key>spriteOffset</key>
@@ -213,10 +246,13 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
-		<key>obj_stone_4.png</key>
+		
+		<key>obj_stone_04.png</key>
 		<dict>
 			<key>aliases</key>
-			<array/>
+			<array>
+			
+			</array>
 			<key>spriteColorRect</key>
 			<string>{{0, 0}, {123, 104}}</string>
 			<key>spriteOffset</key>
@@ -232,6 +268,7 @@
 			<key>textureRotated</key>
 			<false/>
 		</dict>
+		
 	</dict>
 	<key>metadata</key>
 	<dict>
