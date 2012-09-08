@@ -51,9 +51,12 @@ SGAttackInfo SGMonster::attack() {
 	monsterSprite->runAction(
 		act_attack[info.atkDir].act_attack);
     
-    return info;
+	return info;
 }
-
+void SGMonster::attackComplete(float dt){
+	monsterSprite->stopAllActions();
+	monsterSprite->runAction(act_run);
+}
 
 void SGMonster::defend(int damage) {
 	printf("defend monster\n");
@@ -74,7 +77,7 @@ void SGMonster::die() {
 
 int SGMonster::selectAttackDirection() {
     //test
-    return ATK_DIR_LEFT;
+	return rand()%this->numAttacks;
 }
 
 
@@ -169,6 +172,7 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
             for(int i=1; i<=10; i++) {
                 pBatAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_attack_left_%d.png", i)->getCString()));
             }
+			pBatAttackFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_wait_1.png")->getCString()));
 			act_attack[0].atkDir = ATK_DIR_LEFT; 
 		//	act_attack[0].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pBatAttackFrames,GAME_FRAME_SPEED)),
 			//	CCCallFunc::create(callfunc_selector(SGMonster::)));
@@ -184,6 +188,7 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
             for(int i=1; i<=10; i++) {
                 pBatAttackFrames2->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_attack_right_%d.png", i)->getCString()));
             }
+			pBatAttackFrames2->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_wait_1.png")->getCString()));
 			act_attack[1].atkDir = ATK_DIR_RIGHT;
             act_attack[1].act_attack = CCAnimate::create(CCAnimation::create(pBatAttackFrames2,GAME_FRAME_SPEED));
 			act_attack[1].act_attack->retain();

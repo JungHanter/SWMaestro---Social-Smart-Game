@@ -47,6 +47,7 @@ public:
 
     void initHeroState(const SGHeroInfo& info);
     
+
 public:
     void func_startHide();
     void func_MoveHide();
@@ -54,6 +55,7 @@ public:
     void func_startRun();
 
 	int defendState;
+	int dodgeC;
 
 private:
     int actState;
@@ -64,6 +66,7 @@ private:
     CCSprite* heroSprite;
     CCActionInterval* act_attack;
     CCActionInterval* act_run, *act_hide, *act_show, *act_keep, *act_wait,
+		*act_dodge,
 		*act_block,*act_defend, *act_die;
 
 

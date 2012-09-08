@@ -30,6 +30,8 @@ public:
 
     void pauseAllBackground();
     void resumeAllBackground();
+
+	void Dodge();
     
 private:
 	void monsterAttack(float );
@@ -51,6 +53,8 @@ private:
     void logic_printGameinfo(float);
     
     void test();
+
+
  
 private:
 	int turn;

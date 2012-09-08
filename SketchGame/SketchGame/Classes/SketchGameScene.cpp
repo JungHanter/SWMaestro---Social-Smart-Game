@@ -107,8 +107,18 @@ void SketchGameLayer::monsterAttack(float )
 		int dmg;
 		dmg = nowMonster->attack().atk;	
 		hero->defend(dmg);
-		this->scheduleOnce(
-			schedule_selector(SketchGameLayer::turnHero),2.0f);
+		if(hero->dodgeC == 1){
+
+			//hero->dodgeC = 0;
+
+			hero->func_startHide();
+        
+			this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveHide), GAME_FRAME_SPEED*11);
+		}
+		else{
+			this->scheduleOnce(
+				schedule_selector(SketchGameLayer::turnHero),2.0f);
+		}
 	}
 }
 
@@ -150,6 +160,10 @@ void SketchGameLayer::hideHeroObject() {
     this->schedule(schedule_selector(SketchGameLayer::func_startHeroHide));
 }
 
+void SketchGameLayer::Dodge(){
+	hero->func_startHide();
+	this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveHide), GAME_FRAME_SPEED*11);
+}
 void SketchGameLayer::func_startHeroHide(float dt) {
     CCSprite* obj = NULL;
     
@@ -181,13 +195,24 @@ void SketchGameLayer::func_heroMoveHide(float dt) {
     //pauseAllBackground();
     hero->func_MoveHide();
     
-    this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*8);
+	if(hero->dodgeC == 0)
+		this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*8);
+	else
+		this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*1);
+
 }
 
 void SketchGameLayer::func_heroMoveShow(float dt) {
     hero->func_MoveShow();
     
-    this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
+	if(hero->dodgeC == 0)
+		this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
+	else{
+		hero->dodgeC = 0;
+		this->scheduleOnce(
+				schedule_selector(SketchGameLayer::turnHero),2.0f);
+	}
+
 }
 
 void SketchGameLayer::func_startHeroRun(float dt) {

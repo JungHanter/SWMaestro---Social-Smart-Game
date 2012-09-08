@@ -56,6 +56,7 @@ void SGHero::defend(int damage,int mob_direction) {
     //맞는 액션
 	//heroSprite->stopAllActions();
 
+	dodgeC = 0;
     //체력감소
     switch (defendState) {
 		case DEF_STATE_NONE:
@@ -72,12 +73,14 @@ void SGHero::defend(int damage,int mob_direction) {
 			if(mob_direction == dodgeDirection)
 				nowHP-=damage;
 			else{
+				dodgeC = 1;
 				nowHP-=(damage/10);
 				heroSprite->runAction(act_hide);
 			}
             break;
     }
 }
+
 
 void SGHero::pauseSchedulerAndActions() {
     heroSprite->pauseSchedulerAndActions();
@@ -219,6 +222,7 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
                                                                        CCPlace::create(HERO_INIT_POS))));*/
 	act_attack->retain();
     pHeroActAttackFrames->release();
+
 
 	defendState = DEF_STATE_NONE;
 	dodgeDirection = -1;

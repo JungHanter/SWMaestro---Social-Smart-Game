@@ -44,6 +44,7 @@ public:
     
     int getType();
     
+	void attackComplete(float dt);
     void resetStatus(int hp, int atk);
     void upgradeStatus(float upHpRate, float upAtkRate);
     

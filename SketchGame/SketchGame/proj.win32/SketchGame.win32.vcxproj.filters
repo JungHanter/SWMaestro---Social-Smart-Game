@@ -13,6 +13,9 @@
       <UniqueIdentifier>{635bbe12-325f-4975-888d-6394dccde03a}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;png;manifest</Extensions>
     </Filter>
+    <Filter Include="source\titleScene">
+      <UniqueIdentifier>{6fbe344a-4cf6-4a7b-87b6-921d65f505b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\SketchGame.ico">
@@ -73,6 +76,9 @@
     <ClInclude Include="..\Classes\SketchGameScene.h">
       <Filter>source</Filter>
     </ClInclude>
+    <ClInclude Include="SketchTitleScene.h">
+      <Filter>source\titleScene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -98,6 +104,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SketchGameScene.cpp">
       <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="SketchTitleScene.cpp">
+      <Filter>source\titleScene</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
