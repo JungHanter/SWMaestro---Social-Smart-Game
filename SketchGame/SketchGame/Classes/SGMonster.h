@@ -13,7 +13,7 @@
 
 using namespace cocos2d;
 
-enum SGAttackDirection { ATK_DIR_UP, ATK_DIR_DOWN, ATK_DIR_LEFT, ATK_DIR_RIGHT };
+enum SGAttackDirection { ATK_DIR_LEFT, ATK_DIR_RIGHT, ATK_DIR_UP, ATK_DIR_DOWN };
 
 struct SGAttackAction {
     int atkDir;

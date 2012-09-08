@@ -48,14 +48,18 @@ SGAttackInfo SGMonster::attack() {
     info.atkDir = selectAttackDirection();
     
     monsterSprite->stopAllActions();
-	monsterSprite->runAction(act_attack[0].act_attack);
+	monsterSprite->runAction(
+		act_attack[info.atkDir].act_attack);
     
     return info;
 }
 
 
 void SGMonster::defend(int damage) {
-
+	printf("defend monster\n");
+	monsterSprite->stopAllActions();
+	monsterSprite->runAction(
+		act_defend);
 	nowHP -= damage;
 }
 
@@ -142,9 +146,9 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
             for(int i=1; i<=9; i++) {
                 pBatDieFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bat_die_%d.png", i)->getCString()));
             }
-            act_defend = CCSequence::create(CCAnimate::create(CCAnimation::create(pBatDieFrames,GAME_FRAME_SPEED)),
+            act_die = CCSequence::create(CCAnimate::create(CCAnimation::create(pBatDieFrames,GAME_FRAME_SPEED)),
                                             CCPlace::create(ccp(-500,-500)));
-            act_defend->retain();
+            act_die->retain();
             pBatDieFrames->release();
             
             CCArray* pBatWaitFrames = CCArray::create();

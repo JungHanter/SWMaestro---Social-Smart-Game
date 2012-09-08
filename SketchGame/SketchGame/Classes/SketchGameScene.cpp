@@ -107,7 +107,8 @@ void SketchGameLayer::monsterAttack(float )
 		int dmg;
 		dmg = nowMonster->attack().atk;	
 		hero->defend(dmg);
-		this->scheduleOnce(schedule_selector(SketchGameLayer::turnHero),2.0f);
+		this->scheduleOnce(
+			schedule_selector(SketchGameLayer::turnHero),2.0f);
 	}
 }
 
@@ -127,7 +128,7 @@ void SketchGameLayer::attackHero(){
 		labelTurn->setString("TURN : MONSTER");
 		turn = TURN_MONSTER;
 		hero->defendState = DEF_STATE_NONE;
-		this->scheduleOnce(schedule_selector(SketchGameLayer::monsterAttack),3.0f);
+		this->scheduleOnce(schedule_selector(SketchGameLayer::monsterAttack),1.0f);
 	}
 }
 
