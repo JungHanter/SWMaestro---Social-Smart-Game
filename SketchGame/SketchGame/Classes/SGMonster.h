@@ -26,7 +26,7 @@ struct SGAttackInfo {
     int atkDir;
 };
 
-enum SGMonsterType { MONSTER_TYPE_BAT=0, MONSTER_TYPE_NUMBER };
+enum SGMonsterType { MONSTER_TYPE_BAT=0, MONSTER_TYPE_MUD, MONSTER_TYPE_WING, MONSTER_TYPE_NUMBER };
 
 class SGMonster : public CCObject {
 public:
@@ -55,11 +55,12 @@ private:
     int maxHP, nowHP;
     int atk;
 	bool die_flag;
+    bool bWakeupMonster;
 
 	void dying(float dt);
     
     CCSprite* monsterSprite;
-    CCActionInterval* act_run, *act_wait, *act_defend, *act_die;
+    CCActionInterval* act_run, *act_wait, *act_defend, *act_die, *act_wakeup;
     
     int numAttacks;
     SGAttackAction* act_attack;  //monster's attack dir array 1~4

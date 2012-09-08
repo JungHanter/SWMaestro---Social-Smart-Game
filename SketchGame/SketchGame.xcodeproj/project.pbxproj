@@ -13,6 +13,12 @@
 		D805618115FA1433008AEE5B /* bg_map_hill2.png in Resources */ = {isa = PBXBuildFile; fileRef = D805617B15FA1433008AEE5B /* bg_map_hill2.png */; };
 		D805618215FA1433008AEE5B /* game_etc.plist in Resources */ = {isa = PBXBuildFile; fileRef = D805617C15FA1433008AEE5B /* game_etc.plist */; };
 		D805618315FA1433008AEE5B /* game_etc.png in Resources */ = {isa = PBXBuildFile; fileRef = D805617D15FA1433008AEE5B /* game_etc.png */; };
+		D86D15D015FB881E000418C0 /* mud.plist in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CA15FB881E000418C0 /* mud.plist */; };
+		D86D15D115FB881E000418C0 /* mud.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CB15FB881E000418C0 /* mud.png */; };
+		D86D15D215FB881E000418C0 /* option_check.plist in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CC15FB881E000418C0 /* option_check.plist */; };
+		D86D15D315FB881E000418C0 /* option_check.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CD15FB881E000418C0 /* option_check.png */; };
+		D86D15D415FB881E000418C0 /* wing.plist in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CE15FB881E000418C0 /* wing.plist */; };
+		D86D15D515FB881E000418C0 /* wing.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CF15FB881E000418C0 /* wing.png */; };
 		D88C907615F791C100EE167A /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88C907515F791C100EE167A /* QuartzCore.framework */; };
 		D88C907815F791C100EE167A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88C907715F791C100EE167A /* OpenGLES.framework */; };
 		D88C907A15F791C100EE167A /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D88C907915F791C100EE167A /* OpenAL.framework */; };
@@ -224,6 +230,12 @@
 		D805617B15FA1433008AEE5B /* bg_map_hill2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_map_hill2.png; path = Resources/bg_map_hill2.png; sourceTree = "<group>"; };
 		D805617C15FA1433008AEE5B /* game_etc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = game_etc.plist; path = Resources/game_etc.plist; sourceTree = "<group>"; };
 		D805617D15FA1433008AEE5B /* game_etc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_etc.png; path = Resources/game_etc.png; sourceTree = "<group>"; };
+		D86D15CA15FB881E000418C0 /* mud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = mud.plist; path = Resources/mud.plist; sourceTree = "<group>"; };
+		D86D15CB15FB881E000418C0 /* mud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mud.png; path = Resources/mud.png; sourceTree = "<group>"; };
+		D86D15CC15FB881E000418C0 /* option_check.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = option_check.plist; path = Resources/option_check.plist; sourceTree = "<group>"; };
+		D86D15CD15FB881E000418C0 /* option_check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = option_check.png; path = Resources/option_check.png; sourceTree = "<group>"; };
+		D86D15CE15FB881E000418C0 /* wing.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = wing.plist; path = Resources/wing.plist; sourceTree = "<group>"; };
+		D86D15CF15FB881E000418C0 /* wing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wing.png; path = Resources/wing.png; sourceTree = "<group>"; };
 		D88C907115F791C100EE167A /* SketchGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D88C907515F791C100EE167A /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D88C907715F791C100EE167A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -714,6 +726,12 @@
 		D88C908615F791C100EE167A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D86D15CA15FB881E000418C0 /* mud.plist */,
+				D86D15CB15FB881E000418C0 /* mud.png */,
+				D86D15CC15FB881E000418C0 /* option_check.plist */,
+				D86D15CD15FB881E000418C0 /* option_check.png */,
+				D86D15CE15FB881E000418C0 /* wing.plist */,
+				D86D15CF15FB881E000418C0 /* wing.png */,
 				D805617815FA1433008AEE5B /* bat.plist */,
 				D805617915FA1433008AEE5B /* bat.png */,
 				D8FEC9CB15F794EB00C4EBD4 /* bg_etc.plist */,
@@ -1588,6 +1606,12 @@
 				D805618115FA1433008AEE5B /* bg_map_hill2.png in Resources */,
 				D805618215FA1433008AEE5B /* game_etc.plist in Resources */,
 				D805618315FA1433008AEE5B /* game_etc.png in Resources */,
+				D86D15D015FB881E000418C0 /* mud.plist in Resources */,
+				D86D15D115FB881E000418C0 /* mud.png in Resources */,
+				D86D15D215FB881E000418C0 /* option_check.plist in Resources */,
+				D86D15D315FB881E000418C0 /* option_check.png in Resources */,
+				D86D15D415FB881E000418C0 /* wing.plist in Resources */,
+				D86D15D515FB881E000418C0 /* wing.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
