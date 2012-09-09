@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "SketchGameScene.h"
+#include "sketchtitlescene.h"
 
 USING_NS_CC;
 
@@ -28,7 +29,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     //CCScene *pScene = TouchInputTestScene::scene();
-    CCScene *pScene = SketchGameScene::create();
+    CCScene *pScene = SketchTitleScene::create();
     
     // run
     pDirector->runWithScene(pScene);

@@ -74,7 +74,7 @@ bool HelloWorld::init()
         this->addChild(pLabel, 1);
 
         // 3. Add add a splash screen, show the cocos2d splash image.
-        CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+        CCSprite* pSprite = CCSprite::create("Splash.png");
         CC_BREAK_IF(! pSprite);
 
         // Place the sprite on the center of the screen
