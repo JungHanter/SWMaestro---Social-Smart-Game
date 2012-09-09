@@ -12,7 +12,9 @@
 
 void SGMonster::beginBattle() {
     //monsterSprite->setColor(ccc3(255, 0, 0));
-    monsterSprite->pauseSchedulerAndActions();
+    //monsterSprite->pauseSchedulerAndActions();
+    //monsterSprite->stopAllActions();
+    //monsterSprite->runAction(act_wait);
 	
 	die_flag = false;
 }
@@ -37,10 +39,15 @@ bool SGMonster::endBattle() {
 
 void SGMonster::confirmBattlePos() {
     if(((SketchGameLayer*)parentLayer)->getGameState() == GAMESTATE_RUNNING) {
-        CCLog("Start Battle");
-        monsterSprite->runAction(act_wait);
-        ((SketchGameLayer*)parentLayer)->beginBattleMode();
+        startBattleMode();
     }
+}
+
+void SGMonster::startBattleMode() {
+    CCLog("Start Battle");
+    monsterSprite->stopAllActions();
+    monsterSprite->runAction(act_wait);
+    ((SketchGameLayer*)parentLayer)->beginBattleMode();
 }
 
 SGAttackInfo SGMonster::attack() {
@@ -79,6 +86,13 @@ void SGMonster::die() {
     monsterSprite->setPosition(ccp(-500,-500));
 }
 
+int SGMonster::func_wakeup() {
+    monsterSprite->stopAllActions();
+    monsterSprite->runAction(act_wakeup);
+    
+    return nWakeupFrames;
+}
+
 int SGMonster::selectAttackDirection() {
     //test
 	return rand()%this->numAttacks;
@@ -89,6 +103,9 @@ void SGMonster::func_waiting() {
     monsterSprite->runAction(act_wait);
 }
 
+bool SGMonster::isWakeupMonster() {
+    return bWakeupMonster;
+}
 
 void SGMonster::resetStatus(int hp, int atk) {
     this->maxHP = hp;
@@ -118,6 +135,7 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
     this->atk = atk;
     
     this->bWakeupMonster = false;
+    this->nWakeupFrames = -1;
     this->act_wakeup = NULL;
     
     CCSpriteFrameCache *pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
@@ -158,10 +176,12 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
             pWaitFrames->release();
             
             bWakeupMonster = true;
+            nWakeupFrames = 6;
             CCArray* pWakeupFrames = CCArray::create();
             for(int i=1; i<=6; i++) {
                 pWakeupFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("mud_wakeup_%d.png", i)->getCString()));
             }
+            //act_wakeup = CCAnimate::create(CCAnimation::create(pWakeupFrames,GAME_FRAME_SPEED));
             act_wakeup = CCSequence::create(CCAnimate::create(CCAnimation::create(pWakeupFrames,GAME_FRAME_SPEED)),
                                             CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
             act_wakeup->retain();

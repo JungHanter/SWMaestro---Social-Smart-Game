@@ -12,6 +12,7 @@
 SGBackground* SGBackground::sharedSGBackground = NULL;
 
 void SGBackground::pauseAllBackground() {
+    CCLog("pause bg");
     bg_map->pauseSchedulerAndActions();
     bg_mountain->pauseSchedulerAndActions();
     bg_mountain2->pauseSchedulerAndActions();
@@ -42,23 +43,46 @@ SGBackground* SGBackground::sharedInstance(CCLayer* parent) {
         sharedSGBackground = new SGBackground(parent);
     }
 	else if(parent != sharedSGBackground->parentLayer){
-		parent->addChild(
-			sharedSGBackground->bg_map,
-			ORDER_BACKGROUND, TAG_TEXTURE_BACKGROUND);
-		parent->addChild(
-			sharedSGBackground->bg_cloud,
-			ORDER_FARAWAY_CLOUD, TAG_TEXTURE_BACKGROUND);
-		parent->addChild(
-			sharedSGBackground->bg_mountain,
-			ORDER_FARAWAY_MOUNTAIN, TAG_TEXTURE_BACKGROUND);
-		parent->addChild(
-			sharedSGBackground->bg_mountain2,
-			ORDER_FARAWAY_MOUNTAIN, TAG_TEXTURE_BACKGROUND);
-		parent->addChild(
-			sharedSGBackground->bg_castle,
-			ORDER_FARWAY_CASTLE, TAG_TEXTURE_BACKGROUND);
+        //sharedSGBackground->release();
+        //sharedSGBackground = new SGBackground(parent);
+        sharedSGBackground->resetParent(parent);
 	}
     return sharedSGBackground;
+}
+
+void SGBackground::resetParent(CCLayer* parent) {
+    parentLayer->removeChild(bg_map, false);
+    parentLayer->removeChild(bg_cloud, false);
+    parentLayer->removeChild(bg_cloud2, false);
+    parentLayer->removeChild(bg_mountain, false);
+    parentLayer->removeChild(bg_mountain2, false);
+    parentLayer->removeChild(bg_castle, false);
+    parentLayer->removeChild(bg_overlay, false);
+    parentLayer->removeChildByTag(TAG_TEXTURE_BACKGROUND, false);
+    parentLayer = parent;
+    
+    parent->addChild(bg_map,
+                     ORDER_BACKGROUND, TAG_TEXTURE_BACKGROUND);
+    parent->addChild(bg_cloud,
+                     ORDER_FARAWAY_CLOUD, TAG_TEXTURE_BACKGROUND);
+    parent->addChild(bg_cloud2,
+                     ORDER_FARWAY_CASTLE, TAG_TEXTURE_BACKGROUND);
+    parent->addChild(bg_mountain,
+                     ORDER_FARAWAY_MOUNTAIN, TAG_TEXTURE_BACKGROUND);
+    parent->addChild(bg_mountain2,
+                     ORDER_FARAWAY_MOUNTAIN, TAG_TEXTURE_BACKGROUND);
+    parent->addChild(bg_castle,
+                     ORDER_FARWAY_CASTLE, TAG_TEXTURE_BACKGROUND);
+    parent->addChild(bg_overlay,
+                     ORDER_BACKGROUND_OVERLAY, TAG_TEXTURE_BACKGROUND);
+}
+
+void SGBackground::gameStart() {
+    bg_map->runAction(bg_map_action);
+    bg_mountain->runAction(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN, -70.0f),
+                                              CCSequence::create(CCRotateTo::create(0, 70.0f), CCCallFunc::create(this, callfunc_selector(SGBackground::func_mountainMove)))));
+    bg_mountain2->runAction(CCRepeatForever::create(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN*2, -140.0f),
+                                                                       CCRotateTo::create(0, 70.0f))));
 }
 
 SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
@@ -93,14 +117,14 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     }
     bg_map_action = CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pBackgroundMapFrames, GAME_FRAME_SPEED)));
     bg_map_action->retain();
-    bg_map->runAction(bg_map_action);
+    //bg_map->runAction(bg_map_action);
     pBackgroundMapFrames->release();
     
     //overlay
     bg_overlay = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_forest_into_1.png"));
     bg_overlay->retain();
     bg_overlay->setAnchorPoint(ccp(0,0));
-    bg_overlay->setPosition(ccp(0,0));
+    bg_overlay->setPosition(ccp(-500,-500));
     parentLayer->addChild(bg_overlay, ORDER_BACKGROUND_OVERLAY, TAG_TEXTURE_BACKGROUND);
     
     //forest into
@@ -117,14 +141,15 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     bg_mountain->setPosition(ccp(winSize.width/2, -440));
     parentLayer->addChild(bg_mountain, ORDER_FARAWAY_MOUNTAIN, TAG_TEXTURE_BACKGROUND);
     bg_mountain2 = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_mountain.png"));
+    bg_mountain2->retain();
     bg_mountain2->setAnchorPoint(ccp(0.5f, MOUNTAIN_ANCOHR_Y));
     bg_mountain2->setPosition(ccp(winSize.width/2, -440));
     bg_mountain2->setRotation(70.0f);
     parentLayer->addChild(bg_mountain2, ORDER_FARAWAY_MOUNTAIN, TAG_TEXTURE_BACKGROUND);
-    bg_mountain->runAction(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN, -70.0f),
+    /*bg_mountain->runAction(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN, -70.0f),
                                               CCSequence::create(CCRotateTo::create(0, 70.0f), CCCallFunc::create(this, callfunc_selector(SGBackground::func_mountainMove)))));
     bg_mountain2->runAction(CCRepeatForever::create(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN*2, -140.0f),
-                                                                       CCRotateTo::create(0, 70.0f))));
+                                                                       CCRotateTo::create(0, 70.0f))));*/
     
     bg_cloud = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_cloud.png"));
     bg_cloud->retain();
@@ -160,12 +185,8 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
 }
 
 SGBackground::~SGBackground() {
-    
-}
-
-void SGBackground::releaseInstance(){
-	SGBackground *background = 
-		SGBackground::sharedInstance(NULL);
+    SGBackground *background =
+    SGBackground::sharedInstance(NULL);
 	background->bg_map->release(); background->bg_map=NULL;
     background->bg_map_action->release(); background->bg_map_action=NULL;
     background->bg_mountain->release(); background->bg_mountain=NULL;

@@ -34,6 +34,7 @@ public:
     void beginBattle();
     bool endBattle();
     void confirmBattlePos();
+    void startBattleMode();
     
     SGAttackInfo attack();   //return now atkDir & atk
     void defend(int damage);
@@ -43,20 +44,25 @@ public:
     void resumeSchedulerAndActions();
     
     int getType();
+    bool isWakeupMonster();
     
 	void attackComplete(float dt);
     void resetStatus(int hp, int atk);
     void upgradeStatus(float upHpRate, float upAtkRate);
     
+public:
+    int func_wakeup();
+    void func_waiting();
 private:
     int selectAttackDirection();
-    void func_waiting();
     void func_defend();
+
     
 private:
     int type;
     int maxHP, nowHP;
     int atk;
+    int nWakeupFrames;
 	bool die_flag;
     bool bWakeupMonster;
 

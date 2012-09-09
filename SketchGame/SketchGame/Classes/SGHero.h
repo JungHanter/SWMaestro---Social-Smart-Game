@@ -68,8 +68,9 @@ private:
 		*act_dodge,
 		*act_block,*act_defend, *act_die;
 
-private:
+public:
     void func_wating();
+private:
     void func_defending(CCObject* act);
 
 private:

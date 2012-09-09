@@ -17,8 +17,10 @@ class SGBackground : public CCObject {
 public:
     void pauseAllBackground();
     void resumeAllBackground();
+    
+    void gameStart();
 
-	CCLayer* const parentLayer;
+	CCLayer* parentLayer;
 private:
     cocos2d::CCSprite* bg_map;
     cocos2d::CCActionInterval* bg_map_action;
@@ -41,11 +43,11 @@ private:
     SGBackground(CCLayer* parent);
     static SGBackground* sharedSGBackground;
     virtual ~SGBackground();
+    void resetParent(CCLayer* parent);
 
 public:
     
     static SGBackground* sharedInstance(CCLayer *parent);
-	static void releaseInstance();
 };
 
 #endif /* defined(__SketchGame_TouchInput__SGBackground__) */
