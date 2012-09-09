@@ -140,6 +140,7 @@
     <ClInclude Include="..\Classes\SGHero.h" />
     <ClInclude Include="..\Classes\SGHidableObject.h" />
     <ClInclude Include="..\Classes\SGMonster.h" />
+    <ClInclude Include="..\Classes\SGSaveData.h" />
     <ClInclude Include="..\Classes\SketchGameScene.h" />
     <ClInclude Include="..\Classes\SketchTitleScene.h" />
     <ClInclude Include="main.h" />
@@ -151,6 +152,7 @@
     <ClCompile Include="..\Classes\SGHero.cpp" />
     <ClCompile Include="..\Classes\SGHidableObject.cpp" />
     <ClCompile Include="..\Classes\SGMonster.cpp" />
+    <ClCompile Include="..\Classes\SGSaveData.cpp" />
     <ClCompile Include="..\Classes\SketchGameScene.cpp" />
     <ClCompile Include="..\Classes\SketchTitleScene.cpp" />
     <ClCompile Include="main.cpp" />

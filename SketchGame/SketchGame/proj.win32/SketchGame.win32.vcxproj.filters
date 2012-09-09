@@ -16,6 +16,9 @@
     <Filter Include="source\titleScene">
       <UniqueIdentifier>{6fbe344a-4cf6-4a7b-87b6-921d65f505b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\savedata">
+      <UniqueIdentifier>{4e2cbb80-d0a3-45e0-b587-894648da55bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\SketchGame.ico">
@@ -79,6 +82,9 @@
     <ClInclude Include="..\Classes\SketchTitleScene.h">
       <Filter>source\titleScene</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\SGSaveData.h">
+      <Filter>source\savedata</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -104,6 +110,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SketchTitleScene.cpp">
       <Filter>source\titleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSaveData.cpp">
+      <Filter>source\savedata</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,9 +1,10 @@
-﻿빌드 시작: 2012-09-09 오후 8:45:19
+﻿빌드 시작: 2012-09-09 오후 8:50:19
      1>2 노드의 "C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\SketchGame\proj.win32\SketchGame.win32.vcxproj" 프로젝트(Build 대상)입니다.
      1>InitializeBuildStatus:
          "Debug.win32\SketchGame.win32.unsuccessfulbuild"에 연결(touching)하고 있습니다.
        ClCompile:
-         모든 출력이 최신 상태입니다.
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /I..\..\cocos2dx /I..\..\cocos2dx\include /I..\..\cocos2dx\kazmath\include /I..\..\cocos2dx\platform\win32 /I..\..\cocos2dx\platform\third_party\win32 /I..\..\cocos2dx\platform\third_party\win32\OGLES /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGS_DEBUG /D COCOS2D_DEBUG=1 /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug.win32\\" /Fd"Debug.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\SGSaveData.cpp
+         SGSaveData.cpp
        ResourceCompile:
          모든 출력이 최신 상태입니다.
        Link:
@@ -13,10 +14,10 @@
          Debug.win32\SGHero.obj
          Debug.win32\SGHidableObject.obj
          Debug.win32\SGMonster.obj
+         Debug.win32\SGSaveData.obj
          Debug.win32\SketchGameScene.obj
          Debug.win32\SketchTitleScene.obj
          Debug.win32\main.obj
-         LINK : C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\Debug.win32\SketchGame.win32.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
          SketchGame.win32.vcxproj -> C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\Debug.win32\SketchGame.win32.exe
        FinalizeBuildStatus:
          "Debug.win32\SketchGame.win32.unsuccessfulbuild" 파일을 삭제하고 있습니다.
@@ -25,4 +26,4 @@
 
 빌드했습니다.
 
-경과 시간: 00:00:01.94
+경과 시간: 00:00:02.61
