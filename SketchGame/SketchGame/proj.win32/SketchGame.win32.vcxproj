@@ -141,20 +141,19 @@
     <ClInclude Include="..\Classes\SGHidableObject.h" />
     <ClInclude Include="..\Classes\SGMonster.h" />
     <ClInclude Include="..\Classes\SketchGameScene.h" />
+    <ClInclude Include="..\Classes\SketchTitleScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SketchTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\SGBackground.cpp" />
     <ClCompile Include="..\Classes\SGHero.cpp" />
     <ClCompile Include="..\Classes\SGHidableObject.cpp" />
     <ClCompile Include="..\Classes\SGMonster.cpp" />
     <ClCompile Include="..\Classes\SketchGameScene.cpp" />
+    <ClCompile Include="..\Classes\SketchTitleScene.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="SketchTitleScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

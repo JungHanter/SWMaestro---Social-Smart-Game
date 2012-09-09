@@ -76,7 +76,7 @@
     <ClInclude Include="..\Classes\SketchGameScene.h">
       <Filter>source</Filter>
     </ClInclude>
-    <ClInclude Include="SketchTitleScene.h">
+    <ClInclude Include="..\Classes\SketchTitleScene.h">
       <Filter>source\titleScene</Filter>
     </ClInclude>
   </ItemGroup>
@@ -85,9 +85,6 @@
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SGBackground.cpp">
@@ -105,7 +102,7 @@
     <ClCompile Include="..\Classes\SketchGameScene.cpp">
       <Filter>source</Filter>
     </ClCompile>
-    <ClCompile Include="SketchTitleScene.cpp">
+    <ClCompile Include="..\Classes\SketchTitleScene.cpp">
       <Filter>source\titleScene</Filter>
     </ClCompile>
   </ItemGroup>
