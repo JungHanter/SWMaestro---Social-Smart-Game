@@ -48,6 +48,21 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     CCSpriteFrameCache *pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
+	pSpriteFrameCache->addSpriteFramesWithFile("bg_map_hill.plist", "bg_map_hill.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_map_hill2.plist", "bg_map_hill2.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_cave1.plist", "bg_cave1.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_cave2.plist", "bg_cave2.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_cave_into1.plist", "bg_cave_into1.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_cave_into2.plist", "bg_cave_into2.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_cave_into3.plist", "bg_cave_into3.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_cave_out.plist", "bg_cave_out.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_cave_out2.plist", "bg_cave_out2.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_forest.plist", "bg_forest.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_forest_into.plist", "bg_forest_into.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_forest_into2.plist", "bg_forest_into2.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_forest_additional.plist", "bg_forest_additional.png");
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_etc.plist", "bg_etc.png");
+
     //map
     bg_map = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_map_hill_1.png"));
     bg_map->retain();
