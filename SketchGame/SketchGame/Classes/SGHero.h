@@ -69,6 +69,8 @@ private:
 		*act_dodge,
 		*act_block,*act_defend, *act_die;
 
+private:
+    void func_wating();
 
 private:
     SGHero(CCLayer* parent);

@@ -35,8 +35,6 @@
 		D876805415FBDA8300CA6665 /* bg_cave1.png in Resources */ = {isa = PBXBuildFile; fileRef = D876803215FBDA8300CA6665 /* bg_cave1.png */; };
 		D876805515FBDA8300CA6665 /* bg_cave2.plist in Resources */ = {isa = PBXBuildFile; fileRef = D876803315FBDA8300CA6665 /* bg_cave2.plist */; };
 		D876805615FBDA8300CA6665 /* bg_cave2.png in Resources */ = {isa = PBXBuildFile; fileRef = D876803415FBDA8300CA6665 /* bg_cave2.png */; };
-		D876805715FBDA8300CA6665 /* bg_forest_addtional.plist in Resources */ = {isa = PBXBuildFile; fileRef = D876803515FBDA8300CA6665 /* bg_forest_addtional.plist */; };
-		D876805815FBDA8300CA6665 /* bg_forest_addtional.png in Resources */ = {isa = PBXBuildFile; fileRef = D876803615FBDA8300CA6665 /* bg_forest_addtional.png */; };
 		D876805915FBDA8300CA6665 /* bg_forest_into.plist in Resources */ = {isa = PBXBuildFile; fileRef = D876803715FBDA8300CA6665 /* bg_forest_into.plist */; };
 		D876805A15FBDA8300CA6665 /* bg_forest_into.png in Resources */ = {isa = PBXBuildFile; fileRef = D876803815FBDA8300CA6665 /* bg_forest_into.png */; };
 		D876805B15FBDA8300CA6665 /* bg_forest_into2.plist in Resources */ = {isa = PBXBuildFile; fileRef = D876803915FBDA8300CA6665 /* bg_forest_into2.plist */; };
@@ -240,6 +238,8 @@
 		D88C92E915F791C400EE167A /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D88C92E815F791C400EE167A /* AppController.mm */; };
 		D88C92EC15F791C400EE167A /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D88C92EB15F791C400EE167A /* RootViewController.mm */; };
 		D88C92F015F791C400EE167A /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D88C92EF15F791C400EE167A /* AppDelegate.cpp */; };
+		D8C71DE415FC1CA500A344B8 /* bg_forest_additional.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8C71DE215FC1CA500A344B8 /* bg_forest_additional.plist */; };
+		D8C71DE515FC1CA500A344B8 /* bg_forest_additional.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C71DE315FC1CA500A344B8 /* bg_forest_additional.png */; };
 		D8FEC9C615F794D800C4EBD4 /* SGBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8FEC9BC15F794D800C4EBD4 /* SGBackground.cpp */; };
 		D8FEC9C715F794D800C4EBD4 /* SGHero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8FEC9BE15F794D800C4EBD4 /* SGHero.cpp */; };
 		D8FEC9C815F794D800C4EBD4 /* SGHidableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8FEC9C015F794D800C4EBD4 /* SGHidableObject.cpp */; };
@@ -286,8 +286,6 @@
 		D876803215FBDA8300CA6665 /* bg_cave1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_cave1.png; path = Resources/bg_cave1.png; sourceTree = "<group>"; };
 		D876803315FBDA8300CA6665 /* bg_cave2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_cave2.plist; path = Resources/bg_cave2.plist; sourceTree = "<group>"; };
 		D876803415FBDA8300CA6665 /* bg_cave2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_cave2.png; path = Resources/bg_cave2.png; sourceTree = "<group>"; };
-		D876803515FBDA8300CA6665 /* bg_forest_addtional.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_forest_addtional.plist; path = Resources/bg_forest_addtional.plist; sourceTree = "<group>"; };
-		D876803615FBDA8300CA6665 /* bg_forest_addtional.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_forest_addtional.png; path = Resources/bg_forest_addtional.png; sourceTree = "<group>"; };
 		D876803715FBDA8300CA6665 /* bg_forest_into.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_forest_into.plist; path = Resources/bg_forest_into.plist; sourceTree = "<group>"; };
 		D876803815FBDA8300CA6665 /* bg_forest_into.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_forest_into.png; path = Resources/bg_forest_into.png; sourceTree = "<group>"; };
 		D876803915FBDA8300CA6665 /* bg_forest_into2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_forest_into2.plist; path = Resources/bg_forest_into2.plist; sourceTree = "<group>"; };
@@ -705,6 +703,8 @@
 		D88C92EB15F791C400EE167A /* RootViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = RootViewController.mm; path = ios/RootViewController.mm; sourceTree = "<group>"; };
 		D88C92EE15F791C400EE167A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		D88C92EF15F791C400EE167A /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
+		D8C71DE215FC1CA500A344B8 /* bg_forest_additional.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_forest_additional.plist; path = Resources/bg_forest_additional.plist; sourceTree = "<group>"; };
+		D8C71DE315FC1CA500A344B8 /* bg_forest_additional.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_forest_additional.png; path = Resources/bg_forest_additional.png; sourceTree = "<group>"; };
 		D8FEC9BB15F794D800C4EBD4 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = defines.h; path = Classes/defines.h; sourceTree = "<group>"; };
 		D8FEC9BC15F794D800C4EBD4 /* SGBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = SGBackground.cpp; path = Classes/SGBackground.cpp; sourceTree = "<group>"; };
 		D8FEC9BD15F794D800C4EBD4 /* SGBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBackground.h; path = Classes/SGBackground.h; sourceTree = "<group>"; };
@@ -794,66 +794,59 @@
 		D88C908615F791C100EE167A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D88C909C15F791C100EE167A /* iTunesArtwork */,
 				D876802515FBDA8300CA6665 /* ball.plist */,
-				D876802615FBDA8300CA6665 /* ball.png */,
-				D876802715FBDA8300CA6665 /* bg_cave_into1.plist */,
-				D876802815FBDA8300CA6665 /* bg_cave_into1.png */,
-				D876802915FBDA8300CA6665 /* bg_cave_into2.plist */,
-				D876802A15FBDA8300CA6665 /* bg_cave_into2.png */,
-				D876802B15FBDA8300CA6665 /* bg_cave_into3.plist */,
-				D876802C15FBDA8300CA6665 /* bg_cave_into3.png */,
-				D876802D15FBDA8300CA6665 /* bg_cave_out.plist */,
-				D876802E15FBDA8300CA6665 /* bg_cave_out.png */,
-				D876802F15FBDA8300CA6665 /* bg_cave_out2.plist */,
-				D876803015FBDA8300CA6665 /* bg_cave_out2.png */,
-				D876803115FBDA8300CA6665 /* bg_cave1.plist */,
-				D876803215FBDA8300CA6665 /* bg_cave1.png */,
-				D876803315FBDA8300CA6665 /* bg_cave2.plist */,
-				D876803415FBDA8300CA6665 /* bg_cave2.png */,
-				D876803515FBDA8300CA6665 /* bg_forest_addtional.plist */,
-				D876803615FBDA8300CA6665 /* bg_forest_addtional.png */,
-				D876803715FBDA8300CA6665 /* bg_forest_into.plist */,
-				D876803815FBDA8300CA6665 /* bg_forest_into.png */,
-				D876803915FBDA8300CA6665 /* bg_forest_into2.plist */,
-				D876803A15FBDA8300CA6665 /* bg_forest_into2.png */,
-				D876803B15FBDA8300CA6665 /* bg_forest.plist */,
-				D876803C15FBDA8300CA6665 /* bg_forest.png */,
-				D876803D15FBDA8300CA6665 /* opening.plist */,
-				D876803E15FBDA8300CA6665 /* opening.png */,
-				D876803F15FBDA8300CA6665 /* opening2.plist */,
-				D876804015FBDA8300CA6665 /* opening2.png */,
-				D876804115FBDA8300CA6665 /* opening3.plist */,
-				D876804215FBDA8300CA6665 /* opening3.png */,
-				D876804315FBDA8300CA6665 /* option.png */,
-				D876804415FBDA8300CA6665 /* splash.png */,
-				D876804515FBDA8300CA6665 /* title_menu.plist */,
-				D876804615FBDA8300CA6665 /* title_menu.png */,
-				D86D15CA15FB881E000418C0 /* mud.plist */,
-				D86D15CB15FB881E000418C0 /* mud.png */,
-				D86D15CC15FB881E000418C0 /* option_check.plist */,
-				D86D15CD15FB881E000418C0 /* option_check.png */,
-				D86D15CE15FB881E000418C0 /* wing.plist */,
-				D86D15CF15FB881E000418C0 /* wing.png */,
 				D805617815FA1433008AEE5B /* bat.plist */,
-				D805617915FA1433008AEE5B /* bat.png */,
+				D876803115FBDA8300CA6665 /* bg_cave1.plist */,
+				D876803315FBDA8300CA6665 /* bg_cave2.plist */,
+				D876802715FBDA8300CA6665 /* bg_cave_into1.plist */,
+				D876802915FBDA8300CA6665 /* bg_cave_into2.plist */,
+				D876802B15FBDA8300CA6665 /* bg_cave_into3.plist */,
+				D876802D15FBDA8300CA6665 /* bg_cave_out.plist */,
+				D876802F15FBDA8300CA6665 /* bg_cave_out2.plist */,
 				D8FEC9CB15F794EB00C4EBD4 /* bg_etc.plist */,
-				D8FEC9CC15F794EB00C4EBD4 /* bg_etc.png */,
+				D876803B15FBDA8300CA6665 /* bg_forest.plist */,
+				D8C71DE215FC1CA500A344B8 /* bg_forest_additional.plist */,
+				D876803715FBDA8300CA6665 /* bg_forest_into.plist */,
+				D876803915FBDA8300CA6665 /* bg_forest_into2.plist */,
 				D8FEC9CD15F794EB00C4EBD4 /* bg_map_hill.plist */,
-				D8FEC9CE15F794EB00C4EBD4 /* bg_map_hill.png */,
 				D805617A15FA1433008AEE5B /* bg_map_hill2.plist */,
+				D8FEC9CF15F794EB00C4EBD4 /* draginfo.plist */,
+				D805617C15FA1433008AEE5B /* game_etc.plist */,
+				D8FEC9D315F794EB00C4EBD4 /* hero.plist */,
+				D88C909B15F791C100EE167A /* Info.plist */,
+				D86D15CA15FB881E000418C0 /* mud.plist */,
+				D876803D15FBDA8300CA6665 /* opening.plist */,
+				D876803F15FBDA8300CA6665 /* opening2.plist */,
+				D876804115FBDA8300CA6665 /* opening3.plist */,
+				D86D15CC15FB881E000418C0 /* option_check.plist */,
+				D876804515FBDA8300CA6665 /* title_menu.plist */,
+				D86D15CE15FB881E000418C0 /* wing.plist */,
+				D876802615FBDA8300CA6665 /* ball.png */,
+				D805617915FA1433008AEE5B /* bat.png */,
+				D876803215FBDA8300CA6665 /* bg_cave1.png */,
+				D876803415FBDA8300CA6665 /* bg_cave2.png */,
+				D876802815FBDA8300CA6665 /* bg_cave_into1.png */,
+				D876802A15FBDA8300CA6665 /* bg_cave_into2.png */,
+				D876802C15FBDA8300CA6665 /* bg_cave_into3.png */,
+				D876802E15FBDA8300CA6665 /* bg_cave_out.png */,
+				D876803015FBDA8300CA6665 /* bg_cave_out2.png */,
+				D8FEC9CC15F794EB00C4EBD4 /* bg_etc.png */,
+				D876803C15FBDA8300CA6665 /* bg_forest.png */,
+				D8C71DE315FC1CA500A344B8 /* bg_forest_additional.png */,
+				D876803815FBDA8300CA6665 /* bg_forest_into.png */,
+				D876803A15FBDA8300CA6665 /* bg_forest_into2.png */,
+				D8FEC9CE15F794EB00C4EBD4 /* bg_map_hill.png */,
 				D805617B15FA1433008AEE5B /* bg_map_hill2.png */,
 				D88C908715F791C100EE167A /* CloseNormal.png */,
 				D88C908915F791C100EE167A /* CloseSelected.png */,
 				D88C908B15F791C100EE167A /* Default.png */,
-				D8FEC9CF15F794EB00C4EBD4 /* draginfo.plist */,
 				D8FEC9D015F794EB00C4EBD4 /* dragInfo.png */,
 				D8FEC9D115F794EB00C4EBD4 /* fps_images-hd.png */,
 				D8FEC9D215F794EB00C4EBD4 /* fps_images-ipadhd.png */,
 				D88C909E15F791C100EE167A /* fps_images.png */,
-				D805617C15FA1433008AEE5B /* game_etc.plist */,
 				D805617D15FA1433008AEE5B /* game_etc.png */,
 				D88C908D15F791C100EE167A /* HelloWorld.png */,
-				D8FEC9D315F794EB00C4EBD4 /* hero.plist */,
 				D8FEC9D415F794EB00C4EBD4 /* hero.png */,
 				D88C908F15F791C100EE167A /* Icon-72.png */,
 				D88C909115F791C100EE167A /* Icon-Small-50.png */,
@@ -861,8 +854,15 @@
 				D88C909515F791C100EE167A /* Icon-Small@2x.png */,
 				D88C909715F791C100EE167A /* Icon.png */,
 				D88C909915F791C100EE167A /* Icon@2x.png */,
-				D88C909B15F791C100EE167A /* Info.plist */,
-				D88C909C15F791C100EE167A /* iTunesArtwork */,
+				D86D15CB15FB881E000418C0 /* mud.png */,
+				D876803E15FBDA8300CA6665 /* opening.png */,
+				D876804015FBDA8300CA6665 /* opening2.png */,
+				D876804215FBDA8300CA6665 /* opening3.png */,
+				D876804315FBDA8300CA6665 /* option.png */,
+				D86D15CD15FB881E000418C0 /* option_check.png */,
+				D876804415FBDA8300CA6665 /* splash.png */,
+				D876804615FBDA8300CA6665 /* title_menu.png */,
+				D86D15CF15FB881E000418C0 /* wing.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1730,8 +1730,6 @@
 				D876805415FBDA8300CA6665 /* bg_cave1.png in Resources */,
 				D876805515FBDA8300CA6665 /* bg_cave2.plist in Resources */,
 				D876805615FBDA8300CA6665 /* bg_cave2.png in Resources */,
-				D876805715FBDA8300CA6665 /* bg_forest_addtional.plist in Resources */,
-				D876805815FBDA8300CA6665 /* bg_forest_addtional.png in Resources */,
 				D876805915FBDA8300CA6665 /* bg_forest_into.plist in Resources */,
 				D876805A15FBDA8300CA6665 /* bg_forest_into.png in Resources */,
 				D876805B15FBDA8300CA6665 /* bg_forest_into2.plist in Resources */,
@@ -1748,6 +1746,8 @@
 				D876806615FBDA8300CA6665 /* splash.png in Resources */,
 				D876806715FBDA8300CA6665 /* title_menu.plist in Resources */,
 				D876806815FBDA8300CA6665 /* title_menu.png in Resources */,
+				D8C71DE415FC1CA500A344B8 /* bg_forest_additional.plist in Resources */,
+				D8C71DE515FC1CA500A344B8 /* bg_forest_additional.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

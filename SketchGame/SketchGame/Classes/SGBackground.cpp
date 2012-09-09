@@ -49,8 +49,6 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
     //map
-    pSpriteFrameCache->addSpriteFramesWithFile("bg_map_hill.plist", "bg_map_hill.png");
-    pSpriteFrameCache->addSpriteFramesWithFile("bg_map_hill2.plist", "bg_map_hill2.png");
     bg_map = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_map_hill_1.png"));
     bg_map->retain();
     bg_map->setAnchorPoint(ccp(0, 0));
@@ -67,7 +65,6 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     pBackgroundMapFrames->release();
     
     //Mountain
-    pSpriteFrameCache->addSpriteFramesWithFile("bg_etc.plist", "bg_etc.png");
     bg_mountain = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_mountain.png"));
     bg_mountain->retain();
     bg_mountain->setAnchorPoint(ccp(0.5f, MOUNTAIN_ANCOHR_Y));
