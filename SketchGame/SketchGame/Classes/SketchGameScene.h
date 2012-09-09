@@ -44,6 +44,8 @@ private:
     void func_heroMoveShow(float);
     void func_startHeroRun(float);
     
+    void func_wakeupAfterAttack(float);
+    
     void loadGameTexture();
     void unloadGameTexture();
     

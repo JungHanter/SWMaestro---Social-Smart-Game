@@ -12,11 +12,11 @@ class SketchTitleLayer : public cocos2d::CCLayerColor
 {
 public:
 	SketchTitleLayer(){}
-	~SketchTitleLayer(){};
+	virtual ~SketchTitleLayer(){ if(background!=NULL) background->release(); };
     bool init();
 	void update(float);
 
-	 LAYER_CREATE_FUNC(SketchTitleLayer);
+    LAYER_CREATE_FUNC(SketchTitleLayer);
 
 private:
 

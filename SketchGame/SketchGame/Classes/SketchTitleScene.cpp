@@ -3,9 +3,7 @@
 #include "SketchGameScene.h"
 
 bool SketchTitleLayer::init(){
-
-	
-	if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
+if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
     {
 		CCSpriteFrameCache *pSpriteFrameCache =
 			CCSpriteFrameCache::sharedSpriteFrameCache();
@@ -76,7 +74,7 @@ bool SketchTitleLayer::init(){
 			sprintf(selectedSprite,
 				"%s%s_p.png",
 				selectedSprite,items[i]);
-
+            
 			spriteItem[i] = CCMenuItemSprite::create(
 				CCSprite::create(pSpriteFrameCache->spriteFrameByName(
 								normalSprite)),
@@ -102,6 +100,8 @@ bool SketchTitleLayer::init(){
 
 
 		this->scheduleUpdate();
+        
+        background->pauseAllBackground();
 
 	return true;
 	} else {
@@ -136,8 +136,7 @@ void SketchTitleLayer::update(float dt){
 
 void SketchTitleLayer::btnStart(CCObject *sender){
 	CCScene *scene = SketchGameScene::create();
-	CCDirector::sharedDirector()->runWithScene(
-		scene);
+	CCDirector::sharedDirector()->replaceScene(scene);
 	//pDirector->runWithScene(pScene);
 }
 void SketchTitleLayer::btnUpgrade(CCObject *sender){
@@ -147,6 +146,11 @@ void SketchTitleLayer::btnRanking(CCObject *sender){
 void SketchTitleLayer::btnOption(CCObject *sender){
 }
 void SketchTitleLayer::btnExit(CCObject *sender){
+    CCDirector::sharedDirector()->end();
+    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    exit(0);
+#endif
 }
 
 bool SketchTitleScene::init(){

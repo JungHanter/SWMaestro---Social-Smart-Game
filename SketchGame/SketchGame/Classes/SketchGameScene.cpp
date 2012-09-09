@@ -86,7 +86,7 @@ void SketchGameLayer::dragInputEnded(const int dragDirection) {
 	}
 }
 
-////////private method///////
+
 void SketchGameLayer::beginBattleMode() {
     nowMonster->beginBattle();
     gameState = GAMESTATE_BATTLE;
@@ -96,11 +96,21 @@ void SketchGameLayer::beginBattleMode() {
     CCLog("Begin battle");
 	turn = TURN_HERO;
 	
-	attackHero();
-
+    if(nowMonster->isWakeupMonster()) {
+        int n = nowMonster->func_wakeup();
+        this->scheduleOnce(schedule_selector(SketchGameLayer::func_wakeupAfterAttack), GAME_FRAME_SPEED*n);
+    } else {
+        nowMonster->func_waiting();
+        attackHero();
+    }
 	//this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode), GAME_FRAME_SPEED*5);
 }
 
+void SketchGameLayer::func_wakeupAfterAttack(float) {
+    attackHero();
+}
+
+////////private method///////
 void SketchGameLayer::monsterAttack(float )
 {
 	if(turn == TURN_MONSTER)
@@ -152,6 +162,7 @@ void SketchGameLayer::endBattleMode(float) {
     resumeAllBackground();
     hero->resumeSchedulerAndActions();
 	this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun),0.0f);
+    CCLog("End battle");
 	//func_startHeroRun();
 }
 
@@ -196,6 +207,11 @@ void SketchGameLayer::func_heroMoveHide(float dt) {
     //pauseAllBackground();
     hero->func_MoveHide();
     
+    if(gameState != GAMESTATE_BATTLE) {
+        this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*8);
+        return;
+    }
+    
 	if(hero->dodgeC == 0)
 		this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*8);
 	else
@@ -205,6 +221,11 @@ void SketchGameLayer::func_heroMoveHide(float dt) {
 
 void SketchGameLayer::func_heroMoveShow(float dt) {
     hero->func_MoveShow();
+    
+    if(gameState != GAMESTATE_BATTLE) {
+        this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
+        return;
+    }
     
 	if(hero->dodgeC == 0)
 		this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
@@ -341,8 +362,8 @@ void SketchGameLayer::loadGameTexture() {
     
     nowMonster = monsters[MONSTER_TYPE_BAT];
     
+    background->gameStart();
     this->schedule(schedule_selector(SketchGameLayer::logic_createTarget), GAME_FRAME_SPEED*30.0f);
-    
     this->schedule(schedule_selector(SketchGameLayer::logic_printGameinfo));
 }
 
