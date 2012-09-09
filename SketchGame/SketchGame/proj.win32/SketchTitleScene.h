@@ -2,26 +2,42 @@
 
 #include "cocos2d.h"
 #include "defines.h"
-using namespace std;
+using namespace cocos2d;
+
+#include "SGBackground.h"
+
+#define MAX_ITEM 5
 
 class SketchTitleLayer : public cocos2d::CCLayerColor
 {
 public:
-	SketchTitleLayer() : _label(NULL) {}
-    ~SketchTitleLayer();
+	SketchTitleLayer(){}
+	~SketchTitleLayer(){};
     bool init();
+	void update(float);
 
 	 LAYER_CREATE_FUNC(SketchTitleLayer);
-	 CC_SYNTHESIZE_READONLY(SketchTitleLayer*, _label, Label);
+
+private:
+	SGBackground* background;
+
+	CCSprite *titleSprite;
+	CCSprite *charSprite;
+	CCSprite *ropeSprite;
+
+	CCMenuItemSprite *spriteItem[MAX_ITEM+1];
+	CCMenu *menu;
+
+	CCActionInterval* act_char;
 };
 
 class SketchTitleScene : public cocos2d::CCScene
 {
 public :
 	SketchTitleScene() : _layer(NULL) {}
-    ~SketchTitleScene();
+	~SketchTitleScene(){};
     bool init();
 
 	SCENE_CREATE_FUNC(SketchTitleScene);
-    CC_SYNTHESIZE_READONLY(SketchTitleScene*, _layer, Layer);
+    CC_SYNTHESIZE_READONLY(SketchTitleLayer*, _layer, Layer);
 };
