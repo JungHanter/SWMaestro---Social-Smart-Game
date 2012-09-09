@@ -4,3 +4,14 @@ SketchGame/SketchGame/Resources/.DS_Store
 SketchGame/SketchGame/.DS_Store
 
 SketchGame/SketchGame/.DS_Store
+
+
+# ignore - vs 2012
+*.sdf
+*.pdb
+*.ilk
+*.manifest
+*.user
+*.tlog
+*.obj
+*.idb
