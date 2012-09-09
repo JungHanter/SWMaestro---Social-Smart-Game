@@ -13,6 +13,7 @@
 		D805618115FA1433008AEE5B /* bg_map_hill2.png in Resources */ = {isa = PBXBuildFile; fileRef = D805617B15FA1433008AEE5B /* bg_map_hill2.png */; };
 		D805618215FA1433008AEE5B /* game_etc.plist in Resources */ = {isa = PBXBuildFile; fileRef = D805617C15FA1433008AEE5B /* game_etc.plist */; };
 		D805618315FA1433008AEE5B /* game_etc.png in Resources */ = {isa = PBXBuildFile; fileRef = D805617D15FA1433008AEE5B /* game_etc.png */; };
+		D861BE2A15FCAEB9004B697F /* SketchTitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D861BE2815FCAEB9004B697F /* SketchTitleScene.cpp */; };
 		D86D15D015FB881E000418C0 /* mud.plist in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CA15FB881E000418C0 /* mud.plist */; };
 		D86D15D115FB881E000418C0 /* mud.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CB15FB881E000418C0 /* mud.png */; };
 		D86D15D215FB881E000418C0 /* option_check.plist in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CC15FB881E000418C0 /* option_check.plist */; };
@@ -264,6 +265,8 @@
 		D805617B15FA1433008AEE5B /* bg_map_hill2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_map_hill2.png; path = Resources/bg_map_hill2.png; sourceTree = "<group>"; };
 		D805617C15FA1433008AEE5B /* game_etc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = game_etc.plist; path = Resources/game_etc.plist; sourceTree = "<group>"; };
 		D805617D15FA1433008AEE5B /* game_etc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_etc.png; path = Resources/game_etc.png; sourceTree = "<group>"; };
+		D861BE2815FCAEB9004B697F /* SketchTitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SketchTitleScene.cpp; path = Classes/SketchTitleScene.cpp; sourceTree = "<group>"; };
+		D861BE2915FCAEB9004B697F /* SketchTitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SketchTitleScene.h; path = Classes/SketchTitleScene.h; sourceTree = "<group>"; };
 		D86D15CA15FB881E000418C0 /* mud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = mud.plist; path = Resources/mud.plist; sourceTree = "<group>"; };
 		D86D15CB15FB881E000418C0 /* mud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mud.png; path = Resources/mud.png; sourceTree = "<group>"; };
 		D86D15CC15FB881E000418C0 /* option_check.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = option_check.plist; path = Resources/option_check.plist; sourceTree = "<group>"; };
@@ -1612,6 +1615,8 @@
 		D88C92ED15F791C400EE167A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D88C92EF15F791C400EE167A /* AppDelegate.cpp */,
+				D88C92EE15F791C400EE167A /* AppDelegate.h */,
 				D8FEC9BB15F794D800C4EBD4 /* defines.h */,
 				D8FEC9BC15F794D800C4EBD4 /* SGBackground.cpp */,
 				D8FEC9BD15F794D800C4EBD4 /* SGBackground.h */,
@@ -1623,8 +1628,8 @@
 				D8FEC9C315F794D800C4EBD4 /* SGMonster.h */,
 				D8FEC9C415F794D800C4EBD4 /* SketchGameScene.cpp */,
 				D8FEC9C515F794D800C4EBD4 /* SketchGameScene.h */,
-				D88C92EE15F791C400EE167A /* AppDelegate.h */,
-				D88C92EF15F791C400EE167A /* AppDelegate.cpp */,
+				D861BE2815FCAEB9004B697F /* SketchTitleScene.cpp */,
+				D861BE2915FCAEB9004B697F /* SketchTitleScene.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1929,6 +1934,7 @@
 				D8FEC9C815F794D800C4EBD4 /* SGHidableObject.cpp in Sources */,
 				D8FEC9C915F794D800C4EBD4 /* SGMonster.cpp in Sources */,
 				D8FEC9CA15F794D800C4EBD4 /* SketchGameScene.cpp in Sources */,
+				D861BE2A15FCAEB9004B697F /* SketchTitleScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

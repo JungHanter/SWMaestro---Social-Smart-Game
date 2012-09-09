@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 #include "SketchGameScene.h"
-#include "sketchtitlescene.h"
+#include "SketchTitleScene.h"
 
 USING_NS_CC;
 
