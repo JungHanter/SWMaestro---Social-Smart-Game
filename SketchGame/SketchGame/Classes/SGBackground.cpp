@@ -16,12 +16,20 @@ void SGBackground::pauseAllBackground() {
     bg_map->pauseSchedulerAndActions();
     bg_mountain->pauseSchedulerAndActions();
     bg_mountain2->pauseSchedulerAndActions();
+    
+    if(bGameScene) {
+        bg_overlay->pauseSchedulerAndActions();
+    }
 }
 
 void SGBackground::resumeAllBackground() {
     bg_map->resumeSchedulerAndActions();
     bg_mountain->resumeSchedulerAndActions();
     bg_mountain2->resumeSchedulerAndActions();
+    
+    if(bGameScene) {
+        bg_overlay->resumeSchedulerAndActions();
+    }
 }
 
 void SGBackground::func_mountainMove() {
@@ -59,6 +67,7 @@ void SGBackground::resetParent(CCLayer* parent) {
     parentLayer->removeChild(bg_castle, false);
     parentLayer->removeChild(bg_overlay, false);
     parentLayer->removeChildByTag(TAG_TEXTURE_BACKGROUND, false);
+    parentLayer->removeChild(this, false);
     parentLayer = parent;
     
     parent->addChild(bg_map,
@@ -75,14 +84,96 @@ void SGBackground::resetParent(CCLayer* parent) {
                      ORDER_FARWAY_CASTLE, TAG_TEXTURE_BACKGROUND);
     parent->addChild(bg_overlay,
                      ORDER_BACKGROUND_OVERLAY, TAG_TEXTURE_BACKGROUND);
+    parent->addChild(this);
 }
 
 void SGBackground::gameStart() {
+    bGameScene = true;
+    
+    overlayState = OVERLAY_NONE;
+    //bg_overlay->schedule(schedule_selector(SGBackground::logic_overlay), OVERLAY_CYCLE);
+    CCArray* pOverlayFrames = CCArray::create();
+    pOverlayFrames->addObject(CCMoveTo::create(0.0f, ccp(-500,-500)));
+    pOverlayFrames->addObject(CCDelayTime::create(GAME_FRAME_SPEED*30*2));
+    pOverlayFrames->addObject(CCMoveTo::create(0.0f, ccp(0,0)));
+    pOverlayFrames->addObject(bg_forest_into_action);
+    pOverlayFrames->addObject(CCRepeat::create(bg_forest_action, 10));
+    pOverlayFrames->addObject(bg_cave_into_action);
+    pOverlayFrames->addObject(CCRepeat::create(bg_cave_action, 7));
+    pOverlayFrames->addObject(bg_cave_out_action);
+    
+    bg_overlay->runAction(CCRepeatForever::create((CCActionInterval*)CCSequence::create(pOverlayFrames)));
+    
+    
     bg_map->runAction(bg_map_action);
     bg_mountain->runAction(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN, -70.0f),
                                               CCSequence::create(CCRotateTo::create(0, 70.0f), CCCallFunc::create(this, callfunc_selector(SGBackground::func_mountainMove)))));
     bg_mountain2->runAction(CCRepeatForever::create(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN*2, -140.0f),
                                                                        CCRotateTo::create(0, 70.0f))));
+
+}
+
+void SGBackground::resetLogic() {
+    CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    
+    bg_overlay->setPosition(ccp(-500,-500));
+    bg_overlay->pauseSchedulerAndActions();
+    bg_overlay->stopAllActions();
+    //bg_overlay->unschedule(schedule_selector(SGBackground::logic_overlay));
+    //bg_overlay->unscheduleAllSelectors();
+    
+    bg_map->stopAllActions();
+    
+    bg_mountain->stopAllActions();
+    bg_mountain2->stopAllActions();
+    bg_mountain->setAnchorPoint(ccp(0.5f, MOUNTAIN_ANCOHR_Y));
+    bg_mountain->setPosition(ccp(winSize.width/2, -440));
+    bg_mountain2->setAnchorPoint(ccp(0.5f, MOUNTAIN_ANCOHR_Y));
+    bg_mountain2->setPosition(ccp(winSize.width/2, -440));
+    bg_mountain2->setRotation(70.0f);
+}
+
+void SGBackground::logic_overlay(float) {
+//    bg_overlay->stopAllActions();
+    CCLog("logic overlay = %d", overlayState);
+    overlayState = 0;
+    switch(overlayState) {
+        case OVERLAY_NONE:
+            bg_overlay->stopAction(bg_non_overlay);
+            bg_overlay->runAction(CCSequence::create(bg_forest_into_action, CCCallFunc::create(this, callfunc_selector(SGBackground::run_overlay))));
+            break;
+        
+        case OVERLAY_FOREST:
+            bg_overlay->stopAction(bg_forest_action);
+            bg_overlay->runAction(CCSequence::create(bg_cave_into_action, CCCallFunc::create(this, callfunc_selector(SGBackground::run_overlay))));
+            break;
+            
+        case OVERLAY_CAVE:
+            bg_overlay->stopAction(bg_cave_action);
+            bg_overlay->runAction(CCSequence::create(bg_cave_out_action, CCCallFunc::create(this, callfunc_selector(SGBackground::run_overlay))));
+            break;
+    }
+}
+
+void SGBackground::run_overlay(){
+    CCLog("lrun overlay");
+    switch (overlayState) {
+        case OVERLAY_NONE:
+            bg_overlay->runAction(bg_forest_action);
+            overlayState = OVERLAY_FOREST;
+            break;
+            
+        case OVERLAY_FOREST:
+            bg_overlay->runAction(bg_cave_action);
+            overlayState = OVERLAY_CAVE;
+            break;
+            
+        case OVERLAY_CAVE:
+            bg_overlay->runAction(bg_non_overlay);
+            overlayState = OVERLAY_NONE;
+            break;
+    }
+    
 }
 
 SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
@@ -127,12 +218,52 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     bg_overlay->setPosition(ccp(-500,-500));
     parentLayer->addChild(bg_overlay, ORDER_BACKGROUND_OVERLAY, TAG_TEXTURE_BACKGROUND);
     
-    //forest into
+    bg_non_overlay = CCPlace::create(ccp(-500,-500));
+    
+    CCArray* pForestFrames = CCArray::create();
+    for(int i=1; i<=7; i++) {
+        pForestFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bg_forest_%d.png", i)->getCString()));
+    }
+    //bg_forest_action = CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pForestFrames, GAME_FRAME_SPEED)));
+    bg_forest_action = CCAnimate::create(CCAnimation::create(pForestFrames, GAME_FRAME_SPEED));
+    bg_forest_action->retain();
+    pForestFrames->release();
+    
     CCArray* pForestIntoFrames = CCArray::create();
     for(int i=1; i<=15; i++) {
-        pForestIntoFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-                                                                          CCString::createWithFormat("bg_forest_into_%d.png", i)->getCString()));
+        pForestIntoFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bg_forest_into_%d.png", i)->getCString()));
     }
+    bg_forest_into_action = CCAnimate::create(CCAnimation::create(pForestIntoFrames, GAME_FRAME_SPEED));
+    bg_forest_into_action->retain();
+    pForestIntoFrames->release();
+    
+    CCArray* pCaveIntoFrames = CCArray::create();
+    for(int i=1; i<=15; i++) {
+        pCaveIntoFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bg_cave_into_%d.png", i)->getCString()));
+    }
+    //bg_cave_action = CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pCaveIntoFrames, GAME_FRAME_SPEED)));
+    bg_cave_into_action = CCAnimate::create(CCAnimation::create(pCaveIntoFrames, GAME_FRAME_SPEED));
+    bg_cave_into_action->retain();
+    pCaveIntoFrames->release();
+    
+    CCArray* pCaveFrames = CCArray::create();
+    for(int i=1; i<=12; i++) {
+        pCaveFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bg_cave_%d.png", i)->getCString()));
+    }
+    bg_cave_action = CCAnimate::create(CCAnimation::create(pCaveFrames, GAME_FRAME_SPEED));
+    bg_cave_action->retain();
+    pCaveFrames->release();
+    
+    CCArray* pCaveOutFrames = CCArray::create();
+    for(int i=1; i<=11; i++) {
+        pCaveOutFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("bg_cave_out_%d.png", i)->getCString()));
+    }
+    bg_cave_out_action = CCAnimate::create(CCAnimation::create(pCaveOutFrames, GAME_FRAME_SPEED));
+    bg_cave_out_action->retain();
+    pCaveOutFrames->release();
+    
+    overlayState = OVERLAY_NONE;
+
     
     //Mountain
     bg_mountain = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_mountain.png"));
@@ -180,22 +311,31 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     bg_castle->runAction(CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pCastleFrames, GAME_FRAME_SPEED))));
     pCastleFrames->release();
     
+    bGameScene = false;
+    
+    parentLayer->addChild(this);
     this->autorelease();
     this->retain();
 }
 
 SGBackground::~SGBackground() {
-    SGBackground *background =
-    SGBackground::sharedInstance(NULL);
-	background->bg_map->release(); background->bg_map=NULL;
-    background->bg_map_action->release(); background->bg_map_action=NULL;
-    background->bg_mountain->release(); background->bg_mountain=NULL;
-    background->bg_mountain2->release(); background->bg_mountain2=NULL;
-    background->bg_cloud->release(); background->bg_cloud=NULL;
-    background->bg_cloud2->release(); background->bg_cloud2=NULL;
-    background->bg_castle->release(); background->bg_castle=NULL;
+	bg_map->release();bg_map=NULL;
+    bg_map_action->release(); bg_map_action=NULL;
+    bg_mountain->release(); bg_mountain=NULL;
+    bg_mountain2->release(); bg_mountain2=NULL;
+    bg_cloud->release(); bg_cloud=NULL;
+    bg_cloud2->release(); bg_cloud2=NULL;
+    bg_castle->release(); bg_castle=NULL;
     
-    background->release();
     
+    bg_overlay->release();
+    bg_forest_action->release();
+    bg_forest_into_action->release();
+    bg_cave_action->release();
+    bg_cave_into_action->release();
+    bg_cave_out_action->release();
+    bg_non_overlay->release();
+    
+    this->release();
     sharedSGBackground = NULL;
 }

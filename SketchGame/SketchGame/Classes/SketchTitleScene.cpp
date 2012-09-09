@@ -12,8 +12,9 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 		
 		background = SGBackground::sharedInstance(this);
 		background->retain();
-		background->pauseAllBackground();
-
+        background->pauseAllBackground();
+        background->resetLogic();
+        
 		titleSprite = CCSprite::create(
 			pSpriteFrameCache->spriteFrameByName(
 				"title.png"));
@@ -32,7 +33,11 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 		CCArray* pKissFrames = CCArray::create();
 		for(int i=1; i<=7; i++) {
 			pKissFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-				CCString::createWithFormat("menu_kiss_%d.png",i)->getCString()));
+                CCString::createWithFormat("menu_kiss_%d.png",i)->getCString()));
+		}
+        for(int i=6; i>=2; i--) {
+			pKissFrames->addObject(pSpriteFrameCache->spriteFrameByName(
+                CCString::createWithFormat("menu_kiss_%d.png",i)->getCString()));
 		}
 		act_char = CCRepeatForever::create(
 			CCAnimate::create(CCAnimation::create(pKissFrames, GAME_FRAME_SPEED)));
@@ -100,8 +105,6 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 
 
 		this->scheduleUpdate();
-        
-        background->pauseAllBackground();
 
 	return true;
 	} else {

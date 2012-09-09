@@ -39,14 +39,14 @@ bool SGMonster::endBattle() {
 
 void SGMonster::confirmBattlePos() {
     if(((SketchGameLayer*)parentLayer)->getGameState() == GAMESTATE_RUNNING) {
+        monsterSprite->stopAllActions();
+        monsterSprite->runAction(act_wait);
         startBattleMode();
     }
 }
 
 void SGMonster::startBattleMode() {
     CCLog("Start Battle");
-    monsterSprite->stopAllActions();
-    monsterSprite->runAction(act_wait);
     ((SketchGameLayer*)parentLayer)->beginBattleMode();
 }
 
@@ -67,7 +67,7 @@ void SGMonster::attackComplete(float dt){
 }
 
 void SGMonster::defend(int damage) {
-	printf("defend monster\n");
+	CCLog("defend monster");
 	monsterSprite->runAction(CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*4), CCCallFunc::create(this, callfunc_selector(SGMonster::func_defend))));
 	nowHP -= damage;
 }
@@ -81,9 +81,11 @@ void SGMonster::appear() {
     monsterSprite->runAction(act_run);
 }
 
-void SGMonster::die() {
+int SGMonster::die() {
     monsterSprite->stopAllActions();
-    monsterSprite->setPosition(ccp(-500,-500));
+    monsterSprite->runAction(act_die);
+    
+    return nDieFrames;
 }
 
 int SGMonster::func_wakeup() {
@@ -107,17 +109,24 @@ bool SGMonster::isWakeupMonster() {
     return bWakeupMonster;
 }
 
-void SGMonster::resetStatus(int hp, int atk) {
+int SGMonster::getInkAmount() {
+    return inkAmount;
+}
+
+void SGMonster::resetStatus(int hp, int atk, int inkAmount) {
+    die_flag = false;
     this->maxHP = hp;
     this->nowHP = this->maxHP;
     this->atk = atk;
+    this->inkAmount = inkAmount;
 }
 
 
-void SGMonster::upgradeStatus(float upHpRate, float upAtkRate) {
+void SGMonster::upgradeStatus(float upHpRate, float upAtkRate, float upInkRate) {
     this->maxHP = (int)(((float)(this->maxHP))*upHpRate);
     this->nowHP = this->maxHP;
     this->atk = (int)(((float)(this->atk))*upAtkRate);
+    this->inkAmount = (int)(((float)(this->inkAmount))*upInkRate);
 }
 
 void SGMonster::pauseSchedulerAndActions() {
@@ -128,7 +137,7 @@ void SGMonster::resumeSchedulerAndActions() {
     monsterSprite->resumeSchedulerAndActions();
 }
 
-SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
+SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, const CCPoint* const movePoints,
                      const int nPoints, CCLayer* const parent) : parentLayer(parent) {
     this->maxHP = hp;
     this->nowHP = this->maxHP;
@@ -204,6 +213,7 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
                                          CCPlace::create(ccp(-500,-500)));
             act_die->retain();
             pDieFrames->release();
+            nDieFrames=9;
             
 			numAttacks = 1;
             act_attack = new SGAttackAction[numAttacks];
@@ -277,6 +287,7 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
                                          CCPlace::create(ccp(-500,-500)));
             act_die->retain();
             pDieFrames->release();
+            nDieFrames=9;
             
 			numAttacks = 2;
             act_attack = new SGAttackAction[numAttacks];
@@ -359,6 +370,7 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
                                          CCPlace::create(ccp(-500,-500)));
             act_die->retain();
             pDieFrames->release();
+            nDieFrames=8;
             
 			numAttacks = 3;
             act_attack = new SGAttackAction[numAttacks];
@@ -452,6 +464,7 @@ SGMonster::SGMonster(int type, int hp, int atk, const CCPoint* const movePoints,
                                          CCPlace::create(ccp(-500,-500)));
             act_die->retain();
             pDieFrames->release();
+            nDieFrames=8;
             
 			numAttacks = 4;
             act_attack = new SGAttackAction[numAttacks];
@@ -511,9 +524,9 @@ int SGMonster::getType() {
     return type;
 }
 
-SGMonster* SGMonster::create(int type, int hp, int atk, const CCPoint* const movePoints,
+SGMonster* SGMonster::create(int type, int hp, int atk, int inkAmount, const CCPoint* const movePoints,
                               const int nPoints, CCLayer* const parent) {
-    SGMonster* monster = new SGMonster(type, hp, atk, movePoints, nPoints, parent);
+    SGMonster* monster = new SGMonster(type, hp, atk, inkAmount, movePoints, nPoints, parent);
     
     monster->autorelease();
     

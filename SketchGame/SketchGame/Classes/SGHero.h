@@ -39,12 +39,14 @@ public:
     
     int attack();  //Attack, return atk
 	void setDefendAction(int ,int =DODGE_LEFT);
-    void defend(int ,int = ATK_DIR_LEFT);
+    bool defend(int ,int = ATK_DIR_LEFT);
     
     void pauseSchedulerAndActions();
     void resumeSchedulerAndActions();
 
     void initHeroState(const SGHeroInfo& info);
+    
+    int getRemainHpDivision();
     
 
 public:
@@ -70,17 +72,18 @@ private:
 
 public:
     void func_wating();
+    void func_stop();
 private:
     void func_defending(CCObject* act);
-
+    void func_die();
+    
 private:
     SGHero(CCLayer* parent);
-    static SGHero* sharedSGHero;
     CCLayer* parentLayer;
     
 public:
     virtual ~SGHero();
-    static SGHero* sharedInstance(CCLayer* parent);
+    static SGHero* create(CCLayer* parent);
 };
 
 

@@ -17,6 +17,8 @@
 #include "SGMonster.h"
 #include "SGHero.h"
 
+using namespace cocos2d;
+
 #define TURN_HERO  1
 #define TURN_MONSTER 2
 
@@ -54,14 +56,19 @@ private:
     void func_createObject();
     void logic_printGameinfo(float);
     
+    void update_hp(float);
+    void update_ink();
+    
+    void gameOver();
+    
     void test();
-
-
  
 private:
 	int turn;
     int gameState;
     int nowObject;
+    int nowInk, score;
+    
     cocos2d::CCPoint HERO_HIDE_ABLE_POS;
     
     SGBackground* background;
@@ -75,7 +82,14 @@ private:
     cocos2d::CCActionInterval* obj_stone_action, *obj_grass_action;
     
     SGHero* hero;
-
+    SGHeroInfo heroInfo;
+    
+    CCSprite* ink_bottle, *ink_move;
+    CCActionInterval* ink_bottle_act[5], *ink_move_act;
+    
+    CCSprite* hp_bar;
+    CCAction* hp_bar_gage[11];
+    
 ///////////////touch//////////////
 protected:
     void ccTouchesBegan(cocos2d::CCSet* pTouches, cocos2d::CCEvent* pEvent);

@@ -8,9 +8,6 @@
 
 #include "SGHero.h"
 #include "defines.h"
-
-SGHero* SGHero::sharedSGHero = NULL;
-
 void SGHero::beginBattle() {
 
 }
@@ -52,7 +49,9 @@ void SGHero::setDefendAction(int act,int dodgeDirection){
             break;
     }
 }
-void SGHero::defend(int damage,int mob_direction) {
+
+//if hero die, return false;
+bool SGHero::defend(int damage,int mob_direction) {
 	//heroSprite->stopAllActions();
 
     CCActionInterval* nowAction;
@@ -82,8 +81,15 @@ void SGHero::defend(int damage,int mob_direction) {
             break;
     }
     
-    heroSprite->runAction(CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*4.f), CCCallFuncO::create(this, callfuncO_selector(SGHero::func_defending), nowAction)));
-    
+    if(nowHP <= 0 ) {
+        heroSprite->runAction(CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*4.f),
+                                                 CCCallFunc::create(this, callfunc_selector(SGHero::func_die))));
+        return false;
+    } else {
+        heroSprite->runAction(CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*4.f),
+                                                 CCCallFuncO::create(this, callfuncO_selector(SGHero::func_defending), nowAction)));
+        return true;;
+    }
 }
 
 
@@ -129,6 +135,22 @@ void SGHero::func_startRun() {
 void SGHero::func_wating() {
     heroSprite->stopAllActions();
     heroSprite->runAction(act_wait);
+}
+
+void SGHero::func_die() {
+    heroSprite->stopAllActions();
+    heroSprite->runAction(act_die);
+}
+
+void SGHero::func_stop() {
+    //heroSprite->pauseSchedulerAndActions();
+    //heroSprite->unscheduleAllSelectors();
+    heroSprite->stopAllActions();
+}
+
+int SGHero::getRemainHpDivision() {
+    int div = (int)(((float)nowHP/(float)maxHP)*10.f);
+    return div;
 }
 
 void SGHero::initHeroState(const SGHeroInfo &info) {
@@ -222,13 +244,27 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
 	CCArray* pHeroActDefendFrames = CCArray::create();
 	for(int i=1; i<=3; i++) {
 		pHeroActDefendFrames->addObject(pSpriteFrameCache->spriteFrameByName(
-			CCString::createWithFormat("hero_defend_%d.png",i)->getCString()));
+            CCString::createWithFormat("hero_defend_%d.png",i)->getCString()));
 	}
     act_defend = CCSequence::create(CCAnimate::create(CCAnimation::create(pHeroActDefendFrames, GAME_FRAME_SPEED)),
                                     CCCallFunc::create(this, callfunc_selector(SGHero::func_wating)));
 	act_defend->retain();
     pHeroActDefendFrames->release();
-
+    
+    CCArray* pHeroActDieFrames = CCArray::create();
+	for(int i=1; i<=3; i++) {
+		pHeroActDieFrames->addObject(pSpriteFrameCache->spriteFrameByName(
+            CCString::createWithFormat("hero_defend_%d.png",i)->getCString()));
+	}
+    for(int i=1; i<=6; i++) {
+		pHeroActDieFrames->addObject(pSpriteFrameCache->spriteFrameByName(
+            CCString::createWithFormat("hero_die_%d.png",i)->getCString()));
+	}
+    //act_die = CCSequence::create(CCCallFunc::create(this, callfunc_selector(SGHero::func_stop)),
+    //                             CCAnimate::create(CCAnimation::create(pHeroActDieFrames, GAME_FRAME_SPEED)));
+    act_die = CCAnimate::create(CCAnimation::create(pHeroActDieFrames, GAME_FRAME_SPEED));
+	act_die->retain();
+    pHeroActDieFrames->release();
 
 	CCArray* pHeroActAttackFrames = CCArray::create();
 	for(int i=1; i<=9; i++) {
@@ -250,19 +286,19 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
 SGHero::~SGHero() {
     heroSprite->release();
     act_run->release();
-
     act_keep->release();
     act_hide->release();
     act_show->release();
+    act_die->release();
+    act_defend->release();
+    act_attack->release();
+    act_block->release();
+    act_wait->release();
     
-    sharedSGHero = NULL;
     this->release();
 }
 
-SGHero* SGHero::sharedInstance(CCLayer* parent) {
-    if(sharedSGHero == NULL) {
-        sharedSGHero = new SGHero(parent);
-    }
+SGHero* SGHero::create(CCLayer* parent) {
     
-    return sharedSGHero;
+    return (new SGHero(parent));
 }

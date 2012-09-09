@@ -12,20 +12,24 @@
 #include "cocos2d.h"
 using namespace cocos2d;
 
-class SGBackground : public CCObject {
+#define OVERLAY_CYCLE GAME_FRAME_SPEED*30*2
+
+class SGBackground : public CCNode {
 
 public:
     void pauseAllBackground();
     void resumeAllBackground();
     
     void gameStart();
-
+    void resetLogic();
+    
 	CCLayer* parentLayer;
 private:
     cocos2d::CCSprite* bg_map;
     cocos2d::CCActionInterval* bg_map_action;
     
     CCSprite* bg_overlay;
+    CCAction* bg_non_overlay;
     CCActionInterval* bg_forest_action, *bg_forest_into_action;
     CCActionInterval* bg_cave_action, *bg_cave_into_action, *bg_cave_out_action;
     
@@ -33,11 +37,17 @@ private:
     cocos2d::CCSprite* bg_cloud, *bg_cloud2;
     cocos2d::CCSprite* bg_castle;
     
+    enum OVERLAY_STATE { OVERLAY_NONE=0, OVERLAY_FOREST, OVERLAY_CAVE, OVERLAY_NUM };
+    int overlayState;
     
+    bool bGameScene;
     
 private:
     void func_mountainMove();
     void func_cloudMove();
+    
+    void logic_overlay(float);
+    void run_overlay();
     
 private:
     SGBackground(CCLayer* parent);

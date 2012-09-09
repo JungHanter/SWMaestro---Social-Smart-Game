@@ -7,6 +7,7 @@
 //
 
 #include "SketchGameScene.h"
+#include "SketchTitleScene.h"
 
 using namespace cocos2d;
 
@@ -92,13 +93,14 @@ void SketchGameLayer::beginBattleMode() {
     gameState = GAMESTATE_BATTLE;
     pauseAllBackground();
     hero->pauseSchedulerAndActions();
+    hero->func_wating();
 	labelTurn->setString("BEGIN BATTLE");
     CCLog("Begin battle");
 	turn = TURN_HERO;
 	
     if(nowMonster->isWakeupMonster()) {
         int n = nowMonster->func_wakeup();
-        this->scheduleOnce(schedule_selector(SketchGameLayer::func_wakeupAfterAttack), GAME_FRAME_SPEED*n);
+        this->scheduleOnce(schedule_selector(SketchGameLayer::func_wakeupAfterAttack), GAME_FRAME_SPEED*(n+2));
     } else {
         nowMonster->func_waiting();
         attackHero();
@@ -117,19 +119,25 @@ void SketchGameLayer::monsterAttack(float )
 	{
 		int dmg;
 		dmg = nowMonster->attack().atk;	
-		hero->defend(dmg);
-		if(hero->dodgeC == 1){
+		
+        if(hero->defend(dmg)) {
+            this->scheduleOnce(schedule_selector(SketchGameLayer::update_hp), GAME_FRAME_SPEED*4.f);
+            
+            if(hero->dodgeC == 1){
 
-			//hero->dodgeC = 0;
+                //hero->dodgeC = 0;
 
-			hero->func_startHide();
-        
-			this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveHide), GAME_FRAME_SPEED*11);
-		}
-		else{
-			this->scheduleOnce(
-				schedule_selector(SketchGameLayer::turnHero),2.0f);
-		}
+                hero->func_startHide();
+            
+                this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveHide), GAME_FRAME_SPEED*11);
+            }
+            else{
+                this->scheduleOnce(
+                    schedule_selector(SketchGameLayer::turnHero),2.0f);
+            }
+        } else {
+            this->scheduleOnce(schedule_selector(SketchGameLayer::gameOver), 5);
+        }
 	}
 }
 
@@ -155,16 +163,13 @@ void SketchGameLayer::attackHero(){
 
 void SketchGameLayer::endBattleMode(float) {
 	labelTurn->setString("END BATTLE");
-	nowMonster->die();
-	nowMonster->endBattle();
-	nowMonster->resetStatus(20,2);
-	gameState = GAMESTATE_RUNNING;
-    resumeAllBackground();
-    hero->resumeSchedulerAndActions();
-	this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun),0.0f);
+	int nFrames = nowMonster->die();
+    
+	this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun),GAME_FRAME_SPEED*nFrames);
     CCLog("End battle");
 	//func_startHeroRun();
 }
+
 
 void SketchGameLayer::hideHeroObject() {
     gameState = GAMESTATE_HIDEWAITING;
@@ -240,7 +245,10 @@ void SketchGameLayer::func_heroMoveShow(float dt) {
 void SketchGameLayer::func_startHeroRun(float dt) {
     gameState = GAMESTATE_RUNNING;
     
+    ink_move->runAction(ink_move_act);
+    
     resumeAllBackground();
+    hero->resumeSchedulerAndActions();
     hero->func_startRun();
 }
 
@@ -248,11 +256,41 @@ int SketchGameLayer::getGameState() {
     return gameState;
 }
 
+void SketchGameLayer::update_hp(float) {
+    int div = hero->getRemainHpDivision();
+    if(div<0) div = 0;
+    CCLog("hpDivision : %d", div);
+    hp_bar->runAction(hp_bar_gage[div]);
+}
+
+void SketchGameLayer::update_ink() {
+    nowInk += nowMonster->getInkAmount();
+    ink_bottle->stopAllActions();
+    if(nowInk > INK_DIV_4) {
+        ink_bottle->runAction(ink_bottle_act[4]);
+    } else if(nowInk > INK_DIV_3) {
+        ink_bottle->runAction(ink_bottle_act[3]);
+    } else if(nowInk > INK_DIV_2) {
+        ink_bottle->runAction(ink_bottle_act[2]);
+    } else if(nowInk > INK_DIV_1) {
+        ink_bottle->runAction(ink_bottle_act[1]);
+    } else if(nowInk > 0) {
+        ink_bottle->runAction(ink_bottle_act[0]);
+    } else  {
+        //
+    }
+}
+
+void SketchGameLayer::gameOver() {
+    CCDirector::sharedDirector()->replaceScene(SketchTitleScene::create());
+    this->release();
+}
+
 void SketchGameLayer::loadGameTexture() {
     CCSpriteFrameCache *pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
-    
+    pSpriteFrameCache->addSpriteFramesWithFile("bg_etc.plist", "bg_etc.png");
     pSpriteFrameCache->addSpriteFramesWithFile("game_etc.plist", "game_etc.png");
     pSpriteFrameCache->addSpriteFramesWithFile("hero.plist", "hero.png");
     pSpriteFrameCache->addSpriteFramesWithFile("mud.plist", "mud.png");
@@ -262,7 +300,6 @@ void SketchGameLayer::loadGameTexture() {
 
     background = SGBackground::sharedInstance(this);
     background->retain();
-
     
     const float coefficient = obj_coefficient(23,4);
     
@@ -331,14 +368,72 @@ void SketchGameLayer::loadGameTexture() {
     pGrassMoveActions->release();
     
     
-    hero = SGHero::sharedInstance(this);
+    //ink
+    nowInk = 0;
+    
+    ink_bottle = CCSprite::create(pSpriteFrameCache->spriteFrameByName("ink_bottle.png"));
+    ink_bottle->retain();
+    ink_bottle->setAnchorPoint(ccp(0,0));
+    ink_bottle->setPosition(ccp(0,0));
+    this->addChild(ink_bottle, ORDER_MENU, TAG_TEXTURE);
+    
+    ink_move = CCSprite::create(pSpriteFrameCache->spriteFrameByName("ink_move_2.png"));
+    ink_move->retain();
+    ink_move->setAnchorPoint(ccp(0,0));
+    ink_move->setPosition(ccp(-500,-500));
+    this->addChild(ink_move, ORDER_MENU, TAG_TEXTURE);
+    CCArray* pInkMoveFrames = CCArray::create();
+    CCArray* pInkMovePos = CCArray::create();
+    for(int i=2; i<=9; i++) {
+        pInkMoveFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("ink_move_%d.png", i)->getCString()));
+    }
+    pInkMovePos->addObject(CCSequence::create(CCPlace::create(ccp(201, 94)), CCDelayTime::create(GAME_FRAME_SPEED)));
+    pInkMovePos->addObject(CCSequence::create(CCPlace::create(ccp(128, 128)), CCDelayTime::create(GAME_FRAME_SPEED)));
+    pInkMovePos->addObject(CCSequence::create(CCPlace::create(ccp(69, 132)), CCDelayTime::create(GAME_FRAME_SPEED)));
+    pInkMovePos->addObject(CCSequence::create(CCPlace::create(ccp(22, 57)), CCDelayTime::create(GAME_FRAME_SPEED)));
+    pInkMovePos->addObject(CCPlace::create(ccp(0,0)));
+    ink_move_act = CCSequence::create(CCSpawn::create(CCAnimate::create(CCAnimation::create(pInkMoveFrames, GAME_FRAME_SPEED)),
+                                                      CCSequence::create(pInkMovePos)),
+                                      CCSpawn::create(CCPlace::create(ccp(-500, -500)), CCCallFunc::create(this, callfunc_selector(SketchGameLayer::update_ink))));
+    ink_move_act->retain();
+    pInkMovePos->release();
+    pInkMoveFrames->release();
+    
+    for(int i=0; i<5; i++) {
+        CCArray* pInkWaveFrames = CCArray::create();
+        for(int j=1; j<=4; j++) {
+            pInkWaveFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("ink_step%d_%d.png", i+1, j)->getCString()));
+        }
+        ink_bottle_act[i] = CCRepeatForever::create(CCAnimate::create(CCAnimation::create(pInkWaveFrames, GAME_FRAME_SPEED)));
+        ink_bottle_act[i]->retain();
+        pInkWaveFrames->release();
+    }
+    
+    
+    //hp
+    hp_bar = CCSprite::create(pSpriteFrameCache->spriteFrameByName("hp_10.png"));
+    hp_bar->retain();
+    hp_bar->setAnchorPoint(ccp(1,0));
+    hp_bar->setPosition(ccp(winSize.width, 0));
+    this->addChild(hp_bar, ORDER_MENU, TAG_TEXTURE);
+    
+    for(int i=0; i<11; i++) {
+        CCArray* pHpGage = CCArray::create();
+        pHpGage->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("hp_%d.png", i)->getCString()));
+        hp_bar_gage[i] = CCAnimate::create(CCAnimation::create(pHpGage, GAME_FRAME_SPEED));
+
+        hp_bar_gage[i]->retain();
+        pHpGage->release();
+    }
+    
+    hero = SGHero::create(this);
     hero->retain();
     
     //dummy testing heroinfo
-    SGHeroInfo info;
-    info.Str=info.Dex=info.Con=info.Luck=10;
+    heroInfo.Str=heroInfo.Dex=heroInfo.Con=heroInfo.Luck=10;
+    heroInfo.ink=0;
     
-    hero->initHeroState(info);
+    hero->initHeroState(heroInfo);
     
 
     CCPoint arrMonsterPoint[23];
@@ -348,16 +443,16 @@ void SketchGameLayer::loadGameTexture() {
         CCLog("%lf, %lf", arrMonsterPoint[i].x, arrMonsterPoint[i].y);
     }
     
-    monsters[MONSTER_TYPE_BAT] = SGMonster::create(MONSTER_TYPE_BAT, 20, 2, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_BAT] = SGMonster::create(MONSTER_TYPE_BAT, 20, 2, 3, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_BAT]->retain();
     
-    monsters[MONSTER_TYPE_MUD] = SGMonster::create(MONSTER_TYPE_MUD, 20, 1, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_MUD] = SGMonster::create(MONSTER_TYPE_MUD, 20, 1, 2, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_MUD]->retain();
     
-    monsters[MONSTER_TYPE_BALL] = SGMonster::create(MONSTER_TYPE_BALL, 40, 4, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_BALL] = SGMonster::create(MONSTER_TYPE_BALL, 40, 4, 4, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_BALL]->retain();
     
-    monsters[MONSTER_TYPE_WING] = SGMonster::create(MONSTER_TYPE_WING, 15, 8, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_WING] = SGMonster::create(MONSTER_TYPE_WING, 15, 8, 5, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_WING]->retain();
     
     nowMonster = monsters[MONSTER_TYPE_BAT];
@@ -377,36 +472,43 @@ void SketchGameLayer::logic_createTarget(float dt) {
 void SketchGameLayer::func_createMonster(float dt) {
     if(gameState != GAMESTATE_RUNNING) return;
     
-    int rnd = rand()%MONSTER_TYPE_NUMBER;
+    int rnd = rand()%(MONSTER_TYPE_NUMBER+3);
     switch (rnd) {
         case MONSTER_TYPE_BAT:
             nowMonster = monsters[MONSTER_TYPE_BAT];
-            nowMonster->resetStatus(20, 2);
+            nowMonster->resetStatus(20, 2, 3);
+            nowMonster->appear();
             break;
             
         case MONSTER_TYPE_BALL:
             nowMonster = monsters[MONSTER_TYPE_BALL];
-            nowMonster->resetStatus(40, 4);
+            nowMonster->resetStatus(40, 4, 4);
+            nowMonster->appear();
             break;
             
         case MONSTER_TYPE_MUD:
             nowMonster = monsters[MONSTER_TYPE_MUD];
-            nowMonster->resetStatus(20, 1);
+            nowMonster->resetStatus(20, 1, 2);
+            nowMonster->appear();
             break;
             
         case MONSTER_TYPE_WING:
             nowMonster = monsters[MONSTER_TYPE_WING];
-            nowMonster->resetStatus(15, 8);
+            nowMonster->resetStatus(15, 8, 5);
+            nowMonster->appear();
+            break;
+            
+        default:
             break;
     }
     
-    nowMonster->appear();
+    
 }
 
 void SketchGameLayer::func_createObject() {
     if(gameState != GAMESTATE_RUNNING) return;
     
-    int rnd = rand()%3;
+    int rnd = rand()%5;
     if(rnd==0) {
         CCLog("Create Stone");
         obj_stone->runAction(obj_stone_action);
@@ -442,15 +544,27 @@ void SketchGameLayer::unloadGameTexture() {
     obj_grass_action->release(); obj_grass_action=NULL;
     
     hero->release(); hero=NULL;
-    delete hero;
     
     monsters[0]->release(); monsters[0]=NULL;
 
-    CCSpriteFrameCache *pFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
+    CCSpriteFrameCache *pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCTextureCache *pTextureCahce = CCTextureCache::sharedTextureCache();
     
-    pFrameCache->removeSpriteFramesFromFile("backgroud_forest.plist");
-    pTextureCahce->removeTextureForKey("background_forest.png");
+    pSpriteFrameCache->removeSpriteFrameByName("game_etc.plist");
+    pSpriteFrameCache->removeSpriteFrameByName("hero.plist");
+    pSpriteFrameCache->removeSpriteFrameByName("mud.plist");
+    pSpriteFrameCache->removeSpriteFrameByName("bat.plist");
+    pSpriteFrameCache->removeSpriteFrameByName("wing.plist");
+    pSpriteFrameCache->removeSpriteFrameByName("ball.plist");
+    pSpriteFrameCache->removeUnusedSpriteFrames();
+    
+    pTextureCahce->removeTextureForKey("game_etc.png");
+    pTextureCahce->removeTextureForKey("hero.png");
+    pTextureCahce->removeTextureForKey("mud.png");
+    pTextureCahce->removeTextureForKey("bat.png");
+    pTextureCahce->removeTextureForKey("wing.png");
+    pTextureCahce->removeTextureForKey("ball.png");
+    pTextureCahce->removeUnusedTextures();
     
     //CCTextureCache::sharedTextureCache()->removeAllTextures();
     //CCSpriteFrameCache::sharedSpriteFrameCache()->removeUnusedSpriteFrames();
@@ -568,7 +682,6 @@ void SketchGameLayer::ccTouchesCancelled(CCSet* pTouches, CCEvent* pEvent) {
 bool SketchGameScene::init() {
     if( CCScene::init() )
     {
-        //GameOverLayer::node() is deprecated
         this->_layer = SketchGameLayer::create();
         this->_layer->retain();
         this->addChild(_layer, 0);
