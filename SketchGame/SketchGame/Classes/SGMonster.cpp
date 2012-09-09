@@ -12,7 +12,6 @@
 
 void SGMonster::beginBattle() {
     //monsterSprite->setColor(ccc3(255, 0, 0));
-    
     monsterSprite->pauseSchedulerAndActions();
 	
 	die_flag = false;
@@ -39,6 +38,7 @@ bool SGMonster::endBattle() {
 void SGMonster::confirmBattlePos() {
     if(((SketchGameLayer*)parentLayer)->getGameState() == GAMESTATE_RUNNING) {
         CCLog("Start Battle");
+        monsterSprite->runAction(act_wait);
         ((SketchGameLayer*)parentLayer)->beginBattleMode();
     }
 }
@@ -61,10 +61,13 @@ void SGMonster::attackComplete(float dt){
 
 void SGMonster::defend(int damage) {
 	printf("defend monster\n");
-	monsterSprite->stopAllActions();
-	monsterSprite->runAction(
-		act_defend);
+	monsterSprite->runAction(CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*4), CCCallFunc::create(this, callfunc_selector(SGMonster::func_defend))));
 	nowHP -= damage;
+}
+
+void SGMonster::func_defend() {
+    monsterSprite->stopAllActions();
+    monsterSprite->runAction(act_defend);
 }
 
 void SGMonster::appear() {

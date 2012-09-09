@@ -51,6 +51,7 @@ public:
 private:
     int selectAttackDirection();
     void func_waiting();
+    void func_defend();
     
 private:
     int type;

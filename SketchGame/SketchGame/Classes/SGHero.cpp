@@ -55,30 +55,35 @@ void SGHero::setDefendAction(int act,int dodgeDirection){
 void SGHero::defend(int damage,int mob_direction) {
 	//heroSprite->stopAllActions();
 
+    CCActionInterval* nowAction;
+    
 	dodgeC = 0;
     switch (defendState) {
-		case DEF_STATE_NONE:
             //what?
             //CCLog("None");
         case DEF_STATE_DEFEND:
-			heroSprite->runAction(act_defend);
+            nowAction = act_defend;
             nowHP-=damage;
             break;
         case DEF_STATE_GUARD:
             nowHP-=(damage/2);
-			heroSprite->runAction(act_block);
+            nowAction = act_block;
             break;
         case DEF_STATE_DODGE:
 			if(mob_direction == dodgeDirection) {
-				nowHP-=damage;
-                heroSprite->runAction(act_defend);
+				defendState = DEF_STATE_DEFEND;
+                nowHP-=damage;
+                nowAction = act_defend;
 			} else {
 				dodgeC = 1;
+                nowAction = act_hide;
 				nowHP-=(damage/10);
-				heroSprite->runAction(act_hide);
 			}
             break;
     }
+    
+    heroSprite->runAction(CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*4.f), CCCallFuncO::create(this, callfuncO_selector(SGHero::func_defending), nowAction)));
+    
 }
 
 
@@ -88,6 +93,13 @@ void SGHero::pauseSchedulerAndActions() {
 
 void SGHero::resumeSchedulerAndActions() {
     heroSprite->resumeSchedulerAndActions();
+}
+
+void SGHero::func_defending(CCObject* _act) {
+    CCLog("");
+    CCActionInterval* act = (CCActionInterval*)_act;
+    heroSprite->stopAllActions();
+    heroSprite->runAction(act);
 }
 
 void SGHero::func_startHide() {
@@ -228,8 +240,7 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
 	act_attack->retain();
     pHeroActAttackFrames->release();
 
-
-	defendState = DEF_STATE_NONE;
+	defendState = DEF_STATE_DEFEND;
 	dodgeDirection = -1;
     
     this->autorelease();

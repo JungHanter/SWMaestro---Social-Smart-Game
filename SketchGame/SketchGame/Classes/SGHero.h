@@ -27,8 +27,7 @@ enum HeroDodgeDirection {
 			DODGE_LEFT, DODGE_RIGHT, DODGE_UP, DODGE_DOWN
 		};
 enum HeroDefendState {
-			DEF_STATE_NONE,
-			DEF_STATE_DEFEND, DEF_STATE_GUARD, DEF_STATE_DODGE
+			DEF_STATE_DEFEND=0, DEF_STATE_GUARD, DEF_STATE_DODGE
 		};
 
 class SGHero : public CCObject {
@@ -71,6 +70,7 @@ private:
 
 private:
     void func_wating();
+    void func_defending(CCObject* act);
 
 private:
     SGHero(CCLayer* parent);

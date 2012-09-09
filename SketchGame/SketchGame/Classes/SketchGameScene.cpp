@@ -138,7 +138,7 @@ void SketchGameLayer::attackHero(){
 	{
 		labelTurn->setString("TURN : MONSTER");
 		turn = TURN_MONSTER;
-		hero->defendState = DEF_STATE_NONE;
+		hero->defendState = DEF_STATE_DEFEND;
 		this->scheduleOnce(schedule_selector(SketchGameLayer::monsterAttack),1.0f);
 	}
 }
@@ -343,6 +343,15 @@ void SketchGameLayer::loadGameTexture() {
     monsters[MONSTER_TYPE_BAT] = SGMonster::create(MONSTER_TYPE_BAT, 20, 2, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_BAT]->retain();
     
+    monsters[MONSTER_TYPE_MUD] = SGMonster::create(MONSTER_TYPE_MUD, 20, 1, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_MUD]->retain();
+    
+    monsters[MONSTER_TYPE_BALL] = SGMonster::create(MONSTER_TYPE_BALL, 40, 4, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_BALL]->retain();
+    
+    monsters[MONSTER_TYPE_WING] = SGMonster::create(MONSTER_TYPE_WING, 15, 8, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_WING]->retain();
+    
     nowMonster = monsters[MONSTER_TYPE_BAT];
     
     this->schedule(schedule_selector(SketchGameLayer::logic_createTarget), GAME_FRAME_SPEED*30.0f);
@@ -360,13 +369,30 @@ void SketchGameLayer::logic_createTarget(float dt) {
 void SketchGameLayer::func_createMonster(float dt) {
     if(gameState != GAMESTATE_RUNNING) return;
     
-    int rnd = rand()%1;
-    if(rnd==0) {
-        CCLog("Create Spider");
-        nowMonster->resetStatus(20, 2);
-        nowMonster->appear();
-        //this->scheduleOnce(schedule_selector(SketchGameLayer::test), GAME_FRAME_SPEED*12);
+    int rnd = rand()%MONSTER_TYPE_NUMBER;
+    switch (rnd) {
+        case MONSTER_TYPE_BAT:
+            nowMonster = monsters[MONSTER_TYPE_BAT];
+            nowMonster->resetStatus(20, 2);
+            break;
+            
+        case MONSTER_TYPE_BALL:
+            nowMonster = monsters[MONSTER_TYPE_BALL];
+            nowMonster->resetStatus(40, 4);
+            break;
+            
+        case MONSTER_TYPE_MUD:
+            nowMonster = monsters[MONSTER_TYPE_MUD];
+            nowMonster->resetStatus(20, 1);
+            break;
+            
+        case MONSTER_TYPE_WING:
+            nowMonster = monsters[MONSTER_TYPE_WING];
+            nowMonster->resetStatus(15, 8);
+            break;
     }
+    
+    nowMonster->appear();
 }
 
 void SketchGameLayer::func_createObject() {
