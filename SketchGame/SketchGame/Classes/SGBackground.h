@@ -18,6 +18,7 @@ public:
     void pauseAllBackground();
     void resumeAllBackground();
 
+	CCLayer* const parentLayer;
 private:
     cocos2d::CCSprite* bg_map;
     cocos2d::CCActionInterval* bg_map_action;
@@ -25,7 +26,7 @@ private:
     cocos2d::CCSprite* bg_cloud, *bg_cloud2;
     cocos2d::CCSprite* bg_castle;
     
-    CCLayer* const parentLayer;
+    
     
 private:
     void func_mountainMove();
@@ -34,10 +35,12 @@ private:
 private:
     SGBackground(CCLayer* parent);
     static SGBackground* sharedSGBackground;
-    
-public:
     virtual ~SGBackground();
+
+public:
+    
     static SGBackground* sharedInstance(CCLayer *parent);
+	static void releaseInstance();
 };
 
 #endif /* defined(__SketchGame_TouchInput__SGBackground__) */

@@ -241,7 +241,7 @@ void SketchGameLayer::loadGameTexture() {
 
     background = SGBackground::sharedInstance(this);
     background->retain();
-    
+
     
     const float coefficient = obj_coefficient(23,4);
     
@@ -413,7 +413,7 @@ void SketchGameLayer::unloadGameTexture() {
     this->removeChildByTag(TAG_TEXTURE, true);
     
     background->release(); background=NULL;
-    delete background;
+//    delete background;
 
     obj_stone->release(); obj_stone=NULL;
     obj_stone_action->release(); obj_stone_action=NULL;

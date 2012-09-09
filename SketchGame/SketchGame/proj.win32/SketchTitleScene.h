@@ -19,6 +19,14 @@ public:
 	 LAYER_CREATE_FUNC(SketchTitleLayer);
 
 private:
+
+	void btnStart(CCObject *sender);
+	void btnUpgrade(CCObject *sender);
+	void btnRanking(CCObject *sender);
+	void btnOption(CCObject *sender);
+	void btnExit(CCObject *sender);
+
+private:
 	SGBackground* background;
 
 	CCSprite *titleSprite;

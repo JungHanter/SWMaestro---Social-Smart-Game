@@ -1,5 +1,6 @@
 #include "SketchTitleScene.h"
 
+#include "SketchGameScene.h"
 
 bool SketchTitleLayer::init(){
 
@@ -55,6 +56,14 @@ bool SketchTitleLayer::init(){
 			 "option",
 			 "ranking",
 			 "exit"};
+		SEL_MenuHandler itemsSelector[] = 
+			{
+			menu_selector(SketchTitleLayer::btnStart),
+			menu_selector(SketchTitleLayer::btnUpgrade),
+			menu_selector(SketchTitleLayer::btnOption),
+			menu_selector(SketchTitleLayer::btnRanking),
+			menu_selector(SketchTitleLayer::btnExit)
+			};
 		CCArray *itemArray = CCArray::create();
 
 		for(int i=0;i<MAX_ITEM;i++){
@@ -72,7 +81,9 @@ bool SketchTitleLayer::init(){
 				CCSprite::create(pSpriteFrameCache->spriteFrameByName(
 								normalSprite)),
 				CCSprite::create(pSpriteFrameCache->spriteFrameByName(
-								selectedSprite))
+								selectedSprite)),
+								this,
+								itemsSelector[i]
 								);
 			spriteItem[i]->setPosition(
 						ccp(380,40+55*(MAX_ITEM-i-1)));
@@ -123,6 +134,21 @@ void SketchTitleLayer::update(float dt){
 	
 }
 
+void SketchTitleLayer::btnStart(CCObject *sender){
+	CCScene *scene = SketchGameScene::create();
+	CCDirector::sharedDirector()->runWithScene(
+		scene);
+	//pDirector->runWithScene(pScene);
+}
+void SketchTitleLayer::btnUpgrade(CCObject *sender){
+}
+void SketchTitleLayer::btnRanking(CCObject *sender){
+}
+void SketchTitleLayer::btnOption(CCObject *sender){
+}
+void SketchTitleLayer::btnExit(CCObject *sender){
+}
+
 bool SketchTitleScene::init(){
 
 	this->_layer = SketchTitleLayer::create();
@@ -131,3 +157,4 @@ bool SketchTitleScene::init(){
 
 	return true;
 }
+

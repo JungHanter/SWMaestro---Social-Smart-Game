@@ -41,6 +41,23 @@ SGBackground* SGBackground::sharedInstance(CCLayer* parent) {
     if(sharedSGBackground==NULL) {
         sharedSGBackground = new SGBackground(parent);
     }
+	else if(parent != sharedSGBackground->parentLayer){
+		parent->addChild(
+			sharedSGBackground->bg_map,
+			ORDER_BACKGROUND, TAG_TEXTURE_BACKGROUND);
+		parent->addChild(
+			sharedSGBackground->bg_cloud,
+			ORDER_FARAWAY_CLOUD, TAG_TEXTURE_BACKGROUND);
+		parent->addChild(
+			sharedSGBackground->bg_mountain,
+			ORDER_FARAWAY_MOUNTAIN, TAG_TEXTURE_BACKGROUND);
+		parent->addChild(
+			sharedSGBackground->bg_mountain2,
+			ORDER_FARAWAY_MOUNTAIN, TAG_TEXTURE_BACKGROUND);
+		parent->addChild(
+			sharedSGBackground->bg_castle,
+			ORDER_FARWAY_CASTLE, TAG_TEXTURE_BACKGROUND);
+	}
     return sharedSGBackground;
 }
 
@@ -129,15 +146,21 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
 }
 
 SGBackground::~SGBackground() {
-    bg_map->release(); bg_map=NULL;
-    bg_map_action->release(); bg_map_action=NULL;
-    bg_mountain->release(); bg_mountain=NULL;
-    bg_mountain2->release(); bg_mountain2=NULL;
-    bg_cloud->release(); bg_cloud=NULL;
-    bg_cloud2->release(); bg_cloud2=NULL;
-    bg_castle->release(); bg_castle=NULL;
     
-    this->release();
+}
+
+void SGBackground::releaseInstance(){
+	SGBackground *background = 
+		SGBackground::sharedInstance(NULL);
+	background->bg_map->release(); background->bg_map=NULL;
+    background->bg_map_action->release(); background->bg_map_action=NULL;
+    background->bg_mountain->release(); background->bg_mountain=NULL;
+    background->bg_mountain2->release(); background->bg_mountain2=NULL;
+    background->bg_cloud->release(); background->bg_cloud=NULL;
+    background->bg_cloud2->release(); background->bg_cloud2=NULL;
+    background->bg_castle->release(); background->bg_castle=NULL;
+    
+    background->release();
     
     sharedSGBackground = NULL;
 }
