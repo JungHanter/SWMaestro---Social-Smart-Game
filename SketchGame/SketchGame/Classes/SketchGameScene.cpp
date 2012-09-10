@@ -69,7 +69,6 @@ void SketchGameLayer::beginBattleMode() {
     pauseAllBackground();
     hero->pauseSchedulerAndActions();
     hero->func_wating();
-	labelTurn->setString("BEGIN BATTLE");
     CCLog("Begin battle");
 	turn = TURN_HERO;
 	
@@ -107,13 +106,13 @@ void SketchGameLayer::func_watingHeroDefendInput(float) {
 
 void SketchGameLayer::defendHero(SGAttackInfo info, int defState) {
     if (hero->defend(info.atk, defState)) {
-        this->scheduleOnce(schedule_selector(SketchGameLayer::update_hp), GAME_FRAME_SPEED*info.nFrames);
+        this->scheduleOnce(schedule_selector(SketchGameLayer::update_hp), GAME_FRAME_SPEED*(info.nFrames-2));
         if(defState==DEF_STATE_DODGE)
             this->scheduleOnce(schedule_selector(SketchGameLayer::turnHero),4.0f);
         else
             this->scheduleOnce(schedule_selector(SketchGameLayer::turnHero),2.0f);
     } else {
-        //hp_bar->runAction(hp_bar_gage[0]);
+        hp_bar->runAction(hp_bar_gage[0]);
         this->scheduleOnce(schedule_selector(SketchGameLayer::gameOver), 5);
     }
 }
@@ -121,7 +120,6 @@ void SketchGameLayer::defendHero(SGAttackInfo info, int defState) {
 void SketchGameLayer::turnHero(float)
 {
 	turn = TURN_HERO;
-	labelTurn->setString("TURN : HERO");
 
 	attackHero();
 }
@@ -131,15 +129,12 @@ void SketchGameLayer::attackHero(){
 		this->scheduleOnce(schedule_selector(SketchGameLayer::endBattleMode),2.0f);
 	else
 	{
-		labelTurn->setString("TURN : MONSTER");
 		turn = TURN_MONSTER;
-		hero->defendState = DEF_STATE_DEFEND;
 		this->scheduleOnce(schedule_selector(SketchGameLayer::monsterAttack),1.0f);
 	}
 }
 
 void SketchGameLayer::endBattleMode(float) {
-	labelTurn->setString("END BATTLE");
 	int nFrames = nowMonster->die();
     
 	this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun),GAME_FRAME_SPEED*nFrames);
@@ -190,34 +185,14 @@ void SketchGameLayer::func_heroMoveHide(float dt) {
     //pauseAllBackground();
     hero->func_MoveHide();
     
-    if(gameState != GAMESTATE_BATTLE) {
-        this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*8);
-        return;
-    }
-    
-	if(hero->dodgeC == 0)
-		this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*8);
-	else
-		this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*1);
+    this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveShow), GAME_FRAME_SPEED*8);
 
 }
 
 void SketchGameLayer::func_heroMoveShow(float dt) {
     hero->func_MoveShow();
     
-    if(gameState != GAMESTATE_BATTLE) {
-        this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
-        return;
-    }
-    
-	if(hero->dodgeC == 0)
-		this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
-	else{
-		hero->dodgeC = 0;
-		this->scheduleOnce(
-				schedule_selector(SketchGameLayer::turnHero),2.0f);
-	}
-
+    this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun), GAME_FRAME_SPEED*11);
 }
 
 void SketchGameLayer::func_startHeroRun(float dt) {
@@ -530,7 +505,6 @@ void SketchGameLayer::func_createMonster(float dt) {
     if(gameState != GAMESTATE_RUNNING) return;
     
     int rnd = rand()%(MONSTER_TYPE_NUMBER+2);
-    //rnd = MONSTER_TYPE_MUD;
     switch (rnd) {
         case MONSTER_TYPE_BAT:
             nowMonster = monsters[MONSTER_TYPE_BAT];
@@ -674,13 +648,6 @@ bool SketchGameLayer::init() {
         nowObject = OBJECT_NONE;
 
         loadGameTexture();
-        
-		labelTurn = CCLabelTTF::create("TURN","Arial",35);
-		labelTurn->setColor(ccc3(0,0,0));
-		labelTurn->setAnchorPoint(ccp(0,1));
-		labelTurn->setPosition(ccp(0,320));
-
-		this->addChild(labelTurn,23);
 
         return true;
     } else {

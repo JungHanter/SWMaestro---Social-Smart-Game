@@ -8,48 +8,11 @@
 
 #include "SGHero.h"
 #include "defines.h"
-void SGHero::beginBattle() {
-
-}
-
-void SGHero::endBattle() {
-    
-}
-
-void SGHero::hideHeroObject() {
-    
-}
-
-void SGHero::confirmBattleMode() {
-    
-}
-
 int SGHero::attack() {
 	heroSprite->stopAllActions();
 
 	heroSprite->runAction(act_attack);
     return atk;
-}
-
-void SGHero::setDefendAction(int act,int dodgeDirection){
-	printf("Hero -> setDefendAction / act=%d, dodgeDirection=%d\n",
-		act,dodgeDirection);
-	//heroSprite->stopAllActions();
-	switch (act) {
-        case DEF_STATE_DEFEND:
-			defendState = DEF_STATE_DEFEND;
-	//		heroSprite->runAction(act_wait);
-            break;
-        case DEF_STATE_GUARD:
-			defendState = DEF_STATE_GUARD;
-		//	heroSprite->runAction(act_defend);
-            break;
-        case DEF_STATE_DODGE:
-			defendState = DEF_STATE_DODGE;
-			this->dodgeDirection = dodgeDirection;
-	//		heroSprite->runAction(act_hide);
-            break;
-    }
 }
 
 //if hero die, return false;
@@ -302,7 +265,6 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
 	act_attack->retain();
     pHeroActAttackFrames->release();
 
-	defendState = DEF_STATE_DEFEND;
 	dodgeDirection = -1;
     
     this->autorelease();

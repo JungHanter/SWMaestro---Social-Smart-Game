@@ -90,7 +90,6 @@ private:
     
     cocos2d::CCPoint HERO_HIDE_ABLE_POS;
     
-    CCLabelTTF *labelTurn;
     CCLabelAtlas* scoreLabel;
     CCScene* parent;
     PauseGameLayer* pauseLayer;

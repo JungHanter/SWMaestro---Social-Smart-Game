@@ -32,13 +32,7 @@ enum HeroDefendState {
 
 class SGHero : public CCObject {
 public:
-    void hideHeroObject();
-    void confirmBattleMode();
-    void beginBattle();
-    void endBattle();
-    
     int attack();  //Attack, return atk
-	void setDefendAction(int ,int =DODGE_LEFT);
     bool defend(int damage, int def_state);
     
     void pauseSchedulerAndActions();
@@ -54,9 +48,6 @@ public:
     void func_MoveHide();
     void func_MoveShow();
     void func_startRun();
-
-	int defendState;
-	int dodgeC;
 
 private:
     int actState;

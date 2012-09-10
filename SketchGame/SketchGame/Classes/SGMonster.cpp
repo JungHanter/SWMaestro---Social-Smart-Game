@@ -81,10 +81,6 @@ SGAttackInfo SGMonster::attack() {
     
 	return nowAttackInfo;
 }
-void SGMonster::attackComplete(float dt){
-	monsterSprite->stopAllActions();
-	monsterSprite->runAction(act_run);
-}
 
 void SGMonster::defend(int damage) {
 	CCLog("defend monster");

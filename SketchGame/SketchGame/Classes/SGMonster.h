@@ -55,7 +55,6 @@ public:
     SGAttackInfo getNowAttackInfo();
     int getNowAttackState();
     
-	void attackComplete(float dt);
     void resetStatus(int hp, int atk, int inkAmount, int scoreAmount);
     void upgradeStatus(float upHpRate, float upAtkRate, float upInkRate, float upScoreRate);
     
