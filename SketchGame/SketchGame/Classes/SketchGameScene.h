@@ -43,12 +43,14 @@ private:
 	void turnHero(float);
     void endBattleMode(float );
 	void attackHero();
+    void defendHero(SGAttackInfo info, int defState);
     
     void func_startHeroHide(float);
     void func_heroMoveHide(float);
     void func_heroMoveShow(float);
     void func_startHeroRun(float);
     
+    void func_watingHeroDefendInput(float);
     void func_wakeupAfterAttack(float);
     void func_inkMove(float);
     
@@ -82,6 +84,7 @@ private:
     int nowObject;
     int nowInk;
     int score, scoreAddAmount;
+    bool bDragSuccess;
     bool bPlaying;
     bool bPressPauseBtn;
     
@@ -120,7 +123,7 @@ protected:
 private:
     cocos2d::CCPoint oldTouchPoint;
     bool bTouching;
-    enum DragDirection { DIR_UP, DIR_DOWN, DIR_LEFT, DIR_RIGHT };
+    enum DragDirection { DIR_LEFT, DIR_RIGHT, DIR_UP, DIR_DOWN };
     
 /////////////basic/////////////
 public:

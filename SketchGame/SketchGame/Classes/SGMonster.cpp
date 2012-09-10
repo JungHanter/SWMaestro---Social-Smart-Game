@@ -51,15 +51,35 @@ void SGMonster::startBattleMode() {
 }
 
 SGAttackInfo SGMonster::attack() {
-    SGAttackInfo info;
-    info.atk = this->atk;
-    info.atkDir = selectAttackDirection();
+    atkState = MONSTER_ATK_PREV;
+    
+    int actWhat = selectAttack();
+    
+    CCLog("Monster Attack Dir = %d", actWhat);
+    
+    nowAttackInfo.atk = this->atk;
+    nowAttackInfo.atkDir = act_attack[actWhat].atkDir;
+    nowAttackInfo.nFrames = act_attack[actWhat].nFrames;
+    
+    int frame1, frame2;
+    frame1 = nowAttackInfo.nFrames / 2;
+    if(nowAttackInfo.nFrames%2 == 0) frame2 = frame1;
+    else frame2 = frame1 + 1;
     
     monsterSprite->stopAllActions();
-	monsterSprite->runAction(
-		act_attack[info.atkDir].act_attack);
+    func_attack_first();
+    CCArray* pAttackChange = CCArray::create();
+    pAttackChange->retain();
+    pAttackChange->addObject(CCDelayTime::create(GAME_FRAME_SPEED*(frame1)));
+    pAttackChange->addObject(CCCallFunc::create(this, callfunc_selector(SGMonster::func_attack_second)));
+    pAttackChange->addObject(CCDelayTime::create(GAME_FRAME_SPEED*(frame2)));
+    pAttackChange->addObject(CCCallFunc::create(this, callfunc_selector(SGMonster::func_attack_end)));
+    pAttackChange->addObject(CCDelayTime::create(GAME_FRAME_SPEED));
+	monsterSprite->runAction(CCSpawn::create(act_attack[actWhat].act_attack,
+                                             CCSequence::create(pAttackChange)));
+    pAttackChange->release();
     
-	return info;
+	return nowAttackInfo;
 }
 void SGMonster::attackComplete(float dt){
 	monsterSprite->stopAllActions();
@@ -95,9 +115,9 @@ int SGMonster::func_wakeup() {
     return nWakeupFrames;
 }
 
-int SGMonster::selectAttackDirection() {
+int SGMonster::selectAttack() {
     //test
-	return rand()%this->numAttacks;
+	return rand()%numAttacks;
 }
 
 void SGMonster::func_waiting() {
@@ -117,6 +137,14 @@ int SGMonster::getScoreAmount() {
     return scoreAmount;
 }
 
+SGAttackInfo SGMonster::getNowAttackInfo() {
+    return nowAttackInfo;
+}
+
+int SGMonster::getNowAttackState() {
+    return atkState;
+}
+
 void SGMonster::resetStatus(int hp, int atk, int inkAmount, int scoreAmount) {
     die_flag = false;
     this->maxHP = hp;
@@ -134,6 +162,21 @@ void SGMonster::upgradeStatus(float upHpRate, float upAtkRate, float upInkRate, 
     this->inkAmount = (int)(((float)(this->inkAmount))*upInkRate);
     this->scoreAmount = (int)(((float)(this->scoreAmount))*upScoreRate);
 
+}
+
+void SGMonster::func_attack_first() {
+    CCLog("monster attack - enable dodge");
+    atkState = MONSTER_ATK_FIRST;
+}
+
+void SGMonster::func_attack_second() {
+    CCLog("monster attack - enable guard");
+    atkState = MONSTER_ATK_SECOND;
+}
+
+void SGMonster::func_attack_end() {
+    CCLog("monster attack - end");
+    atkState = MONSTER_ATK_POST;
 }
 
 void SGMonster::pauseSchedulerAndActions() {
@@ -236,6 +279,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             act_attack[0].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackRightFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[0].act_attack->retain();
+            act_attack[0].nFrames = 7;
             pAttackRightFrames->release();
             
             break;
@@ -308,6 +352,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
 			act_attack[0].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackLeftFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[0].act_attack->retain();
+            act_attack[0].nFrames = 9;
             pAttackLeftFrames->release();
             
             CCArray* pAttackRightFrames = CCArray::create();
@@ -319,6 +364,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             act_attack[1].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackRightFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[1].act_attack->retain();
+            act_attack[1].nFrames = 9;
             pAttackRightFrames->release();
             
             break;
@@ -391,6 +437,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
 			act_attack[0].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackLeftFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[0].act_attack->retain();
+            act_attack[0].nFrames = 5;
             pAttackLeftFrames->release();
             
             CCArray* pAttackRightFrames = CCArray::create();
@@ -402,6 +449,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             act_attack[1].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackRightFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[1].act_attack->retain();
+            act_attack[1].nFrames = 5;
             pAttackRightFrames->release();
             
             CCArray* pAttackUpFrames = CCArray::create();
@@ -415,6 +463,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             act_attack[2].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackUpFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[2].act_attack->retain();
+            act_attack[2].nFrames = 5;
             pAttackUpFrames->release();
             
             break;
@@ -485,6 +534,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
 			act_attack[0].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackLeftFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[0].act_attack->retain();
+            act_attack[0].nFrames = 7;
             pAttackLeftFrames->release();
             
             CCArray* pAttackRightFrames = CCArray::create();
@@ -496,6 +546,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             act_attack[1].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackRightFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[1].act_attack->retain();
+            act_attack[1].nFrames = 7;
             pAttackRightFrames->release();
             
             CCArray* pAttackUpFrames = CCArray::create();
@@ -507,6 +558,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             act_attack[2].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackUpFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[2].act_attack->retain();
+            act_attack[2].nFrames = 5;
             pAttackUpFrames->release();
             
             CCArray* pAttackDownFrames = CCArray::create();
@@ -517,6 +569,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             act_attack[3].act_attack = CCSequence::create(CCAnimate::create(CCAnimation::create(pAttackDownFrames,GAME_FRAME_SPEED)),
                                                           CCCallFunc::create(this, callfunc_selector(SGMonster::func_waiting)));
 			act_attack[3].act_attack->retain();
+            act_attack[3].nFrames = 4;
             pAttackDownFrames->release();
             break;
         }

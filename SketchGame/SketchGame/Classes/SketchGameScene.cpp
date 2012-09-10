@@ -35,56 +35,31 @@ void SketchGameLayer::tapInputEnded(const CCPoint& point) {
 }
 
 void SketchGameLayer::dragInputEnded(const int dragDirection) {
-	switch (dragDirection) {
-		case DIR_UP:
-			if(gameState == GAMESTATE_BATTLE){
-				if(turn == TURN_HERO)
-				{
-					
-				}
-				else if(turn == TURN_MONSTER){
-					hero->setDefendAction(DEF_STATE_DODGE,DODGE_UP);
-				}
-			}
-			break;
-
-		case DIR_DOWN:
-			if(gameState == GAMESTATE_BATTLE){
-				if(turn == TURN_HERO){
-				}
-				else if(turn == TURN_MONSTER){
-					hero->setDefendAction(
-						DEF_STATE_DODGE,
-						DODGE_DOWN);
-				}
-			}
-			break;
-		case DIR_LEFT:
-			if(gameState == GAMESTATE_BATTLE){
-				if(turn == TURN_HERO){
-
-				}
-				else if(turn == TURN_MONSTER){
-					hero->setDefendAction(
-						DEF_STATE_DODGE,
-						DODGE_LEFT);
-				}
-			}
-			break;
-
-        case DIR_RIGHT:
-			if(gameState == GAMESTATE_BATTLE){
-				if(turn == TURN_HERO){
-
-				}
-				else if(turn == TURN_MONSTER){
-					hero->setDefendAction(
-						DEF_STATE_DODGE,
-						DODGE_RIGHT);
-				}
-			}
-            break;
-	}
+    if((gameState==GAMESTATE_BATTLE && turn == TURN_MONSTER) && !bDragSuccess) {
+        
+        SGAttackInfo nowInfo = nowMonster->getNowAttackInfo();
+        
+        CCLog("drag dir = %d, monsterdir = %d", dragDirection, nowInfo.atkDir);
+        
+        switch (nowMonster->getNowAttackState()) {
+            case MONSTER_ATK_FIRST:
+                if(nowInfo.atkDir == dragDirection) {
+                    CCLog("Hero dodge");
+                    bDragSuccess = true;
+                    defendHero(nowInfo, DEF_STATE_DODGE);
+                }
+                break;
+                
+            case MONSTER_ATK_SECOND:
+                if(nowInfo.atkDir == dragDirection) {
+                    CCLog("Heor guard");
+                    bDragSuccess = true;
+                    defendHero(nowInfo, DEF_STATE_GUARD);
+                }
+                break;
+        }
+        
+    }
 }
 
 
@@ -112,34 +87,35 @@ void SketchGameLayer::func_wakeupAfterAttack(float) {
     attackHero();
 }
 
-////////private method///////
 void SketchGameLayer::monsterAttack(float )
 {
 	if(turn == TURN_MONSTER)
 	{
-		int dmg;
-		dmg = nowMonster->attack().atk;	
+        bDragSuccess = false;
+		SGAttackInfo info = nowMonster->attack();
 		
-        if(hero->defend(dmg)) {
-            this->scheduleOnce(schedule_selector(SketchGameLayer::update_hp), GAME_FRAME_SPEED*4.f);
-            
-            if(hero->dodgeC == 1){
-
-                //hero->dodgeC = 0;
-
-                hero->func_startHide();
-            
-                this->scheduleOnce(schedule_selector(SketchGameLayer::func_heroMoveHide), GAME_FRAME_SPEED*11);
-            }
-            else{
-                this->scheduleOnce(
-                    schedule_selector(SketchGameLayer::turnHero),2.0f);
-            }
-        } else {
-            //hp_bar->runAction(hp_bar_gage[0]);
-            this->scheduleOnce(schedule_selector(SketchGameLayer::gameOver), 5);
-        }
+        this->scheduleOnce(schedule_selector(SketchGameLayer::func_watingHeroDefendInput), GAME_FRAME_SPEED*info.nFrames);
 	}
+}
+
+void SketchGameLayer::func_watingHeroDefendInput(float) {
+    if(!bDragSuccess) {
+        CCLog("hero defend");
+        defendHero(nowMonster->getNowAttackInfo(), DEF_STATE_DEFEND);
+    }
+}
+
+void SketchGameLayer::defendHero(SGAttackInfo info, int defState) {
+    if (hero->defend(info.atk, defState)) {
+        this->scheduleOnce(schedule_selector(SketchGameLayer::update_hp), GAME_FRAME_SPEED*info.nFrames);
+        if(defState==DEF_STATE_DODGE)
+            this->scheduleOnce(schedule_selector(SketchGameLayer::turnHero),4.0f);
+        else
+            this->scheduleOnce(schedule_selector(SketchGameLayer::turnHero),2.0f);
+    } else {
+        //hp_bar->runAction(hp_bar_gage[0]);
+        this->scheduleOnce(schedule_selector(SketchGameLayer::gameOver), 5);
+    }
 }
 
 void SketchGameLayer::turnHero(float)
@@ -331,6 +307,7 @@ void SketchGameLayer::loadGameTexture() {
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     
     bPlaying = true;
+    bDragSuccess = false;
     
     pSpriteFrameCache->addSpriteFramesWithFile("bg_etc.plist", "bg_etc.png");
     pSpriteFrameCache->addSpriteFramesWithFile("game_etc.plist", "game_etc.png");
@@ -552,7 +529,8 @@ void SketchGameLayer::logic_createTarget(float dt) {
 void SketchGameLayer::func_createMonster(float dt) {
     if(gameState != GAMESTATE_RUNNING) return;
     
-    int rnd = rand()%(MONSTER_TYPE_NUMBER+3);
+    int rnd = rand()%(MONSTER_TYPE_NUMBER+2);
+    //rnd = MONSTER_TYPE_MUD;
     switch (rnd) {
         case MONSTER_TYPE_BAT:
             nowMonster = monsters[MONSTER_TYPE_BAT];
