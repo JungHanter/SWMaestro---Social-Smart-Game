@@ -63,8 +63,6 @@ bool SGHero::defend(int damage,int mob_direction) {
     
 	dodgeC = 0;
     switch (defendState) {
-            //what?
-            //CCLog("None");
         case DEF_STATE_DEFEND:
             nowAction = act_defend;
             nowHP-=damage;
@@ -107,7 +105,8 @@ void SGHero::resumeSchedulerAndActions() {
 }
 
 void SGHero::func_defending(CCObject* _act) {
-    CCLog("");
+    printf("Hero -> defending / act=%x",
+		_act);
     CCActionInterval* act = (CCActionInterval*)_act;
     heroSprite->stopAllActions();
     heroSprite->runAction(act);
