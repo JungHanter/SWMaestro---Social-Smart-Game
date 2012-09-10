@@ -8,9 +8,9 @@
 
 #include "SketchGameScene.h"
 #include "SketchTitleScene.h"
-
+#include "SGUpgradeScene.h"
 using namespace cocos2d;
-
+//SGHeroInfo info_upgrade;
 ////////////////////////////SktechGameLayer class////////////////////////
 
 ////////public method////////
@@ -503,6 +503,9 @@ void SketchGameLayer::loadGameTexture() {
     //dummy testing heroinfo
     heroInfo.Str=heroInfo.Dex=heroInfo.Con=heroInfo.Luck=10;
     heroInfo.ink=0;
+	heroInfo.Str += info_upgrade.Str;
+	heroInfo.Dex += info_upgrade.Dex;
+	heroInfo.Luck += info_upgrade.Luck;
     
     hero->initHeroState(heroInfo);
     

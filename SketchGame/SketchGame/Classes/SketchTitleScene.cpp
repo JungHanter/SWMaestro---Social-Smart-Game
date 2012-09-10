@@ -1,6 +1,8 @@
 #include "SketchTitleScene.h"
-
 #include "SketchGameScene.h"
+#include "SGOptionScene.h"
+#include "SGUpgradeScene.h"
+
 
 bool SketchTitleLayer::init(){
 if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
@@ -194,10 +196,14 @@ void SketchTitleLayer::btnStart(CCObject *sender){
 	//pDirector->runWithScene(pScene);
 }
 void SketchTitleLayer::btnUpgrade(CCObject *sender){
+	CCScene *scene = SGUpgradeScene::scene();
+	CCDirector::sharedDirector()->replaceScene(scene);
 }
 void SketchTitleLayer::btnRanking(CCObject *sender){
 }
 void SketchTitleLayer::btnOption(CCObject *sender){
+	CCScene *scene = SGOptionScene::scene();
+	CCDirector::sharedDirector()->replaceScene(scene);
 }
 void SketchTitleLayer::btnExit(CCObject *sender){
     CCDirector::sharedDirector()->end();
