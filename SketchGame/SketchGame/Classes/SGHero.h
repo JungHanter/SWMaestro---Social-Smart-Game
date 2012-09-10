@@ -27,19 +27,13 @@ enum HeroDodgeDirection {
 			DODGE_LEFT, DODGE_RIGHT, DODGE_UP, DODGE_DOWN
 		};
 enum HeroDefendState {
-			DEF_STATE_DEFEND=0, DEF_STATE_GUARD, DEF_STATE_DODGE
+			DEF_STATE_DEFEND=0, DEF_STATE_GUARD, DEF_STATE_DODGE, DEF_STATE_DIE
 		};
 
 class SGHero : public CCObject {
 public:
-    void hideHeroObject();
-    void confirmBattleMode();
-    void beginBattle();
-    void endBattle();
-    
     int attack();  //Attack, return atk
-	void setDefendAction(int ,int =DODGE_LEFT);
-    bool defend(int ,int = ATK_DIR_LEFT);
+    bool defend(int damage, int def_state);
     
     void pauseSchedulerAndActions();
     void resumeSchedulerAndActions();
@@ -54,9 +48,6 @@ public:
     void func_MoveHide();
     void func_MoveShow();
     void func_startRun();
-
-	int defendState;
-	int dodgeC;
 
 private:
     int actState;
@@ -73,6 +64,8 @@ private:
 public:
     void func_wating();
     void func_stop();
+    void func_guard();
+    void func_dodge();
 private:
     void func_defending(CCObject* act);
     void func_die();

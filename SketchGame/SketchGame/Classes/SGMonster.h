@@ -18,15 +18,20 @@ enum SGAttackDirection { ATK_DIR_LEFT, ATK_DIR_RIGHT, ATK_DIR_UP, ATK_DIR_DOWN }
 struct SGAttackAction {
     int atkDir;
     CCActionInterval* act_attack;
+    int nFrames;
 };
 
 
 struct SGAttackInfo {
     int atk;
     int atkDir;
+    int nFrames;
 };
 
 enum SGMonsterType { MONSTER_TYPE_MUD=0, MONSTER_TYPE_BAT, MONSTER_TYPE_WING, MONSTER_TYPE_BALL, MONSTER_TYPE_NUMBER };
+
+
+enum SGMOnsterAttackState { MONSTER_ATK_PREV, MONSTER_ATK_FIRST, MONSTER_ATK_SECOND, MONSTER_ATK_POST };
 
 class SGMonster : public CCObject {
 public:
@@ -47,8 +52,9 @@ public:
     bool isWakeupMonster();
     int getInkAmount();
     int getScoreAmount();
+    SGAttackInfo getNowAttackInfo();
+    int getNowAttackState();
     
-	void attackComplete(float dt);
     void resetStatus(int hp, int atk, int inkAmount, int scoreAmount);
     void upgradeStatus(float upHpRate, float upAtkRate, float upInkRate, float upScoreRate);
     
@@ -56,8 +62,12 @@ public:
     int func_wakeup();
     void func_waiting();
 private:
-    int selectAttackDirection();
+    int selectAttack();
     void func_defend();
+    
+    void func_attack_first();
+    void func_attack_second();
+    void func_attack_end();
 
     
 private:
@@ -67,8 +77,11 @@ private:
     int nWakeupFrames;
     int nDieFrames;
     int inkAmount, scoreAmount;
+    SGAttackInfo nowAttackInfo;
+    
 	bool die_flag;
     bool bWakeupMonster;
+    int atkState;
 
 	void dying(float dt);
     

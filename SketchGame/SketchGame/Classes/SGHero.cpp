@@ -8,22 +8,6 @@
 
 #include "SGHero.h"
 #include "defines.h"
-void SGHero::beginBattle() {
-
-}
-
-void SGHero::endBattle() {
-    
-}
-
-void SGHero::hideHeroObject() {
-    
-}
-
-void SGHero::confirmBattleMode() {
-    
-}
-
 int SGHero::attack() {
 	heroSprite->stopAllActions();
 
@@ -31,38 +15,13 @@ int SGHero::attack() {
     return atk;
 }
 
-void SGHero::setDefendAction(int act,int dodgeDirection){
-	printf("Hero -> setDefendAction / act=%d, dodgeDirection=%d\n",
-		act,dodgeDirection);
-	//heroSprite->stopAllActions();
-	switch (act) {
-        case DEF_STATE_DEFEND:
-			defendState = DEF_STATE_DEFEND;
-	//		heroSprite->runAction(act_wait);
-            break;
-        case DEF_STATE_GUARD:
-			defendState = DEF_STATE_GUARD;
-		//	heroSprite->runAction(act_defend);
-            break;
-        case DEF_STATE_DODGE:
-			defendState = DEF_STATE_DODGE;
-			this->dodgeDirection = dodgeDirection;
-	//		heroSprite->runAction(act_hide);
-            break;
-    }
-}
-
 //if hero die, return false;
-bool SGHero::defend(int damage,int mob_direction) {
+bool SGHero::defend(int damage, int def_state) {
 	//heroSprite->stopAllActions();
-
-	printf("Hero -> defend / damage=%d, mob_direction=%d\n",
-		damage,mob_direction);
-
+    
     CCActionInterval* nowAction;
     
-	dodgeC = 0;
-    switch (defendState) {
+    switch (def_state) {
         case DEF_STATE_DEFEND:
             nowAction = act_defend;
             nowHP-=damage;
@@ -72,26 +31,22 @@ bool SGHero::defend(int damage,int mob_direction) {
             nowAction = act_block;
             break;
         case DEF_STATE_DODGE:
-			if(mob_direction == dodgeDirection) {
-				defendState = DEF_STATE_DEFEND;
-                nowHP-=damage;
-                nowAction = act_defend;
-			} else {
-				dodgeC = 1;
-                nowAction = act_hide;
-				nowHP-=(damage/10);
-			}
+            nowAction = act_dodge;
+            nowHP-=(damage/10);
             break;
     }
     
     if(nowHP <= 0 ) {
+<<<<<<< HEAD
 		printf("È÷¾î·Î°¡Á×¾ù½¿´Ù.\n");
         heroSprite->runAction(CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*4.f),
                                                  CCCallFunc::create(this, callfunc_selector(SGHero::func_die))));
+=======
+        heroSprite->runAction(CCCallFunc::create(this, callfunc_selector(SGHero::func_die)));
+>>>>>>> hanter_battle
         return false;
     } else {
-        heroSprite->runAction(CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*4.f),
-                                                 CCCallFuncO::create(this, callfuncO_selector(SGHero::func_defending), nowAction)));
+        heroSprite->runAction(CCCallFuncO::create(this, callfuncO_selector(SGHero::func_defending), nowAction));
         return true;;
     }
 }
@@ -106,8 +61,6 @@ void SGHero::resumeSchedulerAndActions() {
 }
 
 void SGHero::func_defending(CCObject* _act) {
-    printf("Hero -> defending / act=%x",
-		_act);
     CCActionInterval* act = (CCActionInterval*)_act;
     heroSprite->stopAllActions();
     heroSprite->runAction(act);
@@ -151,6 +104,16 @@ void SGHero::func_stop() {
     //heroSprite->pauseSchedulerAndActions();
     //heroSprite->unscheduleAllSelectors();
     heroSprite->stopAllActions();
+}
+
+void SGHero::func_guard() {
+    heroSprite->stopAllActions();
+    heroSprite->runAction(act_block);
+}
+
+void SGHero::func_dodge() {
+    heroSprite->stopAllActions();
+    heroSprite->runAction(act_dodge);
 }
 
 int SGHero::getRemainHpDivision() {
@@ -230,7 +193,34 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
                                   CCCallFunc::create(this, callfunc_selector(SGHero::func_wating)));
     act_show->retain();
     pHeroActShowStoneFrames->release();
-  
+    
+    
+    ///////////////////////////////////////////////////////DODGE///////////////////////////////////////////////////////////////////////////////////////////////////
+    CCArray* pHeroDodgeFrames = CCArray::create();
+    CCArray* pHeroDodgeReturnFrames = CCArray::create();
+    pHeroDodgeFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_1.png"));
+    pHeroDodgeFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_2.png"));
+    for(int i=1; i<=9; i++) {
+        pHeroDodgeFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("hero_hide_%d.png",10-i)->getCString()));
+    }
+    for(int i=1; i<=9; i++) {
+        pHeroDodgeReturnFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("hero_hide_%d.png",i)->getCString()));
+    }
+    pHeroDodgeReturnFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_2.png"));
+    pHeroDodgeReturnFrames->addObject(pSpriteFrameCache->spriteFrameByName("hero_hide_1.png"));
+    act_dodge = CCSequence::create(CCSequence::create(CCSpawn::create(CCAnimate::create(CCAnimation::create(pHeroDodgeFrames, GAME_FRAME_SPEED)),
+                                                                      CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
+                                                                                         CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(HERO_HIDE_MID_POS)),
+                                                                                                            CCPlace::create(HERO_HIDE_DEST_POS)))),
+                                                      CCSpawn::create(CCAnimate::create(CCAnimation::create(pHeroDodgeReturnFrames, GAME_FRAME_SPEED)),
+                                                                      CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*5),
+                                                                                         CCSequence::create(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(HERO_HIDE_MID_POS)),
+                                                                                                            CCPlace::create(HERO_INIT_POS))))),
+                                   CCCallFunc::create(this, callfunc_selector(SGHero::func_wating)));
+    act_dodge->retain();
+    pHeroDodgeFrames->release();
+    pHeroDodgeReturnFrames->release();
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     CCArray* pHeroActBlockFrames = CCArray::create();
 	for(int i=1; i<=4; i++) {
@@ -281,7 +271,6 @@ SGHero::SGHero(CCLayer* parent) : parentLayer(parent) {
 	act_attack->retain();
     pHeroActAttackFrames->release();
 
-	defendState = DEF_STATE_DEFEND;
 	dodgeDirection = -1;
     
     this->autorelease();
