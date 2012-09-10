@@ -291,16 +291,12 @@ void SketchGameLayer::update_ink() {
     }
 }
 
-<<<<<<< HEAD
-void SketchGameLayer::gameOver(float dt) {
-=======
 void SketchGameLayer::update_score(float) {
     score += scoreAddAmount;
     scoreLabel->setString(CCString::createWithFormat("%d", score)->getCString());
 }
 
-void SketchGameLayer::gameOver() {
->>>>>>> score add, number image modify
+void SketchGameLayer::gameOver(float dt) {
     CCDirector::sharedDirector()->replaceScene(SketchTitleScene::create());
     this->release();
 }
