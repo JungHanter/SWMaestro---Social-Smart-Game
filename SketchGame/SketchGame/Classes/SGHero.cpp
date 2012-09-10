@@ -32,6 +32,8 @@ int SGHero::attack() {
 }
 
 void SGHero::setDefendAction(int act,int dodgeDirection){
+	printf("Hero -> setDefendAction / act=%d, dodgeDirection=%d\n",
+		act,dodgeDirection);
 	//heroSprite->stopAllActions();
 	switch (act) {
         case DEF_STATE_DEFEND:
@@ -53,6 +55,9 @@ void SGHero::setDefendAction(int act,int dodgeDirection){
 //if hero die, return false;
 bool SGHero::defend(int damage,int mob_direction) {
 	//heroSprite->stopAllActions();
+
+	printf("Hero -> defend / damage=%d, mob_direction=%d\n",
+		damage,mob_direction);
 
     CCActionInterval* nowAction;
     

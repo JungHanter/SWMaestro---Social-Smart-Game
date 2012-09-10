@@ -8,6 +8,11 @@ using namespace cocos2d;
 
 #define MAX_ITEM 5
 
+enum SG_TITLE_STATE {
+	TITLE,
+	OPENNING
+	};
+
 class SketchTitleLayer : public cocos2d::CCLayerColor
 {
 public:
@@ -17,6 +22,8 @@ public:
 	void update(float);
 
     LAYER_CREATE_FUNC(SketchTitleLayer);
+
+	int state;
 
 private:
 
