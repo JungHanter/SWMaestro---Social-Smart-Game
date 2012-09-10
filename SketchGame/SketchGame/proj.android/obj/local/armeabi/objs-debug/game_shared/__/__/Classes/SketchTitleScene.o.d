@@ -232,7 +232,11 @@ obj/local/armeabi/objs-debug/game_shared/__/__/Classes/SketchTitleScene.o: \
  /Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/cocos2dx/support/data_support/uthash.h \
  jni/../../Classes/defines.h jni/../../Classes/SGBackground.h \
  jni/../../Classes/SketchGameScene.h jni/../../Classes/SGMonster.h \
- jni/../../Classes/SGHero.h jni/../../Classes/AppDelegate.h
+ jni/../../Classes/SGHero.h jni/../../Classes/AppDelegate.h \
+ jni/../../Classes/SGOptionScene.h jni/../../Classes/SGSound.h \
+ /Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/CocosDenshion/android/../include/SimpleAudioEngine.h \
+ /Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/CocosDenshion/android/../include/Export.h \
+ jni/../../Classes/SGUpgradeScene.h
 
 jni/../../Classes/SketchTitleScene.h:
 
@@ -705,3 +709,13 @@ jni/../../Classes/SGMonster.h:
 jni/../../Classes/SGHero.h:
 
 jni/../../Classes/AppDelegate.h:
+
+jni/../../Classes/SGOptionScene.h:
+
+jni/../../Classes/SGSound.h:
+
+/Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/CocosDenshion/android/../include/SimpleAudioEngine.h:
+
+/Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/CocosDenshion/android/../include/Export.h:
+
+jni/../../Classes/SGUpgradeScene.h:

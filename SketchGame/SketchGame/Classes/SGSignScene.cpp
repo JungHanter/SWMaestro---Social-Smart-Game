@@ -1,4 +1,5 @@
 #include "SGSignScene.h"
+
 using namespace cocos2d;
 SGSignScene::SGSignScene(void)
 {
@@ -30,7 +31,7 @@ CCScene* SGSignScene::scene()
 
 bool SGSignScene::init()
 {	
-	Ink = CCSprite::spriteWithFile("Ink.png");
+	Ink = CCSprite::create("Ink.png");
 	Ink->setAnchorPoint(CCPoint (0,1));
 	Ink->setPosition(ccp(100,300));
 	this->addChild(Ink);
@@ -45,13 +46,13 @@ void SGSignScene::draw()
 	//glLineWidth( 5.0f );
 	//ccDrawColor4B(0,255,0,255);
 	//ccDrawLine(ccp(0,400), ccp(400,0));	
-
-	glPointSize(4);
+    
+    //glPointSize(4);
 	glLineWidth(5);
-
+    
 	for (int i = 0; i < points.size(); i++) 
 	{
-		glColor4ub(255,0,255,255); 
+		//glColor4ub(255,0,255,255);
 		CCPoint p = points.at(i);
 		//ccDrawPoint(p);
 		CCPoint *vertices = &points[0]; 

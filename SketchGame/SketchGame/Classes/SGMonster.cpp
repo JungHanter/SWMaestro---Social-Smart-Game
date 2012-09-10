@@ -26,11 +26,11 @@ bool SGMonster::endBattle() {
 	if(nowHP<=0)
 	{
 		die_flag = true;
-
+        
 		
 		//monsterSprite->schedule(schedule_selector(SGMonster::dying), 0.1f);
-
-//		die();
+        
+        //		die();
         return true;
 	}
 	else
@@ -157,7 +157,7 @@ void SGMonster::upgradeStatus(float upHpRate, float upAtkRate, float upInkRate, 
     this->atk = (int)(((float)(this->atk))*upAtkRate);
     this->inkAmount = (int)(((float)(this->inkAmount))*upInkRate);
     this->scoreAmount = (int)(((float)(this->scoreAmount))*upScoreRate);
-
+    
 }
 
 void SGMonster::func_attack_first() {
@@ -263,7 +263,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             
 			numAttacks = 1;
             act_attack = new SGAttackAction[numAttacks];
-          
+            
             CCArray* pAttackRightFrames = CCArray::create();
             for(int i=1; i<=7; i++) {
                 pAttackRightFrames->addObject(pSpriteFrameCache->spriteFrameByName(CCString::createWithFormat("mud_attack_right_%d.png", i)->getCString()));
@@ -573,7 +573,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
 }
 
 SGMonster::~SGMonster() {
-
+    
 }
 
 int SGMonster::getType() {
@@ -581,7 +581,7 @@ int SGMonster::getType() {
 }
 
 SGMonster* SGMonster::create(int type, int hp, int atk, int inkAmount, int score, const CCPoint* const movePoints,
-                              const int nPoints, CCLayer* const parent) {
+                             const int nPoints, CCLayer* const parent) {
     SGMonster* monster = new SGMonster(type, hp, atk, inkAmount, score, movePoints, nPoints, parent);
     
     monster->autorelease();

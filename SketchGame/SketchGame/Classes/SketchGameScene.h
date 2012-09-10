@@ -32,10 +32,10 @@ public:
     
     void hideHeroObject();
     void beginBattleMode();
-
+    
     void pauseAllBackground();
     void resumeAllBackground();
-
+    
 	void Dodge();
     
 private:
@@ -77,7 +77,7 @@ public:
     void setParent(CCScene* _parent);
     
     void test();
- 
+    
 private:
 	int turn;
     int gameState;
@@ -95,7 +95,7 @@ private:
     PauseGameLayer* pauseLayer;
     
     SGBackground* background;
-
+    
     SGMonster* monsters[MONSTER_TYPE_NUMBER];
     SGMonster* nowMonster;
     
@@ -111,7 +111,7 @@ private:
     CCSprite* hp_bar;
     CCAction* hp_bar_gage[11];
     
-///////////////touch//////////////
+    ///////////////touch//////////////
 protected:
     void ccTouchesBegan(cocos2d::CCSet* pTouches, cocos2d::CCEvent* pEvent);
     void ccTouchesEnded(cocos2d::CCSet* pTouches, cocos2d::CCEvent* pEvent);
@@ -124,7 +124,7 @@ private:
     bool bTouching;
     enum DragDirection { DIR_LEFT, DIR_RIGHT, DIR_UP, DIR_DOWN };
     
-/////////////basic/////////////
+    /////////////basic/////////////
 public:
     SketchGameLayer() : _label(NULL) {}
     virtual ~SketchGameLayer();

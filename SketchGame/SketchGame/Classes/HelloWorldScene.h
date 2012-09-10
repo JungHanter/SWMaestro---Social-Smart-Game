@@ -3,8 +3,6 @@
 
 #include "cocos2d.h"
 
-#include "Box2D/Box2D.h"
-
 #include "SimpleAudioEngine.h"
 
 class HelloWorld : public cocos2d::CCLayer

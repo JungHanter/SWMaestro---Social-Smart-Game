@@ -1,1 +1,16 @@
 what,kind,bundleId,bundleVersion,description,time
+stopped,bundle,com.aptana.samples,3.0.0.1325634264,"com.aptana.samples",1347287171026
+stopped,bundle,com.aptana.scripting.ui,3.0.0.1322862427,"com.aptana.scripting.ui",1347287171026
+stopped,bundle,com.aptana.git.ui,3.0.3.1326915778,"com.aptana.git.ui",1347287171026
+stopped,bundle,com.aptana.terminal,3.0.0.1321644809,"com.aptana.terminal",1347287171027
+stopped,bundle,com.aptana.console,3.0.0.1321573158,"com.aptana.console",1347287171027
+stopped,bundle,com.aptana.formatter.epl,3.0.0.1326742432,"com.aptana.formatter.epl",1347287171028
+stopped,bundle,com.aptana.index.core.ui,3.0.0.1315934874,"com.aptana.index.core.ui",1347287171029
+stopped,bundle,com.aptana.theme,3.0.0.1320258654,"com.aptana.theme",1347287171029
+stopped,bundle,com.aptana.scripting,3.0.0.1327097358,"com.aptana.scripting",1347287171029
+stopped,bundle,com.aptana.debug.ui,3.0.3.1313193469,"com.aptana.debug.ui",1347287171030
+stopped,bundle,com.aptana.editor.findbar,3.0.0.1326349361,"com.aptana.editor.findbar",1347287171031
+stopped,bundle,com.aptana.webserver.ui,3.0.0.1322781931,"com.aptana.webserver.ui",1347287171032
+stopped,bundle,com.aptana.ui,3.0.3.1325786963,"com.aptana.ui",1347287171032
+stopped,bundle,com.aptana.buildpath.core,3.0.0.1323995066,"com.aptana.buildpath.core",1347287171033
+stopped,bundle,com.aptana.commandline.launcher,3.0.3.1313797510,"com.aptana.commandline.launcher",1347287171033

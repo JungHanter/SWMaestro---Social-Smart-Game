@@ -15,7 +15,7 @@ using namespace cocos2d;
 #define OVERLAY_CYCLE GAME_FRAME_SPEED*30*2
 
 class SGBackground : public CCNode {
-
+    
 public:
     void pauseAllBackground();
     void resumeAllBackground();
@@ -54,7 +54,7 @@ private:
     static SGBackground* sharedSGBackground;
     virtual ~SGBackground();
     void resetParent(CCLayer* parent);
-
+    
 public:
     
     static SGBackground* sharedInstance(CCLayer *parent);

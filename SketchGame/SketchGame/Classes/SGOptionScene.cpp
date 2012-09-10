@@ -1,8 +1,6 @@
 #include "SGOptionScene.h"
 #include "SketchTitleScene.h"
 
-bool onSound2=true;
-
 SGOptionScene::SGOptionScene(void)
 {
 }
@@ -20,7 +18,7 @@ CCScene* SGOptionScene::scene()
 		scene = CCScene::create();
 		CC_BREAK_IF(! scene);
 		// 'layer' is an autorelease 
-		cocos2d::CCLayer *layer = SGOptionScene::create();
+		SGOptionScene *layer = SGOptionScene::create();
 		CC_BREAK_IF(! layer);
 
 		// add layer as a child to scene
@@ -31,9 +29,12 @@ CCScene* SGOptionScene::scene()
 	// return the scene
 	return scene;
 }
+
 bool SGOptionScene::init()
 {
 	this->setTouchEnabled(true);
+    
+    pSharedSound = (SGSound*)CocosDenshion::SimpleAudioEngine::sharedEngine();
 	
 	 CCSize size = CCDirector::sharedDirector()->getWinSize();
 	CCSprite* pSprite = CCSprite::create("option.png");
@@ -57,7 +58,7 @@ bool SGOptionScene::init()
 	pMenu->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width - 100,50));
 	this->addChild(pMenu, 1);
 
-	if(onSound2 == true) // 家府掺扁
+	if(pSharedSound->isSound2() == true) // 家府掺扁
 	{
 			sound_Yes();	
 		
@@ -77,14 +78,14 @@ void SGOptionScene::sound_Yes()
 {
 	sound->resumeAllEffects();
 	sound->resumeBackgroundMusic();
-	onSound2 = true;
+	pSharedSound->setSound2(true);
 	checkSound->setPosition(ccp(230,180));
 }
 void SGOptionScene::sound_No()
 {
 	sound->stopAllEffects();
 	sound->stopBackgroundMusic();
-	onSound2 = false;
+	pSharedSound->setSound2(false);
 	checkSound->setPosition(ccp(300,160));
 }
 
@@ -93,7 +94,7 @@ void SGOptionScene::ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* ev
 	CCTouch *touch = (CCTouch*)(touches->anyObject());
 	CCPoint location = CCDirector::sharedDirector()->convertToGL(touch-> locationInView());
 
-	if(onSound2 == true) // 家府掺扁
+	if(pSharedSound->isSound2() == true) // 家府掺扁
 	{
 		if(location.x > 300.0f && location.x <360.0f &&
 			location.y > 100.0f && location.y < 160.0f)

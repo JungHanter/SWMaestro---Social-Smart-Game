@@ -68,7 +68,7 @@ private:
     void func_attack_first();
     void func_attack_second();
     void func_attack_end();
-
+    
     
 private:
     int type;
@@ -82,7 +82,7 @@ private:
 	bool die_flag;
     bool bWakeupMonster;
     int atkState;
-
+    
 	void dying(float dt);
     
     CCSprite* monsterSprite;
@@ -90,7 +90,7 @@ private:
     
     int numAttacks;
     SGAttackAction* act_attack;  //monster's attack dir array 1~4
-
+    
 private:
     SGMonster(int type, int hp, int atk, int ink, int score, const CCPoint* const movePoints, const int nPoints, CCLayer* const parent);
     CCLayer* const parentLayer;

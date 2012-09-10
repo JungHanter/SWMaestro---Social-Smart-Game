@@ -15,6 +15,11 @@
 		D805618315FA1433008AEE5B /* game_etc.png in Resources */ = {isa = PBXBuildFile; fileRef = D805617D15FA1433008AEE5B /* game_etc.png */; };
 		D82DC18B15FD8319007286CC /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = D82DC18A15FD8319007286CC /* numbers.png */; };
 		D82DC18F15FD8321007286CC /* SGSaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D82DC18D15FD8321007286CC /* SGSaveData.cpp */; };
+		D83B163215FE258100D89F63 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D83B162815FE258000D89F63 /* HelloWorldScene.cpp */; };
+		D83B163315FE258100D89F63 /* SGOptionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D83B162A15FE258000D89F63 /* SGOptionScene.cpp */; };
+		D83B163415FE258100D89F63 /* SGSignScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D83B162C15FE258000D89F63 /* SGSignScene.cpp */; };
+		D83B163515FE258100D89F63 /* SGSound.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D83B162E15FE258000D89F63 /* SGSound.cpp */; };
+		D83B163615FE258100D89F63 /* SGUpgradeScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D83B163015FE258000D89F63 /* SGUpgradeScene.cpp */; };
 		D861BE2A15FCAEB9004B697F /* SketchTitleScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D861BE2815FCAEB9004B697F /* SketchTitleScene.cpp */; };
 		D86D15D015FB881E000418C0 /* mud.plist in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CA15FB881E000418C0 /* mud.plist */; };
 		D86D15D115FB881E000418C0 /* mud.png in Resources */ = {isa = PBXBuildFile; fileRef = D86D15CB15FB881E000418C0 /* mud.png */; };
@@ -270,6 +275,16 @@
 		D82DC18A15FD8319007286CC /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = numbers.png; path = Resources/numbers.png; sourceTree = "<group>"; };
 		D82DC18D15FD8321007286CC /* SGSaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGSaveData.cpp; path = Classes/SGSaveData.cpp; sourceTree = "<group>"; };
 		D82DC18E15FD8321007286CC /* SGSaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSaveData.h; path = Classes/SGSaveData.h; sourceTree = "<group>"; };
+		D83B162815FE258000D89F63 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
+		D83B162915FE258000D89F63 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
+		D83B162A15FE258000D89F63 /* SGOptionScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGOptionScene.cpp; path = Classes/SGOptionScene.cpp; sourceTree = "<group>"; };
+		D83B162B15FE258000D89F63 /* SGOptionScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGOptionScene.h; path = Classes/SGOptionScene.h; sourceTree = "<group>"; };
+		D83B162C15FE258000D89F63 /* SGSignScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGSignScene.cpp; path = Classes/SGSignScene.cpp; sourceTree = "<group>"; };
+		D83B162D15FE258000D89F63 /* SGSignScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSignScene.h; path = Classes/SGSignScene.h; sourceTree = "<group>"; };
+		D83B162E15FE258000D89F63 /* SGSound.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGSound.cpp; path = Classes/SGSound.cpp; sourceTree = "<group>"; };
+		D83B162F15FE258000D89F63 /* SGSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSound.h; path = Classes/SGSound.h; sourceTree = "<group>"; };
+		D83B163015FE258000D89F63 /* SGUpgradeScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGUpgradeScene.cpp; path = Classes/SGUpgradeScene.cpp; sourceTree = "<group>"; };
+		D83B163115FE258100D89F63 /* SGUpgradeScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGUpgradeScene.h; path = Classes/SGUpgradeScene.h; sourceTree = "<group>"; };
 		D861BE2815FCAEB9004B697F /* SketchTitleScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SketchTitleScene.cpp; path = Classes/SketchTitleScene.cpp; sourceTree = "<group>"; };
 		D861BE2915FCAEB9004B697F /* SketchTitleScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SketchTitleScene.h; path = Classes/SketchTitleScene.h; sourceTree = "<group>"; };
 		D86D15CA15FB881E000418C0 /* mud.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = mud.plist; path = Resources/mud.plist; sourceTree = "<group>"; };
@@ -1621,6 +1636,16 @@
 		D88C92ED15F791C400EE167A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D83B162815FE258000D89F63 /* HelloWorldScene.cpp */,
+				D83B162915FE258000D89F63 /* HelloWorldScene.h */,
+				D83B162A15FE258000D89F63 /* SGOptionScene.cpp */,
+				D83B162B15FE258000D89F63 /* SGOptionScene.h */,
+				D83B162C15FE258000D89F63 /* SGSignScene.cpp */,
+				D83B162D15FE258000D89F63 /* SGSignScene.h */,
+				D83B162E15FE258000D89F63 /* SGSound.cpp */,
+				D83B162F15FE258000D89F63 /* SGSound.h */,
+				D83B163015FE258000D89F63 /* SGUpgradeScene.cpp */,
+				D83B163115FE258100D89F63 /* SGUpgradeScene.h */,
 				D82DC18D15FD8321007286CC /* SGSaveData.cpp */,
 				D82DC18E15FD8321007286CC /* SGSaveData.h */,
 				D88C92EF15F791C400EE167A /* AppDelegate.cpp */,
@@ -1945,6 +1970,11 @@
 				D8FEC9CA15F794D800C4EBD4 /* SketchGameScene.cpp in Sources */,
 				D861BE2A15FCAEB9004B697F /* SketchTitleScene.cpp in Sources */,
 				D82DC18F15FD8321007286CC /* SGSaveData.cpp in Sources */,
+				D83B163215FE258100D89F63 /* HelloWorldScene.cpp in Sources */,
+				D83B163315FE258100D89F63 /* SGOptionScene.cpp in Sources */,
+				D83B163415FE258100D89F63 /* SGSignScene.cpp in Sources */,
+				D83B163515FE258100D89F63 /* SGSound.cpp in Sources */,
+				D83B163615FE258100D89F63 /* SGUpgradeScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

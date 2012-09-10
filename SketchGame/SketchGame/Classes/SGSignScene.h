@@ -2,6 +2,7 @@
 #include "cocos2d.h"
 #include "defines.h"
 
+
 using namespace std;
 class SGSignScene : public cocos2d::CCLayer
 {

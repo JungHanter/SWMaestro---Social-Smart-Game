@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef __SGOPTION_SCENE_H__
+#define __SGOPTION_SCENE_H__
+
 #include "cocos2d.h"
 #include "defines.h"
 #include "SGSound.h"
@@ -12,6 +15,8 @@ private:
 	SGSound *sound;
 	cocos2d::CCSprite *checkSound;
 	void ccTouchesEnded(cocos2d::CCSet* touches, cocos2d::CCEvent* event);
+    
+    SGSound* pSharedSound;
 
 	void sound_Yes();
 	void sound_No();
@@ -22,10 +27,11 @@ public:
 	SGOptionScene(void);
 	~SGOptionScene(void);
 
-	static cocos2d::CCScene *scene();
-	bool init();
+	static cocos2d::CCScene* scene();
+	virtual bool init();
 	static bool onSound;
-//	SCENE_CREATE_FUNC(SGOptionScene);
-	  LAYER_CREATE_FUNC(SGOptionScene);
+    
+    LAYER_CREATE_FUNC(SGOptionScene);
 };
         
+#endif

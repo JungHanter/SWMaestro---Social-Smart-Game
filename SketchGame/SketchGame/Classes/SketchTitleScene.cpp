@@ -179,7 +179,6 @@ void SketchTitleLayer::update(float dt){
 	}
 }
 void SketchTitleLayer::func_endOpening(){
-	printf("¿ÀÇÁ´×ÀÌ³¡³´½¿´Ù.\n");
 	CCScene *scene = SketchGameScene::create();
 	CCDirector::sharedDirector()->replaceScene(scene);
 }

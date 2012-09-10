@@ -110,7 +110,7 @@ void SGBackground::gameStart() {
                                               CCSequence::create(CCRotateTo::create(0, 70.0f), CCCallFunc::create(this, callfunc_selector(SGBackground::func_mountainMove)))));
     bg_mountain2->runAction(CCRepeatForever::create(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN*2, -140.0f),
                                                                        CCRotateTo::create(0, 70.0f))));
-
+    
 }
 
 void SGBackground::resetLogic() {
@@ -134,7 +134,7 @@ void SGBackground::resetLogic() {
 }
 
 void SGBackground::logic_overlay(float) {
-//    bg_overlay->stopAllActions();
+    //    bg_overlay->stopAllActions();
     CCLog("logic overlay = %d", overlayState);
     overlayState = 0;
     switch(overlayState) {
@@ -142,7 +142,7 @@ void SGBackground::logic_overlay(float) {
             bg_overlay->stopAction(bg_non_overlay);
             bg_overlay->runAction(CCSequence::create(bg_forest_into_action, CCCallFunc::create(this, callfunc_selector(SGBackground::run_overlay))));
             break;
-        
+            
         case OVERLAY_FOREST:
             bg_overlay->stopAction(bg_forest_action);
             bg_overlay->runAction(CCSequence::create(bg_cave_into_action, CCCallFunc::create(this, callfunc_selector(SGBackground::run_overlay))));
@@ -194,7 +194,7 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     pSpriteFrameCache->addSpriteFramesWithFile("bg_forest_into2.plist", "bg_forest_into2.png");
     pSpriteFrameCache->addSpriteFramesWithFile("bg_forest_additional.plist", "bg_forest_additional.png");
     pSpriteFrameCache->addSpriteFramesWithFile("bg_etc.plist", "bg_etc.png");
-
+    
     //map
     bg_map = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_map_hill_1.png"));
     bg_map->retain();
@@ -263,7 +263,7 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     pCaveOutFrames->release();
     
     overlayState = OVERLAY_NONE;
-
+    
     
     //Mountain
     bg_mountain = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_mountain.png"));
@@ -278,9 +278,9 @@ SGBackground::SGBackground(CCLayer* parent) : parentLayer(parent) {
     bg_mountain2->setRotation(70.0f);
     parentLayer->addChild(bg_mountain2, ORDER_FARAWAY_MOUNTAIN, TAG_TEXTURE_BACKGROUND);
     /*bg_mountain->runAction(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN, -70.0f),
-                                              CCSequence::create(CCRotateTo::create(0, 70.0f), CCCallFunc::create(this, callfunc_selector(SGBackground::func_mountainMove)))));
-    bg_mountain2->runAction(CCRepeatForever::create(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN*2, -140.0f),
-                                                                       CCRotateTo::create(0, 70.0f))));*/
+     CCSequence::create(CCRotateTo::create(0, 70.0f), CCCallFunc::create(this, callfunc_selector(SGBackground::func_mountainMove)))));
+     bg_mountain2->runAction(CCRepeatForever::create(CCSequence::create(CCRotateBy::create(GAME_FRAME_SPEED*SPEED_MOUNTAIN*2, -140.0f),
+     CCRotateTo::create(0, 70.0f))));*/
     
     bg_cloud = CCSprite::create(pSpriteFrameCache->spriteFrameByName("bg_cloud.png"));
     bg_cloud->retain();

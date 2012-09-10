@@ -1,10 +1,9 @@
 #include "SGSound.h"
 #include "SGOptionScene.h"
 
-extern bool onSound2;
-
 SGSound::SGSound(void)
 {
+    onSound2 = true;
 }
 
 SGSound::~SGSound(void)
@@ -13,7 +12,7 @@ SGSound::~SGSound(void)
 
 void SGSound::playBackgroundMusic( const char* Filepath,bool loop )
 {
-	onSound2;
+    //onSound2;
 	if(onSound2 ==true)
 		playBackgroundMusic(Filepath,loop);
 }
@@ -24,3 +23,11 @@ void SGSound::playEffect( const char *Filepath,bool loop )
 		playEffect(Filepath,loop);
 }
 
+
+bool SGSound::isSound2() {
+    return onSound2;
+}
+
+void SGSound::setSound2(bool _bSound) {
+    onSound2 = _bSound;
+}
