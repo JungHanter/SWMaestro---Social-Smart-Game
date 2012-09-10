@@ -127,7 +127,7 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 
 		this->addChild(menu,11);
 
-
+		state = TITLE;
 		opening = false;
 		this->scheduleUpdate();
 
@@ -143,23 +143,38 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 void SketchTitleLayer::update(float dt){
 	CCLayerColor::update(dt);
 
-	if(titleSprite->getPositionX() <= 160)
-		titleSprite->setPositionX(
-			titleSprite->getPositionX() + 5 );
+	if(state == TITLE){
+		if(titleSprite->getPositionX() <= 160)
+			titleSprite->setPositionX(
+				titleSprite->getPositionX() + 5 );
 
-	if(ropeSprite->getPositionY() <= 130)
-		ropeSprite->setPositionY(
-			ropeSprite->getPositionY() + 5 );
+		if(ropeSprite->getPositionY() <= 130)
+			ropeSprite->setPositionY(
+				ropeSprite->getPositionY() + 5 );
 
-	if(menu->getPositionY() <= 0)
-		menu->setPositionY(
-			menu->getPositionY() + 5 );
+		if(menu->getPositionY() <= 0)
+			menu->setPositionY(
+				menu->getPositionY() + 5 );
 
-	if(charSprite->getOpacity() < 255)
-		charSprite->setOpacity(
-				charSprite->getOpacity() + 5
-			);
-	
+		if(charSprite->getOpacity() < 255)
+			charSprite->setOpacity(
+					charSprite->getOpacity()+5
+				);
+	}
+	else{
+		if(titleSprite->getPositionX() > -160)
+			titleSprite->setPositionX(
+				titleSprite->getPositionX() - 5 );
+
+		if(ropeSprite->getPositionY() > -130)
+			ropeSprite->setPositionY(
+				ropeSprite->getPositionY() - 5);
+
+		if(menu->getPositionY() > -300)
+			menu->setPositionY(
+				menu->getPositionY() - 5 );
+
+	}
 }
 void SketchTitleLayer::func_endOpening(){
 	printf("¿ÀÇÁ´×ÀÌ³¡³´½¿´Ù.\n");
@@ -172,6 +187,7 @@ void SketchTitleLayer::btnStart(CCObject *sender){
 		openingSprite->setVisible(true);
 		charSprite->setVisible(false);
 		opening = true;
+		state = OPENING;
 	}
 	//CCScene *scene = SketchGameScene::create();
 	//CCDirector::sharedDirector()->replaceScene(scene);
