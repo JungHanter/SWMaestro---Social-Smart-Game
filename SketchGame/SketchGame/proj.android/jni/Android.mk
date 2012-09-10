@@ -13,6 +13,7 @@ LOCAL_SRC_FILES := helloworld/main.cpp \
                    ../../Classes/SGHero.cpp \
                    ../../Classes/SGHidableObject.cpp \
                    ../../Classes/SGMonster.cpp \
+                   ../../Classes/SketchTitleScene.cpp \
                    
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes                   
 

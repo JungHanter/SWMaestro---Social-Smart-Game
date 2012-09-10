@@ -230,7 +230,8 @@ obj/local/armeabi/objs-debug/game_shared/__/__/Classes/SGMonster.o: \
  /Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/cocos2dx/CCScheduler.h \
  /Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/cocos2dx/support/data_support/uthash.h \
  jni/../../Classes/defines.h jni/../../Classes/SketchGameScene.h \
- jni/../../Classes/SGBackground.h jni/../../Classes/SGHero.h
+ jni/../../Classes/SGBackground.h jni/../../Classes/SGHero.h \
+ jni/../../Classes/AppDelegate.h
 
 jni/../../Classes/SGMonster.h:
 
@@ -699,3 +700,5 @@ jni/../../Classes/SketchGameScene.h:
 jni/../../Classes/SGBackground.h:
 
 jni/../../Classes/SGHero.h:
+
+jni/../../Classes/AppDelegate.h:

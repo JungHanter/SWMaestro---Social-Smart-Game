@@ -52,6 +52,7 @@ private:
 	CCFiniteTimeAction* act_opening;
 };
 
+
 class SketchTitleScene : public cocos2d::CCScene
 {
 public :
