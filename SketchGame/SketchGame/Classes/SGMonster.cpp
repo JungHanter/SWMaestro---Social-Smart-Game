@@ -113,20 +113,27 @@ int SGMonster::getInkAmount() {
     return inkAmount;
 }
 
-void SGMonster::resetStatus(int hp, int atk, int inkAmount) {
+int SGMonster::getScoreAmount() {
+    return scoreAmount;
+}
+
+void SGMonster::resetStatus(int hp, int atk, int inkAmount, int scoreAmount) {
     die_flag = false;
     this->maxHP = hp;
     this->nowHP = this->maxHP;
     this->atk = atk;
     this->inkAmount = inkAmount;
+    this->scoreAmount = scoreAmount;
 }
 
 
-void SGMonster::upgradeStatus(float upHpRate, float upAtkRate, float upInkRate) {
+void SGMonster::upgradeStatus(float upHpRate, float upAtkRate, float upInkRate, float upScoreRate) {
     this->maxHP = (int)(((float)(this->maxHP))*upHpRate);
     this->nowHP = this->maxHP;
     this->atk = (int)(((float)(this->atk))*upAtkRate);
     this->inkAmount = (int)(((float)(this->inkAmount))*upInkRate);
+    this->scoreAmount = (int)(((float)(this->scoreAmount))*upScoreRate);
+
 }
 
 void SGMonster::pauseSchedulerAndActions() {
@@ -137,7 +144,7 @@ void SGMonster::resumeSchedulerAndActions() {
     monsterSprite->resumeSchedulerAndActions();
 }
 
-SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, const CCPoint* const movePoints,
+SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const CCPoint* const movePoints,
                      const int nPoints, CCLayer* const parent) : parentLayer(parent) {
     this->maxHP = hp;
     this->nowHP = this->maxHP;
@@ -524,9 +531,9 @@ int SGMonster::getType() {
     return type;
 }
 
-SGMonster* SGMonster::create(int type, int hp, int atk, int inkAmount, const CCPoint* const movePoints,
+SGMonster* SGMonster::create(int type, int hp, int atk, int inkAmount, int score, const CCPoint* const movePoints,
                               const int nPoints, CCLayer* const parent) {
-    SGMonster* monster = new SGMonster(type, hp, atk, inkAmount, movePoints, nPoints, parent);
+    SGMonster* monster = new SGMonster(type, hp, atk, inkAmount, score, movePoints, nPoints, parent);
     
     monster->autorelease();
     

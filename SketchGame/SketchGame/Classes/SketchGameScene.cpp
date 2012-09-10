@@ -268,23 +268,39 @@ void SketchGameLayer::update_hp(float) {
 
 void SketchGameLayer::update_ink() {
     nowInk += nowMonster->getInkAmount();
+    score += nowMonster->getScoreAmount();
+    
     ink_bottle->stopAllActions();
     if(nowInk > INK_DIV_4) {
         ink_bottle->runAction(ink_bottle_act[4]);
+        scoreAddAmount = 10;
     } else if(nowInk > INK_DIV_3) {
         ink_bottle->runAction(ink_bottle_act[3]);
+        scoreAddAmount = 7;
     } else if(nowInk > INK_DIV_2) {
         ink_bottle->runAction(ink_bottle_act[2]);
+        scoreAddAmount = 5;
     } else if(nowInk > INK_DIV_1) {
         ink_bottle->runAction(ink_bottle_act[1]);
+        scoreAddAmount = 4;
     } else if(nowInk > 0) {
         ink_bottle->runAction(ink_bottle_act[0]);
+        scoreAddAmount = 3;
     } else  {
         //
     }
 }
 
+<<<<<<< HEAD
 void SketchGameLayer::gameOver(float dt) {
+=======
+void SketchGameLayer::update_score(float) {
+    score += scoreAddAmount;
+    scoreLabel->setString(CCString::createWithFormat("%d", score)->getCString());
+}
+
+void SketchGameLayer::gameOver() {
+>>>>>>> score add, number image modify
     CCDirector::sharedDirector()->replaceScene(SketchTitleScene::create());
     this->release();
 }
@@ -292,6 +308,7 @@ void SketchGameLayer::gameOver(float dt) {
 void SketchGameLayer::pauseGame(CCObject *o) {
     bPlaying = false;
     //CCDirector::sharedDirector()->pause();
+    pauseScoreUpdate();
     this->onExit();
     pauseLayer = PauseGameLayer::create(this);
     pauseLayer->retain();
@@ -304,6 +321,8 @@ void SketchGameLayer::resumeGame(CCObject *o) {
     this->onEnter();
     if(gameState != GAMESTATE_RUNNING && gameState!= GAMESTATE_HIDEWAITING) {
         pauseAllBackground();
+    } else {
+        resumeScoreUpdate();
     }
     parent->removeChild(pauseLayer, true);
     pauseLayer->release();
@@ -340,8 +359,17 @@ void SketchGameLayer::loadGameTexture() {
     this->addChild(pauseMenu, ORDER_MENU, TAG_TEXTURE);
     pBtns->release();
     
-    //pauseLayer = PauseGameLayer::create(this);
-    //pauseLayer->retain();
+    
+    //score
+    score = 0;
+    scoreAddAmount = 3;
+    
+    scoreLabel = CCLabelAtlas::create("0", "numbers.png", 20, 38, '0');
+    scoreLabel->retain();
+    scoreLabel->setAnchorPoint(ccp(1, 1));
+    scoreLabel->setPosition(winSize.width-60, winSize.height-5);
+    this->addChild(scoreLabel, ORDER_MENU, TAG_TEXTURE);
+    
     
     //background
     background = SGBackground::sharedInstance(this);
@@ -489,16 +517,16 @@ void SketchGameLayer::loadGameTexture() {
         CCLog("%lf, %lf", arrMonsterPoint[i].x, arrMonsterPoint[i].y);
     }
     
-    monsters[MONSTER_TYPE_BAT] = SGMonster::create(MONSTER_TYPE_BAT, 20, 2, 3, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_BAT] = SGMonster::create(MONSTER_TYPE_BAT, 20, 2, 4, 47, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_BAT]->retain();
     
-    monsters[MONSTER_TYPE_MUD] = SGMonster::create(MONSTER_TYPE_MUD, 20, 1, 2, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_MUD] = SGMonster::create(MONSTER_TYPE_MUD, 30, 1, 5, 31, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_MUD]->retain();
     
-    monsters[MONSTER_TYPE_BALL] = SGMonster::create(MONSTER_TYPE_BALL, 40, 4, 4, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_BALL] = SGMonster::create(MONSTER_TYPE_BALL, 40, 4, 8, 100, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_BALL]->retain();
     
-    monsters[MONSTER_TYPE_WING] = SGMonster::create(MONSTER_TYPE_WING, 15, 8, 5, arrMonsterPoint, 23, this);
+    monsters[MONSTER_TYPE_WING] = SGMonster::create(MONSTER_TYPE_WING, 15, 8, 6, 76, arrMonsterPoint, 23, this);
     monsters[MONSTER_TYPE_WING]->retain();
     
     nowMonster = monsters[MONSTER_TYPE_BAT];
@@ -506,6 +534,15 @@ void SketchGameLayer::loadGameTexture() {
     background->gameStart();
     this->schedule(schedule_selector(SketchGameLayer::logic_createTarget), GAME_FRAME_SPEED*30.0f);
     this->schedule(schedule_selector(SketchGameLayer::logic_printGameinfo));
+    this->schedule(schedule_selector(SketchGameLayer::update_score), GAME_FRAME_SPEED);
+}
+
+void SketchGameLayer::pauseScoreUpdate() {
+    this->unschedule(schedule_selector(SketchGameLayer::update_score));
+}
+
+void SketchGameLayer::resumeScoreUpdate() {
+    this->schedule(schedule_selector(SketchGameLayer::update_score), GAME_FRAME_SPEED);
 }
 
 void SketchGameLayer::logic_createTarget(float dt) {
@@ -522,25 +559,25 @@ void SketchGameLayer::func_createMonster(float dt) {
     switch (rnd) {
         case MONSTER_TYPE_BAT:
             nowMonster = monsters[MONSTER_TYPE_BAT];
-            nowMonster->resetStatus(20, 2, 3);
+            nowMonster->resetStatus(20, 2, 4, 47);
             nowMonster->appear();
             break;
             
         case MONSTER_TYPE_BALL:
             nowMonster = monsters[MONSTER_TYPE_BALL];
-            nowMonster->resetStatus(40, 4, 4);
+            nowMonster->resetStatus(40, 4, 8, 100);
             nowMonster->appear();
             break;
             
         case MONSTER_TYPE_MUD:
             nowMonster = monsters[MONSTER_TYPE_MUD];
-            nowMonster->resetStatus(20, 1, 2);
+            nowMonster->resetStatus(30, 1, 5, 31);
             nowMonster->appear();
             break;
             
         case MONSTER_TYPE_WING:
             nowMonster = monsters[MONSTER_TYPE_WING];
-            nowMonster->resetStatus(15, 8, 5);
+            nowMonster->resetStatus(15, 8, 6, 76);
             nowMonster->appear();
             break;
             
@@ -589,6 +626,9 @@ void SketchGameLayer::unloadGameTexture() {
     obj_grass->release(); obj_grass=NULL;
     obj_grass_action->release(); obj_grass_action=NULL;
     
+    this->removeChild(scoreLabel, true);
+    scoreLabel->release(); scoreLabel=NULL;
+    
     hero->release(); hero=NULL;
     
     monsters[0]->release(); monsters[0]=NULL;
@@ -625,6 +665,7 @@ void SketchGameLayer::pauseAllBackground() {
     obj_stone->pauseSchedulerAndActions();
     obj_grass->pauseSchedulerAndActions();
     
+    pauseScoreUpdate();
     //monster_spider->pauseSchedulerAndActions();
 }
 
@@ -635,6 +676,7 @@ void SketchGameLayer::resumeAllBackground() {
     obj_stone->resumeSchedulerAndActions();
     obj_grass->resumeSchedulerAndActions();
     
+    resumeScoreUpdate();
     //monster_spider->resumeSchedulerAndActions();
 }
 

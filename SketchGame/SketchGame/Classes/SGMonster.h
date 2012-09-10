@@ -46,10 +46,11 @@ public:
     int getType();
     bool isWakeupMonster();
     int getInkAmount();
+    int getScoreAmount();
     
 	void attackComplete(float dt);
-    void resetStatus(int hp, int atk, int inkAmount);
-    void upgradeStatus(float upHpRate, float upAtkRate, float upInkRate);
+    void resetStatus(int hp, int atk, int inkAmount, int scoreAmount);
+    void upgradeStatus(float upHpRate, float upAtkRate, float upInkRate, float upScoreRate);
     
 public:
     int func_wakeup();
@@ -65,7 +66,7 @@ private:
     int atk;
     int nWakeupFrames;
     int nDieFrames;
-    int inkAmount;
+    int inkAmount, scoreAmount;
 	bool die_flag;
     bool bWakeupMonster;
 
@@ -78,12 +79,12 @@ private:
     SGAttackAction* act_attack;  //monster's attack dir array 1~4
 
 private:
-    SGMonster(int type, int hp, int atk, int ink, const CCPoint* const movePoints, const int nPoints, CCLayer* const parent);
+    SGMonster(int type, int hp, int atk, int ink, int score, const CCPoint* const movePoints, const int nPoints, CCLayer* const parent);
     CCLayer* const parentLayer;
     
 public:
     virtual ~SGMonster();
-    static SGMonster* create(int type, int hp, int atk, int ink, const CCPoint* const movePoints, const int nPoints,
+    static SGMonster* create(int type, int hp, int atk, int ink, int score, const CCPoint* const movePoints, const int nPoints,
                              CCLayer* const parent);
 };
 

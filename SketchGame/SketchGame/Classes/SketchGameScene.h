@@ -62,6 +62,10 @@ private:
     
     void update_hp(float);
     void update_ink();
+    void update_score(float);
+    
+    void pauseScoreUpdate();
+    void resumeScoreUpdate();
     
 public:
     void gameOver(float dt);
@@ -76,13 +80,15 @@ private:
 	int turn;
     int gameState;
     int nowObject;
-    int nowInk, score;
+    int nowInk;
+    int score, scoreAddAmount;
     bool bPlaying;
     bool bPressPauseBtn;
     
     cocos2d::CCPoint HERO_HIDE_ABLE_POS;
     
     CCLabelTTF *labelTurn;
+    CCLabelAtlas* scoreLabel;
     CCScene* parent;
     PauseGameLayer* pauseLayer;
     
