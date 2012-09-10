@@ -170,7 +170,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             }
             for(int i=0; i<nPoints; i++) {
                 pWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(movePoints[i])));
-                if(i==12) {
+                if(i==11) {
                     //mett or Not
                     pWalkActions->addObject(CCCallFunc::create(this, callfunc_selector(SGMonster::confirmBattlePos)));
                 }
@@ -254,7 +254,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             }
             for(int i=0; i<nPoints; i++) {
                 pWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(movePoints[i])));
-                if(i==12) {
+                if(i==11) {
                     //mett or Not
                     pWalkActions->addObject(CCCallFunc::create(this, callfunc_selector(SGMonster::confirmBattlePos)));
                 }
@@ -337,7 +337,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             }
             for(int i=0; i<nPoints; i++) {
                 pWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(movePoints[i])));
-                if(i==12) {
+                if(i==11) {
                     //mett or Not
                     pWalkActions->addObject(CCCallFunc::create(this, callfunc_selector(SGMonster::confirmBattlePos)));
                 }
@@ -433,7 +433,7 @@ SGMonster::SGMonster(int type, int hp, int atk, int inkAmount, int score, const 
             }
             for(int i=0; i<nPoints; i++) {
                 pWalkActions->addObject(CCSpawn::create(CCDelayTime::create(GAME_FRAME_SPEED), CCPlace::create(movePoints[i])));
-                if(i==12) {
+                if(i==11) {
                     //mett or Not
                     pWalkActions->addObject(CCCallFunc::create(this, callfunc_selector(SGMonster::confirmBattlePos)));
                 }

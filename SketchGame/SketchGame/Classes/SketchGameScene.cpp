@@ -136,6 +136,7 @@ void SketchGameLayer::monsterAttack(float )
                     schedule_selector(SketchGameLayer::turnHero),2.0f);
             }
         } else {
+            //hp_bar->runAction(hp_bar_gage[0]);
             this->scheduleOnce(schedule_selector(SketchGameLayer::gameOver), 5);
         }
 	}
