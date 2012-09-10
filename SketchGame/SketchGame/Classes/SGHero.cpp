@@ -85,6 +85,7 @@ bool SGHero::defend(int damage,int mob_direction) {
     }
     
     if(nowHP <= 0 ) {
+		printf("È÷¾î·Î°¡Á×¾ù½¿´Ù.\n");
         heroSprite->runAction(CCSequence::create(CCDelayTime::create(GAME_FRAME_SPEED*4.f),
                                                  CCCallFunc::create(this, callfunc_selector(SGHero::func_die))));
         return false;

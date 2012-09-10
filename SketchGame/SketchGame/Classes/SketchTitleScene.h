@@ -33,6 +33,8 @@ private:
 	void btnOption(CCObject *sender);
 	void btnExit(CCObject *sender);
 
+	void func_endOpening();
+
 private:
 	SGBackground* background;
 
@@ -40,10 +42,14 @@ private:
 	CCSprite *charSprite;
 	CCSprite *ropeSprite;
 
+	CCSprite *openingSprite;
+	int opening;
+
 	CCMenuItemSprite *spriteItem[MAX_ITEM+1];
 	CCMenu *menu;
 
 	CCActionInterval* act_char;
+	CCFiniteTimeAction* act_opening;
 };
 
 class SketchTitleScene : public cocos2d::CCScene

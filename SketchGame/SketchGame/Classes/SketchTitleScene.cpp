@@ -9,6 +9,9 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 			CCSpriteFrameCache::sharedSpriteFrameCache();
 
 		pSpriteFrameCache->addSpriteFramesWithFile("title_menu.plist", "title_menu.png");;
+		pSpriteFrameCache->addSpriteFramesWithFile("opening.plist", "opening.png");;
+		pSpriteFrameCache->addSpriteFramesWithFile("opening2.plist", "opening2.png");;
+		pSpriteFrameCache->addSpriteFramesWithFile("opening3.plist", "opening3.png");;
 		
 		background = SGBackground::sharedInstance(this);
 		background->retain();
@@ -48,10 +51,35 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 			pSpriteFrameCache->spriteFrameByName(
 				"menu_kiss_1.png"));
 		charSprite->setPosition(
-						ccp(210,70));
+						ccp(170,70));
 		charSprite->runAction(act_char);
 		charSprite->setOpacity(0);
 		this->addChild(charSprite,12);
+
+
+		CCArray* pOpeningFrames = CCArray::create();
+		for(int i=1; i<=33; i++) {
+			printf("op %d\n", i);
+			pOpeningFrames->addObject(pSpriteFrameCache->spriteFrameByName(
+                CCString::createWithFormat("opening_%d.png",i)->getCString()));
+		}
+		
+		act_opening = CCSequence::create(
+			CCAnimate::create(
+				CCAnimation::create(pOpeningFrames, GAME_FRAME_SPEED)),
+			CCCallFunc::create(
+				this,callfunc_selector(SketchTitleLayer::func_endOpening))
+				);
+		act_opening->retain();
+		pOpeningFrames->release();
+
+		openingSprite = CCSprite::create(
+			pSpriteFrameCache->spriteFrameByName(
+				"opening_1.png"));
+		openingSprite->setPosition(
+						ccp(140,160));
+		openingSprite->setVisible(false);
+		this->addChild(openingSprite,20);
 
 		char items[][64] = 
 			{"start",
@@ -100,6 +128,7 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 		this->addChild(menu,11);
 
 
+		opening = false;
 		this->scheduleUpdate();
 
 	return true;
@@ -132,10 +161,20 @@ void SketchTitleLayer::update(float dt){
 			);
 	
 }
-
-void SketchTitleLayer::btnStart(CCObject *sender){
+void SketchTitleLayer::func_endOpening(){
+	printf("¿ÀÇÁ´×ÀÌ³¡³´½¿´Ù.\n");
 	CCScene *scene = SketchGameScene::create();
 	CCDirector::sharedDirector()->replaceScene(scene);
+}
+void SketchTitleLayer::btnStart(CCObject *sender){
+	if(opening == false){
+		openingSprite->runAction(act_opening);
+		openingSprite->setVisible(true);
+		charSprite->setVisible(false);
+		opening = true;
+	}
+	//CCScene *scene = SketchGameScene::create();
+	//CCDirector::sharedDirector()->replaceScene(scene);
 	//pDirector->runWithScene(pScene);
 }
 void SketchTitleLayer::btnUpgrade(CCObject *sender){
