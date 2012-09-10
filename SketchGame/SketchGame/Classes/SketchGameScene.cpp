@@ -284,12 +284,12 @@ void SketchGameLayer::update_ink() {
     }
 }
 
-void SketchGameLayer::gameOver() {
+void SketchGameLayer::gameOver(float dt) {
     CCDirector::sharedDirector()->replaceScene(SketchTitleScene::create());
     this->release();
 }
 
-void SketchGameLayer::pauseGame() {
+void SketchGameLayer::pauseGame(CCObject *o) {
     bPlaying = false;
     //CCDirector::sharedDirector()->pause();
     this->onExit();
@@ -298,7 +298,7 @@ void SketchGameLayer::pauseGame() {
     parent->addChild(pauseLayer, 10);
 }
 
-void SketchGameLayer::resumeGame() {
+void SketchGameLayer::resumeGame(CCObject *o) {
     bPlaying = true;
     //CCDirector::sharedDirector()->resume();
     this->onEnter();
@@ -795,12 +795,12 @@ bool PauseGameLayer::init() {
     }
 }
 
-void PauseGameLayer::resumeGame() {
-    gameLayer->resumeGame();
+void PauseGameLayer::resumeGame(CCObject *o) {
+    gameLayer->resumeGame(o);
 }
 
-void PauseGameLayer::gotoMenu() {
-    gameLayer->gameOver();
+void PauseGameLayer::gotoMenu(CCObject *o) {
+    gameLayer->gameOver(0);
 }
 
 PauseGameLayer* PauseGameLayer::create(SketchGameLayer* _gameLayer) {

@@ -64,9 +64,9 @@ private:
     void update_ink();
     
 public:
-    void gameOver();
-    void pauseGame();
-    void resumeGame();
+    void gameOver(float dt);
+    void pauseGame(CCObject *o);
+    void resumeGame(CCObject *o);
     
     void setParent(CCScene* _parent);
     
@@ -155,8 +155,8 @@ public:
 private:
     SketchGameLayer* gameLayer;
     
-    void resumeGame();
-    void gotoMenu();
+    void resumeGame(CCObject *o);
+    void gotoMenu(CCObject *o);
 };
 
 
