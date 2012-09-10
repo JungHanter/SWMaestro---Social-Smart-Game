@@ -234,9 +234,9 @@ obj/local/armeabi/objs-debug/game_shared/helloworld/main.o: \
  /Installation/android-ndk-r8b/platforms/android-8/arch-arm/usr/include/android/log.h \
  jni/../../Classes/SketchGameScene.h jni/../../Classes/defines.h \
  jni/../../Classes/SGBackground.h jni/../../Classes/SGMonster.h \
- jni/../../Classes/SGHero.h jni/../../Classes/SGBackground.h \
- jni/../../Classes/SGHero.h jni/../../Classes/SGHidableObject.h \
- jni/../../Classes/SGMonster.h
+ jni/../../Classes/SGHero.h jni/../../Classes/AppDelegate.h \
+ jni/../../Classes/SGBackground.h jni/../../Classes/SGHero.h \
+ jni/../../Classes/SGHidableObject.h jni/../../Classes/SGMonster.h
 
 jni/../../Classes/AppDelegate.h:
 
@@ -713,6 +713,8 @@ jni/../../Classes/SGBackground.h:
 jni/../../Classes/SGMonster.h:
 
 jni/../../Classes/SGHero.h:
+
+jni/../../Classes/AppDelegate.h:
 
 jni/../../Classes/SGBackground.h:
 

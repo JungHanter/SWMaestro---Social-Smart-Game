@@ -46,6 +46,7 @@ private:
 	CCActionInterval* act_char;
 };
 
+
 class SketchTitleScene : public cocos2d::CCScene
 {
 public :
