@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="38" version="2.0">
+<workbench progressCount="30" version="2.0">
 <workbenchAdvisor/>
-<window height="1050" width="1453" x="66" y="295">
+<window height="1286" width="2194" x="173" y="67">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
@@ -19,16 +19,17 @@
 <coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="62" y="22"/>
 <coolItem id="org.eclipse.jst.j2ee.J2eeMainActionSet" itemType="typeToolBarContribution" x="70" y="22"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="84" y="22"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="32" y="22"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="120" y="22"/>
 <coolItem id="org.eclipse.wst.server.ui.internal.webbrowser.actionSet" itemType="typeToolBarContribution" x="32" y="22"/>
 <coolItem id="org.eclipse.wst.ws.explorer.explorer" itemType="typeToolBarContribution" x="32" y="22"/>
 <coolItem id="org.eclipse.wst.xml.ui.perspective.NewFileToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.wst.xml.ui.design.DesignToolBar" itemType="typeToolBarContribution" x="54" y="22"/>
 <coolItem id="com.aptana.ui.globalActionSet" itemType="typeToolBarContribution" x="40" y="22"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="152" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.android.ide.eclipse.editors.layout.LayoutEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="org.eclipse.cdt.ui.editor.CEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="org.eclipse.ui.browser.editor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
@@ -39,10 +40,26 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.internal.EditorStack@1b1129ba" ratio="0.49970466" ratioLeft="846" ratioRight="847" relationship="2" relative="DefaultEditorWorkbook">
+<folder appearance="1" expanded="2">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SketchGame.java" partName="SketchGame.java" path="/Users/hanter/Programming/SWMaestro/firststep_1st/Social_Smart_Game/SWMaestro---Social-Smart-Game/SketchGame/SketchGame/proj.android/src/com/swmaestro/sketchgame/SketchGame.java" title="SketchGame.java" tooltip="proj.android/src/com/swmaestro/sketchgame/SketchGame.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/proj.android/src/com/swmaestro/sketchgame/SketchGame.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="3177" selectionTopPixel="30"/>
+</editor>
+<editor focus="true" id="com.android.ide.eclipse.editors.layout.LayoutEditor" name="splash.xml" partName="splash.xml" path="/Users/hanter/Programming/SWMaestro/firststep_1st/Social_Smart_Game/SWMaestro---Social-Smart-Game/SketchGame/SketchGame/proj.android/res/layout/splash.xml" title="splash.xml" tooltip="proj.android/res/layout/splash.xml" workbook="org.eclipse.ui.internal.EditorStack@1b1129ba">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/proj.android/res/layout/splash.xml"/>
+</editor>
 </editors>
 <views>
 <view id="com.android.ide.eclipse.ddms.views.DeviceView" partName="Devices">
@@ -76,6 +93,9 @@
 <view id="org.eclipse.datatools.connectivity.DataSourceExplorerNavigator" partName="Data Source Explorer"/>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Errors (1 item)"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -140,7 +160,7 @@
 <view id="org.eclipse.wst.server.ui.ServersView" partName="Servers"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.jst.j2ee.internal.perspective.J2EEPerspective" id="org.eclipse.jst.j2ee.J2EEPerspective" label="Java EE"/>
 <alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
@@ -362,7 +382,7 @@
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.24953617" ratioLeft="269" ratioRight="809" relationship="2" relative="left"/>
 <info folder="true" part="bottom" ratio="0.75" ratioLeft="555" ratioRight="185" relationship="4" relative="org.eclipse.ui.editorss">
-<folder activePageID="com.android.ide.eclipse.ddms.views.DeviceView" appearance="2" expanded="2">
+<folder activePageID="com.android.ide.eclipse.ddms.views.LogCatView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
 <page content="org.eclipse.jdt.ui.SourceView" label="Declaration"/>
@@ -473,35 +493,48 @@
 <view id="org.eclipse.cdt.make.ui.views.MakeView"/>
 <view id="org.eclipse.mylyn.tasks.ui.views.tasks"/>
 <fastViewBars/>
-<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="topLeft">&#x0A;<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
+<layout>
+<mainWindow>
+<info folder="true" part="topLeft">
+<folder activePageID="org.eclipse.ui.navigator.ProjectExplorer" appearance="2" expanded="2">
+<page content="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer"/>
 <page content="org.eclipse.cdt.ui.CView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
 <page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="stickyFolderRight" ratio="0.74953616" ratioLeft="808" ratioRight="270" relationship="2" relative="topLeft">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<info folder="true" part="stickyFolderRight" ratio="0.74953616" ratioLeft="808" ratioRight="270" relationship="2" relative="topLeft">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 <page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.24953617" ratioLeft="269" ratioRight="809" relationship="2" relative="topLeft"/>
-<info folder="true" part="bottom" ratio="0.75" ratioLeft="555" ratioRight="185" relationship="4" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<info folder="true" part="bottom" ratio="0.75" ratioLeft="555" ratioRight="185" relationship="4" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.views.ProblemView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
 <page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
 <page content="org.eclipse.ui.views.PropertySheet" label="Properties"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 <part id="3"/>
 </presentation>
 </folder>
 </info>
-<info folder="true" part="topRight" ratio="0.7490729" ratioLeft="606" ratioRight="203" relationship="2" relative="org.eclipse.ui.editorss">&#x0A;<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<info folder="true" part="topRight" ratio="0.7490729" ratioLeft="606" ratioRight="203" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
 <page content="org.eclipse.cdt.make.ui.views.MakeView" label="Make Target"/>
 <page content="org.eclipse.mylyn.tasks.ui.views.tasks" label="Task List"/>
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
 <part id="1"/>
 <part id="2"/>
 </presentation>
@@ -512,7 +545,127 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/proj.android/src/com/swmaestro/sketchgame/SketchGame.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/proj.android/src/com/swmaestro/sketchgame/SplashActivity.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.layout.LayoutEditor" path="/proj.android/res/layout/splash.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" path="/proj.android/AndroidManifest.xml"/>
+</editors>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="2868" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="564" y="0"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="2868" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="564" y="0"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="1962" y="26"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="1993" y="35"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="247" y="0"/>
+</item>
+<item historyLabel="splash.xml" index="2"/>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="561" y="0"/>
+</item>
+<item historyLabel="splash.xml" index="2"/>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="561" y="0"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3002" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="567" y="0"/>
+</item>
+<item historyLabel="splash.xml" index="2"/>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3386" y="0"/>
+</item>
+<item historyLabel="proj.android Manifest" index="3"/>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="567" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="367" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="561" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="359" y="7"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="561" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="553" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="561" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="564" y="0"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3386" y="0"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="518" y="0"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3274" y="0"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3438" y="0"/>
+</item>
+<item historyLabel="SplashActivity.java" index="1">
+<position info="not_deleted" x="355" y="206"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3822" y="0"/>
+</item>
+<item historyLabel="proj.android Manifest" index="3"/>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3822" y="0"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3740" y="0"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3683" y="7"/>
+</item>
+<item historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3740" y="0"/>
+</item>
+<item active="true" historyLabel="SketchGame.java" index="0">
+<position info="not_deleted" x="3820" y="0"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
@@ -530,6 +683,15 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.manifest.ManifestEditor" name="AndroidManifest.xml" tooltip="proj.android/AndroidManifest.xml">
+<persistable path="/proj.android/AndroidManifest.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.android.ide.eclipse.editors.layout.LayoutEditor" name="splash.xml" tooltip="proj.android/res/layout/splash.xml">
+<persistable path="/proj.android/res/layout/splash.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SplashActivity.java" tooltip="proj.android/src/com/swmaestro/sketchgame/SplashActivity.java">
+<persistable path="/proj.android/src/com/swmaestro/sketchgame/SplashActivity.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="SketchGame.java" tooltip="proj.android/src/com/swmaestro/sketchgame/SketchGame.java">
 <persistable path="/proj.android/src/com/swmaestro/sketchgame/SketchGame.java"/>
 </file>

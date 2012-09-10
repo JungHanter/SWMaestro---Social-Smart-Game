@@ -32,9 +32,13 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ConfigurationInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
-import android.widget.FrameLayout;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 public class SketchGame extends Cocos2dxActivity{
 	private Cocos2dxGLSurfaceView mGLView;
@@ -51,7 +55,7 @@ public class SketchGame extends Cocos2dxActivity{
             ViewGroup.LayoutParams framelayout_params =
                 new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
                                            ViewGroup.LayoutParams.FILL_PARENT);
-            FrameLayout framelayout = new FrameLayout(this);
+            final FrameLayout framelayout = new FrameLayout(this);
             framelayout.setLayoutParams(framelayout_params);
 
             // Cocos2dxEditText layout
@@ -69,13 +73,24 @@ public class SketchGame extends Cocos2dxActivity{
 
             // ...add to FrameLayout
             framelayout.addView(mGLView);
-
+            
 	        mGLView.setEGLContextClientVersion(2);
 	        mGLView.setCocos2dxRenderer(new Cocos2dxRenderer());
             mGLView.setTextField(edittext);
 
+            final LinearLayout splash = (LinearLayout)View.inflate(this, R.layout.splash, null);
+            framelayout.addView(splash);
+            
             // Set framelayout as the content view
 			setContentView(framelayout);
+
+			new Handler() {
+				public void handleMessage(Message msg) {
+					splash.setVisibility(View.INVISIBLE);
+					framelayout.removeView(splash);
+				}
+			}.sendEmptyMessageDelayed(0, 5000);
+			
 		}
 		else {
 			Log.d("activity", "don't support gles2.0");

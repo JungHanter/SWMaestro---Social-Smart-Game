@@ -1,0 +1,10 @@
+package com.swmaestro.sketchgame;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class SplashActivity extends Activity {
+	protected void onCreate(Bundle savedInstanceState) {
+		
+	}
+}

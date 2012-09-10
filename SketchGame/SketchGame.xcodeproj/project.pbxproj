@@ -13,6 +13,7 @@
 		D805618115FA1433008AEE5B /* bg_map_hill2.png in Resources */ = {isa = PBXBuildFile; fileRef = D805617B15FA1433008AEE5B /* bg_map_hill2.png */; };
 		D805618215FA1433008AEE5B /* game_etc.plist in Resources */ = {isa = PBXBuildFile; fileRef = D805617C15FA1433008AEE5B /* game_etc.plist */; };
 		D805618315FA1433008AEE5B /* game_etc.png in Resources */ = {isa = PBXBuildFile; fileRef = D805617D15FA1433008AEE5B /* game_etc.png */; };
+		D80B08F415FE32C6007C623F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D80B08F315FE32C6007C623F /* Default.png */; };
 		D82DC18B15FD8319007286CC /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = D82DC18A15FD8319007286CC /* numbers.png */; };
 		D82DC18F15FD8321007286CC /* SGSaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D82DC18D15FD8321007286CC /* SGSaveData.cpp */; };
 		D83B163215FE258100D89F63 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D83B162815FE258000D89F63 /* HelloWorldScene.cpp */; };
@@ -272,6 +273,7 @@
 		D805617B15FA1433008AEE5B /* bg_map_hill2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_map_hill2.png; path = Resources/bg_map_hill2.png; sourceTree = "<group>"; };
 		D805617C15FA1433008AEE5B /* game_etc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = game_etc.plist; path = Resources/game_etc.plist; sourceTree = "<group>"; };
 		D805617D15FA1433008AEE5B /* game_etc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_etc.png; path = Resources/game_etc.png; sourceTree = "<group>"; };
+		D80B08F315FE32C6007C623F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D82DC18A15FD8319007286CC /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = numbers.png; path = Resources/numbers.png; sourceTree = "<group>"; };
 		D82DC18D15FD8321007286CC /* SGSaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGSaveData.cpp; path = Classes/SGSaveData.cpp; sourceTree = "<group>"; };
 		D82DC18E15FD8321007286CC /* SGSaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSaveData.h; path = Classes/SGSaveData.h; sourceTree = "<group>"; };
@@ -773,6 +775,7 @@
 		D88C906615F791C100EE167A = {
 			isa = PBXGroup;
 			children = (
+				D80B08F315FE32C6007C623F /* Default.png */,
 				D88C908515F791C100EE167A /* SketchGame */,
 				D88C907415F791C100EE167A /* Frameworks */,
 				D88C907215F791C100EE167A /* Products */,
@@ -1787,6 +1790,7 @@
 				D8C71DE415FC1CA500A344B8 /* bg_forest_additional.plist in Resources */,
 				D8C71DE515FC1CA500A344B8 /* bg_forest_additional.png in Resources */,
 				D82DC18B15FD8319007286CC /* numbers.png in Resources */,
+				D80B08F415FE32C6007C623F /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

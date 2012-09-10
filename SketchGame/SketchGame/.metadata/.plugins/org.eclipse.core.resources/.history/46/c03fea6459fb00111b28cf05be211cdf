@@ -1,0 +1,16 @@
+package com.swmaestro.sketchgame;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.os.Handler;
+
+public class SplashActivity extends Activity {
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.splash);
+		
+		new Handler() {
+			startActivity(new Intent(SplashActivity.this, SketchGame.class));
+		}.sendEmptyMessageDelayed(0, 2000);
+	}
+}
