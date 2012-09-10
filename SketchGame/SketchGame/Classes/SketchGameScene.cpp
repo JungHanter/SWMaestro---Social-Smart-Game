@@ -166,6 +166,7 @@ void SketchGameLayer::endBattleMode(float) {
 	int nFrames = nowMonster->die();
     
 	this->scheduleOnce(schedule_selector(SketchGameLayer::func_startHeroRun),GAME_FRAME_SPEED*nFrames);
+    this->scheduleOnce(schedule_selector(SketchGameLayer::func_inkMove),GAME_FRAME_SPEED*nFrames);
     CCLog("End battle");
 	//func_startHeroRun();
 }
@@ -245,11 +246,13 @@ void SketchGameLayer::func_heroMoveShow(float dt) {
 void SketchGameLayer::func_startHeroRun(float dt) {
     gameState = GAMESTATE_RUNNING;
     
-    ink_move->runAction(ink_move_act);
-    
     resumeAllBackground();
     hero->resumeSchedulerAndActions();
     hero->func_startRun();
+}
+
+void SketchGameLayer::func_inkMove(float) {
+    ink_move->runAction(ink_move_act);
 }
 
 int SketchGameLayer::getGameState() {
@@ -286,9 +289,32 @@ void SketchGameLayer::gameOver() {
     this->release();
 }
 
+void SketchGameLayer::pauseGame() {
+    bPlaying = false;
+    //CCDirector::sharedDirector()->pause();
+    this->onExit();
+    pauseLayer = PauseGameLayer::create(this);
+    pauseLayer->retain();
+    parent->addChild(pauseLayer, 10);
+}
+
+void SketchGameLayer::resumeGame() {
+    bPlaying = true;
+    //CCDirector::sharedDirector()->resume();
+    this->onEnter();
+    if(gameState != GAMESTATE_RUNNING && gameState!= GAMESTATE_HIDEWAITING) {
+        pauseAllBackground();
+    }
+    parent->removeChild(pauseLayer, true);
+    pauseLayer->release();
+    pauseLayer=NULL;
+}
+
 void SketchGameLayer::loadGameTexture() {
     CCSpriteFrameCache *pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+    
+    bPlaying = true;
     
     pSpriteFrameCache->addSpriteFramesWithFile("bg_etc.plist", "bg_etc.png");
     pSpriteFrameCache->addSpriteFramesWithFile("game_etc.plist", "game_etc.png");
@@ -298,6 +324,26 @@ void SketchGameLayer::loadGameTexture() {
     pSpriteFrameCache->addSpriteFramesWithFile("wing.plist", "wing.png");
     pSpriteFrameCache->addSpriteFramesWithFile("ball.plist", "ball.png");
 
+    
+    //menu
+    CCMenuItemSprite* pauseBtn = CCMenuItemSprite::create(CCSprite::create(pSpriteFrameCache->spriteFrameByName("btn_pause.png")),
+                                                          CCSprite::create(pSpriteFrameCache->spriteFrameByName("btn_pause_p.png")),
+                                                          this,
+                                                          SEL_MenuHandler(menu_selector(SketchGameLayer::pauseGame)));
+    pauseBtn->setAnchorPoint(ccp(1,1));
+    CCArray* pBtns = CCArray::create();
+    pBtns->addObject(pauseBtn);
+    
+    CCMenu* pauseMenu = CCMenu::create(pBtns);
+    pauseMenu->setAnchorPoint(ccp(1,1));
+    pauseMenu->setPosition(winSize.width-5, winSize.height-5);
+    this->addChild(pauseMenu, ORDER_MENU, TAG_TEXTURE);
+    pBtns->release();
+    
+    //pauseLayer = PauseGameLayer::create(this);
+    //pauseLayer->retain();
+    
+    //background
     background = SGBackground::sharedInstance(this);
     background->retain();
     
@@ -566,6 +612,8 @@ void SketchGameLayer::unloadGameTexture() {
     pTextureCahce->removeTextureForKey("ball.png");
     pTextureCahce->removeUnusedTextures();
     
+    this->removeChild(pauseLayer, true);
+
     //CCTextureCache::sharedTextureCache()->removeAllTextures();
     //CCSpriteFrameCache::sharedSpriteFrameCache()->removeUnusedSpriteFrames();
 }
@@ -633,6 +681,10 @@ SketchGameLayer::~SketchGameLayer() {
     }
 }
 
+void SketchGameLayer::setParent(cocos2d::CCScene *_parent) {
+    parent = _parent;
+}
+
 ////////touch method///////
 void SketchGameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* pEvent) {
     bTouching = true;
@@ -684,6 +736,7 @@ bool SketchGameScene::init() {
     {
         this->_layer = SketchGameLayer::create();
         this->_layer->retain();
+        this->_layer->setParent(this);
         this->addChild(_layer, 0);
         
         return true;
@@ -700,3 +753,62 @@ SketchGameScene::~SketchGameScene() {
     }    
 }
 
+
+/////////////////////////PauseGameLayer class//////////////////////////
+
+bool PauseGameLayer::init() {
+    if( PauseGameLayer::initWithColor(ccc4(0,0,0,80)) )
+    {
+        CCSize winSize = CCDirector::sharedDirector()->getWinSize();
+        this->_label = CCLabelTTF::create("", "Artial", 32);
+        _label->retain();
+        //_label->setColor( ccc3(0,0,0) );
+        //_label->setPosition(ccp(winSize.width/2, winSize.height/2));
+        this->addChild(_label);
+        
+        this->setTouchEnabled(true);
+        
+        CCSpriteFrameCache* pSpriteFrameCache = CCSpriteFrameCache::sharedSpriteFrameCache();
+        
+        CCSprite* pauseMenu = CCSprite::create(pSpriteFrameCache->spriteFrameByName("dialog_pause.png"));
+        pauseMenu->retain();
+        pauseMenu->setPosition(ccp(winSize.width/2, winSize.height/2));
+        this->addChild(pauseMenu);
+        
+        CCArray* pMenuItems = CCArray::create();
+        CCMenuItemSprite* btn_resume = CCMenuItemSprite::create(CCSprite::create(pSpriteFrameCache->spriteFrameByName("dialog_btn_resume.png")),
+                                                                CCSprite::create(pSpriteFrameCache->spriteFrameByName("dialog_btn_resume_p.png")),
+                                                                this, SEL_MenuHandler(menu_selector(PauseGameLayer::resumeGame)));
+        CCMenuItemSprite* btn_menu = CCMenuItemSprite::create(CCSprite::create(pSpriteFrameCache->spriteFrameByName("dialog_btn_menu.png")),
+                                                              CCSprite::create(pSpriteFrameCache->spriteFrameByName("dialog_btn_menu_p.png")),
+                                                              this, SEL_MenuHandler(menu_selector(PauseGameLayer::gotoMenu)));
+        pMenuItems->addObject(btn_resume);
+        pMenuItems->addObject(btn_menu);
+        CCMenu* menu = CCMenu::create(pMenuItems);
+        menu->setPosition(ccp(winSize.width/2, winSize.height/2-30));
+        menu->alignItemsHorizontallyWithPadding(12);
+        this->addChild(menu);
+        
+        return true;
+    } else {
+        return false;
+    }
+}
+
+void PauseGameLayer::resumeGame() {
+    gameLayer->resumeGame();
+}
+
+void PauseGameLayer::gotoMenu() {
+    gameLayer->gameOver();
+}
+
+PauseGameLayer* PauseGameLayer::create(SketchGameLayer* _gameLayer) {
+    PauseGameLayer* pauseLayer = create();
+    pauseLayer->setGameLayer(_gameLayer);
+    return pauseLayer;
+}
+
+void PauseGameLayer::setGameLayer(SketchGameLayer* _gameLayer) {
+    gameLayer = _gameLayer;
+}

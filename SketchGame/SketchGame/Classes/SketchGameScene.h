@@ -16,11 +16,14 @@
 #include "SGBackground.h"
 #include "SGMonster.h"
 #include "SGHero.h"
+#include "AppDelegate.h"
 
 using namespace cocos2d;
 
 #define TURN_HERO  1
 #define TURN_MONSTER 2
+
+class PauseGameLayer;
 
 class SketchGameLayer : public cocos2d::CCLayerColor
 {
@@ -47,6 +50,7 @@ private:
     void func_startHeroRun(float);
     
     void func_wakeupAfterAttack(float);
+    void func_inkMove(float);
     
     void loadGameTexture();
     void unloadGameTexture();
@@ -59,7 +63,12 @@ private:
     void update_hp(float);
     void update_ink();
     
+public:
     void gameOver();
+    void pauseGame();
+    void resumeGame();
+    
+    void setParent(CCScene* _parent);
     
     void test();
  
@@ -68,12 +77,16 @@ private:
     int gameState;
     int nowObject;
     int nowInk, score;
+    bool bPlaying;
+    bool bPressPauseBtn;
     
     cocos2d::CCPoint HERO_HIDE_ABLE_POS;
     
+    CCLabelTTF *labelTurn;
+    CCScene* parent;
+    PauseGameLayer* pauseLayer;
+    
     SGBackground* background;
-	CCLabelTTF *labelTurn;
-
 
     SGMonster* monsters[MONSTER_TYPE_NUMBER];
     SGMonster* nowMonster;
@@ -113,6 +126,8 @@ public:
     CC_SYNTHESIZE_READONLY(cocos2d::CCLabelTTF*, _label, Label);
 };
 
+
+//////////////////////SketchGameScene//////////////////////
 class SketchGameScene : public cocos2d::CCScene
 {
 public:
@@ -122,6 +137,26 @@ public:
     
     SCENE_CREATE_FUNC(SketchGameScene);
     CC_SYNTHESIZE_READONLY(SketchGameLayer*, _layer, Layer);
+};
+
+//////////////////////PauseGameLayer////////////////////////
+class PauseGameLayer : public CCLayerColor
+{
+public:
+    PauseGameLayer() : _label(NULL) {}
+    virtual ~PauseGameLayer() {}
+    bool init();
+    static PauseGameLayer* create(SketchGameLayer* _gameLayer);
+    void setGameLayer(SketchGameLayer* _gameLayer);
+    
+    LAYER_CREATE_FUNC(PauseGameLayer);
+    CC_SYNTHESIZE_READONLY(cocos2d::CCLabelTTF*, _label, Label);
+    
+private:
+    SketchGameLayer* gameLayer;
+    
+    void resumeGame();
+    void gotoMenu();
 };
 
 

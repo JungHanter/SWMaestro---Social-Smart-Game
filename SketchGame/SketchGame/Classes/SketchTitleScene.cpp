@@ -73,12 +73,8 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 			char normalSprite[64] = "menu_";
 			char selectedSprite[64] = "menu_";
 
-			sprintf(normalSprite,
-				"%s%s.png",
-				normalSprite,items[i]);
-			sprintf(selectedSprite,
-				"%s%s_p.png",
-				selectedSprite,items[i]);
+			sprintf(normalSprite, "%s%s.png", normalSprite,items[i]);
+			sprintf(selectedSprite, "%s%s_p.png", selectedSprite,items[i]);
             
 			spriteItem[i] = CCMenuItemSprite::create(
 				CCSprite::create(pSpriteFrameCache->spriteFrameByName(

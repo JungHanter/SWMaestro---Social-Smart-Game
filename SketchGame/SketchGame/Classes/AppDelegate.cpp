@@ -50,7 +50,7 @@ void AppDelegate::applicationDidEnterBackground() {
 void AppDelegate::applicationWillEnterForeground() {
     CCDirector::sharedDirector()->startAnimation(); //Android
     CCDirector::sharedDirector()->resume();         //iOS
-
+    
     // if you use SimpleAudioEngine, it must resume here
     // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
