@@ -8,6 +8,11 @@
 #include "SGSound.h"
 using namespace cocos2d;
 
+struct SGOptionInfo {
+    bool bSound;
+    bool bVibration;
+};
+
 class SGSound;
 class SGOptionScene : public cocos2d::CCLayer
 {
@@ -25,7 +30,7 @@ private:
 	void exit_option(CCObject* pSender);
 public:
 	SGOptionScene(void);
-	~SGOptionScene(void);
+	virtual ~SGOptionScene(void);
 
 	static cocos2d::CCScene* scene();
 	virtual bool init();

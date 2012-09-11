@@ -8,6 +8,7 @@
 
 #include "SketchGameScene.h"
 #include "SketchTitleScene.h"
+#include "SGSavaData.h"
 
 using namespace cocos2d;
 
@@ -112,6 +113,7 @@ void SketchGameLayer::defendHero(SGAttackInfo info, int defState) {
         else
             this->scheduleOnce(schedule_selector(SketchGameLayer::turnHero),2.0f);
     } else {
+        //heroDie....
         hp_bar->runAction(hp_bar_gage[0]);
         this->scheduleOnce(schedule_selector(SketchGameLayer::gameOver), 5);
     }
@@ -249,6 +251,10 @@ void SketchGameLayer::update_score(float) {
 }
 
 void SketchGameLayer::gameOver(float dt) {
+    //save game
+    SGSaveData::sharedSaveData()->addScore(score);
+    SGSaveData::sharedSaveData()->changeInk(nowInk);
+    
     CCDirector::sharedDirector()->replaceScene(SketchTitleScene::create());
     this->release();
 }
@@ -452,9 +458,7 @@ void SketchGameLayer::loadGameTexture() {
     hero = SGHero::create(this);
     hero->retain();
     
-    //dummy testing heroinfo
-    heroInfo.Str=heroInfo.Dex=heroInfo.Con=heroInfo.Luck=10;
-    heroInfo.ink=0;
+    heroInfo = SGSaveData::sharedHeroInfo();
     
     hero->initHeroState(heroInfo);
     

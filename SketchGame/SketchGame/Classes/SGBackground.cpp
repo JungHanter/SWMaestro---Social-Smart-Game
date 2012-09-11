@@ -94,7 +94,7 @@ void SGBackground::gameStart() {
     //bg_overlay->schedule(schedule_selector(SGBackground::logic_overlay), OVERLAY_CYCLE);
     CCArray* pOverlayFrames = CCArray::create();
     pOverlayFrames->addObject(CCMoveTo::create(0.0f, ccp(-500,-500)));
-    pOverlayFrames->addObject(CCDelayTime::create(GAME_FRAME_SPEED*30*2));
+    pOverlayFrames->addObject(CCDelayTime::create(GAME_FRAME_SPEED*30*4));
     pOverlayFrames->addObject(CCMoveTo::create(0.0f, ccp(0,0)));
     pOverlayFrames->addObject(bg_forest_into_action);
     pOverlayFrames->addObject(CCRepeat::create(bg_forest_action, 10));

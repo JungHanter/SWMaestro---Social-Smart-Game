@@ -17,7 +17,7 @@ private:
 	bool OnDraw;
 public:
 	SGSignScene(void);
-	~SGSignScene(void);
+	virtual ~SGSignScene(void);
 
 	static cocos2d::CCScene *scene();
 	bool init();

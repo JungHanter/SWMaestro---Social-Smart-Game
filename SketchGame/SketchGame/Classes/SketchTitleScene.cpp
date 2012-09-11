@@ -2,7 +2,7 @@
 #include "SketchGameScene.h"
 #include "SGOptionScene.h"
 #include "SGUpgradeScene.h"
-
+#include "SGRankingScene.h"
 
 bool SketchTitleLayer::init(){
 if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
@@ -61,7 +61,7 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 
 		CCArray* pOpeningFrames = CCArray::create();
 		for(int i=1; i<=33; i++) {
-			printf("op %d\n", i);
+			//printf("op %d\n", i);
 			pOpeningFrames->addObject(pSpriteFrameCache->spriteFrameByName(
                 CCString::createWithFormat("opening_%d.png",i)->getCString()));
 		}
@@ -204,6 +204,8 @@ void SketchTitleLayer::btnUpgrade(CCObject *sender){
 	CCDirector::sharedDirector()->replaceScene(scene);
 }
 void SketchTitleLayer::btnRanking(CCObject *sender){
+	CCScene *scene = SGRankingLayer::scene();
+	CCDirector::sharedDirector()->replaceScene(scene);
 }
 void SketchTitleLayer::btnOption(CCObject *sender){
 	CCScene *scene = SGOptionScene::scene();

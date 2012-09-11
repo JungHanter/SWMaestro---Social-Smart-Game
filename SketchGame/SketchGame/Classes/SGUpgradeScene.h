@@ -1,9 +1,10 @@
 #pragma once
 #include "cocos2d.h"
 #include "defines.h"
-#include "SGHero.h"
+#include "SGSavaData.h"
+
 using namespace cocos2d;
-extern SGHeroInfo info_upgrade;
+
 class SGUpgradeScene : public cocos2d::CCLayer
 {
 private:
@@ -18,12 +19,20 @@ private:
 	void conUp(CCObject* pSender);
 	void luckUp(CCObject* pSender);
 	void exit_Upgrade(CCObject* pSender);
+    
+private:
+    CCLabelAtlas* statusLabel[4];
+    CCLabelAtlas* statusAddLabel[4];
+    CCLabelAtlas* inkLabel;
+    
+    SGSaveData* saveData;    
+    
 public:
-	SGUpgradeScene(void);
-	~SGUpgradeScene(void);
+	SGUpgradeScene(void) {};
+	virtual ~SGUpgradeScene(void);
 
 	//static SGHeroInfo getUpgradeInfo();
 	static cocos2d::CCScene *scene();
 	bool init();
-	 LAYER_CREATE_FUNC(SGUpgradeScene);
+	LAYER_CREATE_FUNC(SGUpgradeScene);
 };
