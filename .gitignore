@@ -10,9 +10,11 @@ SketchGame/SketchGame/.DS_Store
 *.sdf
 *.pdb
 *.ilk
-*.manifest
 *.user
 *.tlog
 *.obj
 *.idb
 *.zip
+
+# ignore - Mac settings
+*.DS_Store
