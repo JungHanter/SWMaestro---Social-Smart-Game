@@ -1,0 +1,20 @@
+
+SketchGame/SketchGame/Resources/.DS_Store
+
+SketchGame/SketchGame/.DS_Store
+
+SketchGame/SketchGame/.DS_Store
+
+
+# ignore - vs 2012
+*.sdf
+*.pdb
+*.ilk
+*.user
+*.tlog
+*.obj
+*.idb
+*.zip
+
+# ignore - Mac settings
+*.DS_Store

@@ -1,77 +1,12 @@
-﻿빌드 시작: 2012-09-11 오후 9:17:06
-     1>2 노드의 "C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\SketchGame\proj.win32\SketchGame.win32.vcxproj" 프로젝트(Build 대상)입니다.
-     1>PrepareForBuild:
-         "C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\Release.win32\" 디렉터리를 만들고 있습니다.
-       InitializeBuildStatus:
-         "AlwaysCreate"이(가) 지정되었기 때문에 "Release.win32\SketchGame.win32.unsuccessfulbuild"을(를) 만들고 있습니다.
-       ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /I..\..\cocos2dx /I..\..\cocos2dx\include /I..\..\cocos2dx\kazmath\include /I..\..\cocos2dx\platform\win32 /I..\..\cocos2dx\platform\third_party\win32 /I..\..\cocos2dx\platform\third_party\win32\OGLES /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGSNDEBUG /D _UNICODE /D UNICODE /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release.win32\\" /Fd"Release.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\AppDelegate.cpp ..\Classes\HelloWorldScene.cpp ..\Classes\SGBackground.cpp ..\Classes\SGHero.cpp ..\Classes\SGHidableObject.cpp ..\Classes\SGMonster.cpp ..\Classes\SGOptionScene.cpp ..\Classes\SGSaveData.cpp ..\Classes\SGSignScene.cpp ..\Classes\SGSound.cpp ..\Classes\SGUpgradeScene.cpp ..\Classes\SketchGameScene.cpp ..\Classes\SketchTitleScene.cpp main.cpp
-         AppDelegate.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         HelloWorldScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         SGBackground.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         SGHero.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         SGHidableObject.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         SGMonster.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         SGOptionScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
+﻿빌드 시작: 2012-09-11 오후 11:45:32
+     1>2 노드의 "C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\SketchGame\proj.win32\SketchGame.win32.vcxproj" 프로젝트(ClCompile 대상)입니다.
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I. /I..\Classes /I..\..\cocos2dx /I..\..\cocos2dx\include /I..\..\cocos2dx\kazmath\include /I..\..\cocos2dx\platform\win32 /I..\..\cocos2dx\platform\third_party\win32 /I..\..\cocos2dx\platform\third_party\win32\OGLES /nologo /W3 /WX- /O2 /Oy- /D WIN32 /D _WINDOWS /D STRICT /D _CRT_SECURE_NO_WARNINGS /D _SCL_SECURE_NO_WARNINGSNDEBUG /D _UNICODE /D UNICODE /Gm- /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release.win32\\" /Fd"Release.win32\vc110.pdb" /Gd /TP /wd4267 /wd4251 /wd4244 /analyze- /errorReport:prompt ..\Classes\SGSaveData.cpp
          SGSaveData.cpp
-         SGSignScene.cpp
      1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
      1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-     1>..\Classes\SGSignScene.cpp(53): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
-         SGSound.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         SGUpgradeScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         SketchGameScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         SketchTitleScene.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         main.cpp
-     1>C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\include\xlocale(335): warning C4530: C++ 예외 처리기가 사용되었지만 해제 의미 체계가 활성화되지 않았습니다. /EHsc를 지정하십시오.
-     1>E:\sdk\cocos2d-2.0-rc2-x-2.0.1\cocos2dx\platform/CCSAXParser.h : warning C4819: 현재 코드 페이지(949)에서 표시할 수 없는 문자가 파일에 들어 있습니다. 데이터가 손실되지 않게 하려면 해당 파일을 유니코드 형식으로 저장하십시오.
-         코드를 생성하고 있습니다...
-       ResourceCompile:
-         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D NDEBUG /D _UNICODE /D UNICODE /l"0x0409" /IRelease.win32\ /nologo /fo"Release.win32\SketchGame.res" SketchGame.rc 
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\Release.win32\SketchGame.win32.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\Release.win32\\" libcocos2d.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\Release.win32\SketchGame.win32.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /PDB:"C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\Release.win32\SketchGame.win32.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\Release.win32\SketchGame.win32.lib" /MACHINE:X86 /SAFESEH Release.win32\SketchGame.res
-         Release.win32\AppDelegate.obj
-         Release.win32\HelloWorldScene.obj
-         Release.win32\SGBackground.obj
-         Release.win32\SGHero.obj
-         Release.win32\SGHidableObject.obj
-         Release.win32\SGMonster.obj
-         Release.win32\SGOptionScene.obj
-         Release.win32\SGSaveData.obj
-         Release.win32\SGSignScene.obj
-         Release.win32\SGSound.obj
-         Release.win32\SGUpgradeScene.obj
-         Release.win32\SketchGameScene.obj
-         Release.win32\SketchTitleScene.obj
-         Release.win32\main.obj
-         SketchGame.win32.vcxproj -> C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\Release.win32\SketchGame.win32.exe
-       FinalizeBuildStatus:
-         "Release.win32\SketchGame.win32.unsuccessfulbuild" 파일을 삭제하고 있습니다.
-         "Release.win32\SketchGame.win32.lastbuildstate"에 연결(touching)하고 있습니다.
-     1>"C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\SketchGame\proj.win32\SketchGame.win32.vcxproj" 프로젝트를 빌드했습니다(Build 대상).
+     1>"C:\Users\Administrator\Documents\GitHub\SWMaestro---Social-Smart-Game\SketchGame\SketchGame\proj.win32\SketchGame.win32.vcxproj" 프로젝트를 빌드했습니다(ClCompile 대상).
 
 빌드했습니다.
 
-경과 시간: 00:00:23.90
+경과 시간: 00:00:02.05
