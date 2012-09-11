@@ -273,7 +273,7 @@
 		D805617B15FA1433008AEE5B /* bg_map_hill2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_map_hill2.png; path = Resources/bg_map_hill2.png; sourceTree = "<group>"; };
 		D805617C15FA1433008AEE5B /* game_etc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = game_etc.plist; path = Resources/game_etc.plist; sourceTree = "<group>"; };
 		D805617D15FA1433008AEE5B /* game_etc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_etc.png; path = Resources/game_etc.png; sourceTree = "<group>"; };
-		D80B08F315FE32C6007C623F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		D80B08F315FE32C6007C623F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		D82DC18A15FD8319007286CC /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = numbers.png; path = Resources/numbers.png; sourceTree = "<group>"; };
 		D82DC18D15FD8321007286CC /* SGSaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGSaveData.cpp; path = Classes/SGSaveData.cpp; sourceTree = "<group>"; };
 		D82DC18E15FD8321007286CC /* SGSaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSaveData.h; path = Classes/SGSaveData.h; sourceTree = "<group>"; };
@@ -775,7 +775,6 @@
 		D88C906615F791C100EE167A = {
 			isa = PBXGroup;
 			children = (
-				D80B08F315FE32C6007C623F /* Default.png */,
 				D88C908515F791C100EE167A /* SketchGame */,
 				D88C907415F791C100EE167A /* Frameworks */,
 				D88C907215F791C100EE167A /* Products */,
@@ -820,6 +819,7 @@
 		D88C908615F791C100EE167A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D80B08F315FE32C6007C623F /* Default.png */,
 				D82DC18A15FD8319007286CC /* numbers.png */,
 				D88C909C15F791C100EE167A /* iTunesArtwork */,
 				D876802515FBDA8300CA6665 /* ball.plist */,
