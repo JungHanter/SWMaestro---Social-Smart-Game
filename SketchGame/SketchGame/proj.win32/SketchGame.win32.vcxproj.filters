@@ -19,6 +19,9 @@
     <Filter Include="source\savedata">
       <UniqueIdentifier>{4e2cbb80-d0a3-45e0-b587-894648da55bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="source\WOONG">
+      <UniqueIdentifier>{020db3ea-f89a-4e93-8786-fbce19105a1b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\SketchGame.ico">
@@ -85,6 +88,18 @@
     <ClInclude Include="..\Classes\SGSaveData.h">
       <Filter>source\savedata</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\SGOptionScene.h">
+      <Filter>source\WOONG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGUpgradeScene.h">
+      <Filter>source\WOONG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSignScene.h">
+      <Filter>source\WOONG</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SGSound.h">
+      <Filter>source\WOONG</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -113,6 +128,21 @@
     </ClCompile>
     <ClCompile Include="..\Classes\SGSaveData.cpp">
       <Filter>source\savedata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>source\WOONG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGOptionScene.cpp">
+      <Filter>source\WOONG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGUpgradeScene.cpp">
+      <Filter>source\WOONG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSignScene.cpp">
+      <Filter>source\WOONG</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SGSound.cpp">
+      <Filter>source\WOONG</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

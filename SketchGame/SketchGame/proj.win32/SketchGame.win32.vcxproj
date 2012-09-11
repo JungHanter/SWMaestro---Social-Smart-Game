@@ -20,7 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v90</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -140,7 +140,11 @@
     <ClInclude Include="..\Classes\SGHero.h" />
     <ClInclude Include="..\Classes\SGHidableObject.h" />
     <ClInclude Include="..\Classes\SGMonster.h" />
+    <ClInclude Include="..\Classes\SGOptionScene.h" />
     <ClInclude Include="..\Classes\SGSaveData.h" />
+    <ClInclude Include="..\Classes\SGSignScene.h" />
+    <ClInclude Include="..\Classes\SGSound.h" />
+    <ClInclude Include="..\Classes\SGUpgradeScene.h" />
     <ClInclude Include="..\Classes\SketchGameScene.h" />
     <ClInclude Include="..\Classes\SketchTitleScene.h" />
     <ClInclude Include="main.h" />
@@ -148,11 +152,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\SGBackground.cpp" />
     <ClCompile Include="..\Classes\SGHero.cpp" />
     <ClCompile Include="..\Classes\SGHidableObject.cpp" />
     <ClCompile Include="..\Classes\SGMonster.cpp" />
+    <ClCompile Include="..\Classes\SGOptionScene.cpp" />
     <ClCompile Include="..\Classes\SGSaveData.cpp" />
+    <ClCompile Include="..\Classes\SGSignScene.cpp" />
+    <ClCompile Include="..\Classes\SGSound.cpp" />
+    <ClCompile Include="..\Classes\SGUpgradeScene.cpp" />
     <ClCompile Include="..\Classes\SketchGameScene.cpp" />
     <ClCompile Include="..\Classes\SketchTitleScene.cpp" />
     <ClCompile Include="main.cpp" />
