@@ -175,6 +175,12 @@ void SketchTitleLayer::update(float dt){
 		if(menu->getPositionY() > -300)
 			menu->setPositionY(
 				menu->getPositionY() - 5 );
+		else{
+			openingSprite->runAction(act_opening);
+			openingSprite->setVisible(true);
+			charSprite->setVisible(false);
+			opening = true;
+		}
 
 	}
 }
@@ -184,10 +190,7 @@ void SketchTitleLayer::func_endOpening(){
 }
 void SketchTitleLayer::btnStart(CCObject *sender){
 	if(opening == false){
-		openingSprite->runAction(act_opening);
-		openingSprite->setVisible(true);
-		charSprite->setVisible(false);
-		opening = true;
+		
 		state = OPENING;
 	}
 	//CCScene *scene = SketchGameScene::create();
