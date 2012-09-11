@@ -248,6 +248,8 @@
 		D88C92F015F791C400EE167A /* AppDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D88C92EF15F791C400EE167A /* AppDelegate.cpp */; };
 		D8C71DE415FC1CA500A344B8 /* bg_forest_additional.plist in Resources */ = {isa = PBXBuildFile; fileRef = D8C71DE215FC1CA500A344B8 /* bg_forest_additional.plist */; };
 		D8C71DE515FC1CA500A344B8 /* bg_forest_additional.png in Resources */ = {isa = PBXBuildFile; fileRef = D8C71DE315FC1CA500A344B8 /* bg_forest_additional.png */; };
+		D8EABDDB15FFD8D800806A59 /* SGSaveData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8EABDD715FFD8D800806A59 /* SGSaveData.cpp */; };
+		D8EABDDC15FFD8D800806A59 /* SGRankingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8EABDD915FFD8D800806A59 /* SGRankingScene.cpp */; };
 		D8FEC9C615F794D800C4EBD4 /* SGBackground.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8FEC9BC15F794D800C4EBD4 /* SGBackground.cpp */; };
 		D8FEC9C715F794D800C4EBD4 /* SGHero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8FEC9BE15F794D800C4EBD4 /* SGHero.cpp */; };
 		D8FEC9C815F794D800C4EBD4 /* SGHidableObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8FEC9C015F794D800C4EBD4 /* SGHidableObject.cpp */; };
@@ -727,6 +729,10 @@
 		D88C92EF15F791C400EE167A /* AppDelegate.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = AppDelegate.cpp; path = Classes/AppDelegate.cpp; sourceTree = "<group>"; };
 		D8C71DE215FC1CA500A344B8 /* bg_forest_additional.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bg_forest_additional.plist; path = Resources/bg_forest_additional.plist; sourceTree = "<group>"; };
 		D8C71DE315FC1CA500A344B8 /* bg_forest_additional.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bg_forest_additional.png; path = Resources/bg_forest_additional.png; sourceTree = "<group>"; };
+		D8EABDD715FFD8D800806A59 /* SGSaveData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGSaveData.cpp; path = Classes/SGSaveData.cpp; sourceTree = "<group>"; };
+		D8EABDD815FFD8D800806A59 /* SGSaveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGSaveData.h; path = Classes/SGSaveData.h; sourceTree = "<group>"; };
+		D8EABDD915FFD8D800806A59 /* SGRankingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SGRankingScene.cpp; path = Classes/SGRankingScene.cpp; sourceTree = "<group>"; };
+		D8EABDDA15FFD8D800806A59 /* SGRankingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGRankingScene.h; path = Classes/SGRankingScene.h; sourceTree = "<group>"; };
 		D8FEC9BB15F794D800C4EBD4 /* defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = defines.h; path = Classes/defines.h; sourceTree = "<group>"; };
 		D8FEC9BC15F794D800C4EBD4 /* SGBackground.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = SGBackground.cpp; path = Classes/SGBackground.cpp; sourceTree = "<group>"; };
 		D8FEC9BD15F794D800C4EBD4 /* SGBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SGBackground.h; path = Classes/SGBackground.h; sourceTree = "<group>"; };
@@ -1636,6 +1642,10 @@
 		D88C92ED15F791C400EE167A /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D8EABDD715FFD8D800806A59 /* SGSaveData.cpp */,
+				D8EABDD815FFD8D800806A59 /* SGSaveData.h */,
+				D8EABDD915FFD8D800806A59 /* SGRankingScene.cpp */,
+				D8EABDDA15FFD8D800806A59 /* SGRankingScene.h */,
 				D83B162815FE258000D89F63 /* HelloWorldScene.cpp */,
 				D83B162915FE258000D89F63 /* HelloWorldScene.h */,
 				D83B162A15FE258000D89F63 /* SGOptionScene.cpp */,
@@ -1973,6 +1983,8 @@
 				D83B163415FE258100D89F63 /* SGSignScene.cpp in Sources */,
 				D83B163515FE258100D89F63 /* SGSound.cpp in Sources */,
 				D83B163615FE258100D89F63 /* SGUpgradeScene.cpp in Sources */,
+				D8EABDDB15FFD8D800806A59 /* SGSaveData.cpp in Sources */,
+				D8EABDDC15FFD8D800806A59 /* SGRankingScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

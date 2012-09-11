@@ -6,7 +6,7 @@
 //
 //
 
-#include "SGSavaData.h"
+#include "SGSaveData.h"
 
 SGSaveData* SGSaveData::saveData = NULL;
 

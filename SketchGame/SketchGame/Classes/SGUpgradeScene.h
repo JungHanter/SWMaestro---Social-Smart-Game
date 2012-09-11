@@ -1,7 +1,7 @@
 #pragma once
 #include "cocos2d.h"
 #include "defines.h"
-#include "SGSavaData.h"
+#include "SGSaveData.h"
 
 using namespace cocos2d;
 

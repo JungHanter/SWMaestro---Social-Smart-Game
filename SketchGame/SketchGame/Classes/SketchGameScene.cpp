@@ -8,7 +8,7 @@
 
 #include "SketchGameScene.h"
 #include "SketchTitleScene.h"
-#include "SGSavaData.h"
+#include "SGSaveData.h"
 
 using namespace cocos2d;
 

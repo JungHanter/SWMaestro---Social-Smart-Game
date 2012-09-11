@@ -10,7 +10,7 @@
 #define __SketchGame__SGRankingScene__
 
 #include "cocos2d.h"
-#include "SGSavaData.h"
+#include "SGSaveData.h"
 using namespace cocos2d;
 
 class SGRankingLayer : public cocos2d::CCLayerColor

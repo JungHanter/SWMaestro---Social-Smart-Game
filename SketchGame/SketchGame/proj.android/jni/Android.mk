@@ -19,6 +19,7 @@ LOCAL_SRC_FILES := helloworld/main.cpp \
                    ../../Classes/SGSound.cpp \
                    ../../Classes/SGOptionScene.cpp \
                    ../../Classes/SGUpgradeScene.cpp \
+                   ../../Classes/SGRankingScene.cpp \
 
 
                    
