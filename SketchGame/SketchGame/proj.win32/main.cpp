@@ -2,6 +2,9 @@
 #include "AppDelegate.h"
 #include "CCEGLView.h"
 
+#include "SimpleAudioEngine.h"
+#pragma comment (lib,"libCocosDenshion")
+
 USING_NS_CC;
 
 // uncomment below line, open debug console

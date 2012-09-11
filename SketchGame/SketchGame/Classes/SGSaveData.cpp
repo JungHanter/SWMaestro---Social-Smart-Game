@@ -1,5 +1,6 @@
 #include "SGSaveData.h"
 
+#ifdef NEVER_EXIST
 
 CSaveData::CSaveData(){
 	fp = NULL;
@@ -119,3 +120,5 @@ int _test1()
 	return 0;
 }
 
+
+#endif
