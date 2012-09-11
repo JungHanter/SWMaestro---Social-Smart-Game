@@ -78,6 +78,7 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 		openingSprite = CCSprite::create(
 			pSpriteFrameCache->spriteFrameByName(
 				"opening_1.png"));
+        openingSprite->retain();
 		openingSprite->setPosition(
 						ccp(140,160));
 		openingSprite->setVisible(false);
@@ -133,13 +134,12 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 		opening = false;
 		this->scheduleUpdate();
 
-	return true;
+        return true;
+        
 	} else {
         return false;
     }
 
-
-	return true;
 }
 
 void SketchTitleLayer::update(float dt){
@@ -176,10 +176,12 @@ void SketchTitleLayer::update(float dt){
 			menu->setPositionY(
 				menu->getPositionY() - 5 );
 		else{
-			openingSprite->runAction(act_opening);
-			openingSprite->setVisible(true);
-			charSprite->setVisible(false);
-			opening = true;
+            if(opening == false) {
+                openingSprite->runAction(act_opening);
+                openingSprite->setVisible(true);
+                charSprite->setVisible(false);
+                opening = true;
+            }
 		}
 
 	}

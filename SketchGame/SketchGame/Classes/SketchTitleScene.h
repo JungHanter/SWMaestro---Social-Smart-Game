@@ -43,13 +43,14 @@ private:
 	CCSprite *ropeSprite;
 
 	CCSprite *openingSprite;
-	int opening;
+	bool opening;
 
 	CCMenuItemSprite *spriteItem[MAX_ITEM+1];
 	CCMenu *menu;
 
 	CCActionInterval* act_char;
 	CCFiniteTimeAction* act_opening;
+
 };
 
 
