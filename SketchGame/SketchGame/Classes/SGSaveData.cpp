@@ -1,6 +1,8 @@
 #include "SGSaveData.h"
 
-#ifdef NEVER_EXIST
+#include "cocos2d.h"
+
+//#ifdef NEVER_EXIST
 
 CSaveData::CSaveData(){
 	fp = NULL;
@@ -9,6 +11,7 @@ CSaveData::~CSaveData(){
 	close();
 }
 void CSaveData::close(){
+		
 	if(fp != NULL)
 		fclose(fp);
 	fp = NULL;
@@ -104,6 +107,7 @@ void CSaveData::save(){
 
 int _test1()
 {
+	
 	CSaveData *cd;
 	cd = CSaveData::create("a.txt");
 
@@ -121,4 +125,4 @@ int _test1()
 }
 
 
-#endif
+//#endif

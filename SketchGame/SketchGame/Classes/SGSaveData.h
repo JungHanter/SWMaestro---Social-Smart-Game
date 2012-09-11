@@ -1,7 +1,7 @@
 #ifndef SG_SAVEDATA_H
 #define SG_SAVEDATA_H
 
-#ifdef NEVER_EXIST
+//#ifdef NEVER_EXIST
 
 #include <stdio.h>
 #include <map>
@@ -66,6 +66,6 @@ private:
 	FILE *fp;
 };
 
-#endif
+//#endif
 
 #endif // SG_SAVEDATA_H
