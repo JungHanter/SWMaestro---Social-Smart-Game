@@ -58,6 +58,13 @@ SGBackground* SGBackground::sharedInstance(CCLayer* parent) {
     return sharedSGBackground;
 }
 
+SGBackground* SGBackground::sharedNewInstance(CCLayer* parent) {
+    if(sharedSGBackground!=NULL)
+        sharedSGBackground->release();
+    sharedSGBackground = new SGBackground(parent);
+    return sharedSGBackground;
+}
+
 void SGBackground::resetParent(CCLayer* parent) {
     parentLayer->removeChild(bg_map, false);
     parentLayer->removeChild(bg_cloud, false);
@@ -336,6 +343,6 @@ SGBackground::~SGBackground() {
     bg_cave_out_action->release();
     bg_non_overlay->release();
     
-    this->release();
+    //this->release();
     sharedSGBackground = NULL;
 }

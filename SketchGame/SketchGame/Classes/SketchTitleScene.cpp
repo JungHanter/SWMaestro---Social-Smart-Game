@@ -4,6 +4,8 @@
 #include "SGUpgradeScene.h"
 #include "SGRankingScene.h"
 
+#include "SGSignScene.h"
+
 bool SketchTitleLayer::init(){
 if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
     {
@@ -15,7 +17,7 @@ if( CCLayerColor::initWithColor(ccc4(255,255,255,255)) )
 		pSpriteFrameCache->addSpriteFramesWithFile("opening2.plist", "opening2.png");;
 		pSpriteFrameCache->addSpriteFramesWithFile("opening3.plist", "opening3.png");;
 		
-		background = SGBackground::sharedInstance(this);
+		background = SGBackground::sharedNewInstance(this);
 		background->retain();
         background->pauseAllBackground();
         background->resetLogic();

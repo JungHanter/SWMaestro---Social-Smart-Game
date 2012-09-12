@@ -117,6 +117,7 @@ int SGHero::getRemainHpDivision() {
 }
 
 void SGHero::initHeroState(const SGHeroInfo &info) {
+    //this->maxHP = 1;
     this->maxHP = 20 + (info.Con);
     this->nowHP = this->maxHP;
     this->atk = 5 + (info.Str/4);

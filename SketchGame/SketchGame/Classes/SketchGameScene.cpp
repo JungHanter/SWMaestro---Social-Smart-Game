@@ -9,6 +9,7 @@
 #include "SketchGameScene.h"
 #include "SketchTitleScene.h"
 #include "SGSaveData.h"
+#include "SGSignScene.h"
 
 using namespace cocos2d;
 
@@ -255,7 +256,8 @@ void SketchGameLayer::gameOver(float dt) {
     SGSaveData::sharedSaveData()->addScore(score);
     SGSaveData::sharedSaveData()->changeInk(nowInk);
     
-    CCDirector::sharedDirector()->replaceScene(SketchTitleScene::create());
+    //CCDirector::sharedDirector()->replaceScene(SketchTitleScene::create());
+    CCDirector::sharedDirector()->replaceScene(SGSignScene::scene());
     this->release();
 }
 

@@ -14,6 +14,21 @@
 		D805618215FA1433008AEE5B /* game_etc.plist in Resources */ = {isa = PBXBuildFile; fileRef = D805617C15FA1433008AEE5B /* game_etc.plist */; };
 		D805618315FA1433008AEE5B /* game_etc.png in Resources */ = {isa = PBXBuildFile; fileRef = D805617D15FA1433008AEE5B /* game_etc.png */; };
 		D80B08F415FE32C6007C623F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D80B08F315FE32C6007C623F /* Default.png */; };
+		D821C48E1600ECAD008FC0EF /* back_p.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C47F1600ECAD008FC0EF /* back_p.png */; };
+		D821C48F1600ECAD008FC0EF /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4801600ECAD008FC0EF /* back.png */; };
+		D821C4901600ECAD008FC0EF /* con_1.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4811600ECAD008FC0EF /* con_1.png */; };
+		D821C4911600ECAD008FC0EF /* con_p.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4821600ECAD008FC0EF /* con_p.png */; };
+		D821C4921600ECAD008FC0EF /* dex_p.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4831600ECAD008FC0EF /* dex_p.png */; };
+		D821C4931600ECAD008FC0EF /* dex.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4841600ECAD008FC0EF /* dex.png */; };
+		D821C4941600ECAD008FC0EF /* Ink.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4851600ECAD008FC0EF /* Ink.png */; };
+		D821C4951600ECAD008FC0EF /* luck_p.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4861600ECAD008FC0EF /* luck_p.png */; };
+		D821C4961600ECAD008FC0EF /* luck.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4871600ECAD008FC0EF /* luck.png */; };
+		D821C4971600ECAD008FC0EF /* numbers_small.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4881600ECAD008FC0EF /* numbers_small.png */; };
+		D821C4981600ECAD008FC0EF /* sign_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C4891600ECAD008FC0EF /* sign_background.png */; };
+		D821C4991600ECAD008FC0EF /* splash_android.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C48A1600ECAD008FC0EF /* splash_android.png */; };
+		D821C49A1600ECAD008FC0EF /* str_p.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C48B1600ECAD008FC0EF /* str_p.png */; };
+		D821C49B1600ECAD008FC0EF /* str.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C48C1600ECAD008FC0EF /* str.png */; };
+		D821C49C1600ECAD008FC0EF /* upgrade_bgi.png in Resources */ = {isa = PBXBuildFile; fileRef = D821C48D1600ECAD008FC0EF /* upgrade_bgi.png */; };
 		D82DC18B15FD8319007286CC /* numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = D82DC18A15FD8319007286CC /* numbers.png */; };
 		D83B163215FE258100D89F63 /* HelloWorldScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D83B162815FE258000D89F63 /* HelloWorldScene.cpp */; };
 		D83B163315FE258100D89F63 /* SGOptionScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D83B162A15FE258000D89F63 /* SGOptionScene.cpp */; };
@@ -275,6 +290,21 @@
 		D805617C15FA1433008AEE5B /* game_etc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = game_etc.plist; path = Resources/game_etc.plist; sourceTree = "<group>"; };
 		D805617D15FA1433008AEE5B /* game_etc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = game_etc.png; path = Resources/game_etc.png; sourceTree = "<group>"; };
 		D80B08F315FE32C6007C623F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		D821C47F1600ECAD008FC0EF /* back_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back_p.png; path = Resources/back_p.png; sourceTree = "<group>"; };
+		D821C4801600ECAD008FC0EF /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = back.png; path = Resources/back.png; sourceTree = "<group>"; };
+		D821C4811600ECAD008FC0EF /* con_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = con_1.png; path = Resources/con_1.png; sourceTree = "<group>"; };
+		D821C4821600ECAD008FC0EF /* con_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = con_p.png; path = Resources/con_p.png; sourceTree = "<group>"; };
+		D821C4831600ECAD008FC0EF /* dex_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dex_p.png; path = Resources/dex_p.png; sourceTree = "<group>"; };
+		D821C4841600ECAD008FC0EF /* dex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dex.png; path = Resources/dex.png; sourceTree = "<group>"; };
+		D821C4851600ECAD008FC0EF /* Ink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ink.png; path = Resources/Ink.png; sourceTree = "<group>"; };
+		D821C4861600ECAD008FC0EF /* luck_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = luck_p.png; path = Resources/luck_p.png; sourceTree = "<group>"; };
+		D821C4871600ECAD008FC0EF /* luck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = luck.png; path = Resources/luck.png; sourceTree = "<group>"; };
+		D821C4881600ECAD008FC0EF /* numbers_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = numbers_small.png; path = Resources/numbers_small.png; sourceTree = "<group>"; };
+		D821C4891600ECAD008FC0EF /* sign_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sign_background.png; path = Resources/sign_background.png; sourceTree = "<group>"; };
+		D821C48A1600ECAD008FC0EF /* splash_android.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash_android.png; path = Resources/splash_android.png; sourceTree = "<group>"; };
+		D821C48B1600ECAD008FC0EF /* str_p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = str_p.png; path = Resources/str_p.png; sourceTree = "<group>"; };
+		D821C48C1600ECAD008FC0EF /* str.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = str.png; path = Resources/str.png; sourceTree = "<group>"; };
+		D821C48D1600ECAD008FC0EF /* upgrade_bgi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upgrade_bgi.png; path = Resources/upgrade_bgi.png; sourceTree = "<group>"; };
 		D82DC18A15FD8319007286CC /* numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = numbers.png; path = Resources/numbers.png; sourceTree = "<group>"; };
 		D83B162815FE258000D89F63 /* HelloWorldScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HelloWorldScene.cpp; path = Classes/HelloWorldScene.cpp; sourceTree = "<group>"; };
 		D83B162915FE258000D89F63 /* HelloWorldScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelloWorldScene.h; path = Classes/HelloWorldScene.h; sourceTree = "<group>"; };
@@ -822,6 +852,21 @@
 		D88C908615F791C100EE167A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D821C47F1600ECAD008FC0EF /* back_p.png */,
+				D821C4801600ECAD008FC0EF /* back.png */,
+				D821C4811600ECAD008FC0EF /* con_1.png */,
+				D821C4821600ECAD008FC0EF /* con_p.png */,
+				D821C4831600ECAD008FC0EF /* dex_p.png */,
+				D821C4841600ECAD008FC0EF /* dex.png */,
+				D821C4851600ECAD008FC0EF /* Ink.png */,
+				D821C4861600ECAD008FC0EF /* luck_p.png */,
+				D821C4871600ECAD008FC0EF /* luck.png */,
+				D821C4881600ECAD008FC0EF /* numbers_small.png */,
+				D821C4891600ECAD008FC0EF /* sign_background.png */,
+				D821C48A1600ECAD008FC0EF /* splash_android.png */,
+				D821C48B1600ECAD008FC0EF /* str_p.png */,
+				D821C48C1600ECAD008FC0EF /* str.png */,
+				D821C48D1600ECAD008FC0EF /* upgrade_bgi.png */,
 				D80B08F315FE32C6007C623F /* Default.png */,
 				D82DC18A15FD8319007286CC /* numbers.png */,
 				D88C909C15F791C100EE167A /* iTunesArtwork */,
@@ -1796,6 +1841,21 @@
 				D8C71DE515FC1CA500A344B8 /* bg_forest_additional.png in Resources */,
 				D82DC18B15FD8319007286CC /* numbers.png in Resources */,
 				D80B08F415FE32C6007C623F /* Default.png in Resources */,
+				D821C48E1600ECAD008FC0EF /* back_p.png in Resources */,
+				D821C48F1600ECAD008FC0EF /* back.png in Resources */,
+				D821C4901600ECAD008FC0EF /* con_1.png in Resources */,
+				D821C4911600ECAD008FC0EF /* con_p.png in Resources */,
+				D821C4921600ECAD008FC0EF /* dex_p.png in Resources */,
+				D821C4931600ECAD008FC0EF /* dex.png in Resources */,
+				D821C4941600ECAD008FC0EF /* Ink.png in Resources */,
+				D821C4951600ECAD008FC0EF /* luck_p.png in Resources */,
+				D821C4961600ECAD008FC0EF /* luck.png in Resources */,
+				D821C4971600ECAD008FC0EF /* numbers_small.png in Resources */,
+				D821C4981600ECAD008FC0EF /* sign_background.png in Resources */,
+				D821C4991600ECAD008FC0EF /* splash_android.png in Resources */,
+				D821C49A1600ECAD008FC0EF /* str_p.png in Resources */,
+				D821C49B1600ECAD008FC0EF /* str.png in Resources */,
+				D821C49C1600ECAD008FC0EF /* upgrade_bgi.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

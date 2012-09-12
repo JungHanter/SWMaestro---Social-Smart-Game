@@ -236,7 +236,8 @@ obj/local/armeabi/objs-debug/game_shared/__/__/Classes/SketchTitleScene.o: \
  jni/../../Classes/SGOptionScene.h jni/../../Classes/SGSound.h \
  /Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/CocosDenshion/android/../include/SimpleAudioEngine.h \
  /Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/CocosDenshion/android/../include/Export.h \
- jni/../../Classes/SGUpgradeScene.h
+ jni/../../Classes/SGUpgradeScene.h jni/../../Classes/SGSaveData.h \
+ jni/../../Classes/SGRankingScene.h jni/../../Classes/SGSignScene.h
 
 jni/../../Classes/SketchTitleScene.h:
 
@@ -719,3 +720,9 @@ jni/../../Classes/SGSound.h:
 /Installation/cocos2d/cocos2d-2.0-rc2-x-2.0.1/CocosDenshion/android/../include/Export.h:
 
 jni/../../Classes/SGUpgradeScene.h:
+
+jni/../../Classes/SGSaveData.h:
+
+jni/../../Classes/SGRankingScene.h:
+
+jni/../../Classes/SGSignScene.h:

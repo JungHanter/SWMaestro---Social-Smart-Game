@@ -11,7 +11,7 @@ using namespace cocos2d;
 enum SG_TITLE_STATE {
 	TITLE,
 	OPENING
-	};
+};
 
 class SketchTitleLayer : public cocos2d::CCLayerColor
 {

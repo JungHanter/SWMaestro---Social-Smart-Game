@@ -56,8 +56,8 @@ private:
     void resetParent(CCLayer* parent);
     
 public:
-    
     static SGBackground* sharedInstance(CCLayer *parent);
+    static SGBackground* sharedNewInstance(CCLayer *parent);
 };
 
 #endif /* defined(__SketchGame_TouchInput__SGBackground__) */
